@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import CoreServices
 
 class MP3ConverterViewController: UIViewController {
     
@@ -19,27 +20,51 @@ class MP3ConverterViewController: UIViewController {
     @IBOutlet weak var convertedIndicator: UIImageView!
     
     let videoManager = VideoManager()
-    let imagePicker = UIImagePickerController()
-    
-//    var isInOriginal = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         originalCollectionView.delegate = self
         originalCollectionView.dataSource = self
+    }
+    
+    func displayActionSheet() {
         
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+            
+        let uploadFromAlbumAction = UIAlertAction(title: "从相册上传", style: .default) { (action) in
+            self.uploadVideoFromAlbum()
+        }
+        let uploadFromFilesAction = UIAlertAction(title: "从文件上传", style: .default) { (action) in
+            self.uploadVideoFromFiles()
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+            
+        optionMenu.addAction(uploadFromAlbumAction)
+        optionMenu.addAction(uploadFromFilesAction)
+        optionMenu.addAction(cancelAction)
+            
+        present(optionMenu, animated: true, completion: nil)
+    }
+    
+    func uploadVideoFromAlbum() {
+        
+        let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = .savedPhotosAlbum
         imagePicker.allowsEditing = false
         imagePicker.mediaTypes = ["public.movie"]
         
-    }
-    
-    func addVideo() {
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
             present(imagePicker, animated: true, completion: nil)
         }
+    }
+    
+    func uploadVideoFromFiles() {
+        let types = [String(kUTTypeMPEG4)]
+        let documentPickerViewController = UIDocumentPickerViewController(documentTypes: types, in: .import)
+        documentPickerViewController.delegate = self
+        present(documentPickerViewController, animated: true, completion: nil)
     }
     
     @IBAction func toggleToOriginal(_ sender: UIButton) {
@@ -59,7 +84,6 @@ class MP3ConverterViewController: UIViewController {
         originalCollectionView.isHidden = true
         nothingConvertedView.isHidden = false
     }
-    
 }
 
 /* UICollectionView Delegate */
@@ -101,11 +125,22 @@ extension MP3ConverterViewController: UICollectionViewDelegate, UICollectionView
 extension MP3ConverterViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        picker.dismiss(animated: true, completion: nil)
         let videoURL = info[.mediaURL] as! URL
         videoManager.addVideo(url: videoURL)
         originalCollectionView.reloadData()
+        picker.dismiss(animated: true, completion: nil)
     }
+}
+
+/* UIDocumentPicker Delegate */
+
+extension MP3ConverterViewController: UIDocumentPickerDelegate {
     
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        for url in urls {
+            videoManager.addVideo(url: url)
+        }
+        originalCollectionView.reloadData()
+        controller.dismiss(animated: true, completion: nil)
+    }
 }

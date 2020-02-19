@@ -29,5 +29,4 @@ class VideoManager {
     func getDurationTime(at index: Int) -> String {
         return videos[index].getDurationTime()
     }
-    
 }

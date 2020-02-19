@@ -29,9 +29,7 @@ struct Video {
             let imageRef = try generator.copyCGImage(at: timestamp, actualTime: nil)
             let image =  UIImage(cgImage: imageRef)
             self.preview = image
-        }
-        catch let error as NSError
-        {
+        } catch let error as NSError {
             print("Preview generation failed with error \(error)")
             return nil
         }
@@ -48,5 +46,4 @@ struct Video {
         let secondsToString = String(format: "%02d", seconds)
         return "\(minutes):" + secondsToString
     }
-    
 }
