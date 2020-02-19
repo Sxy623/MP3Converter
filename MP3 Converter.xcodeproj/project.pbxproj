@@ -9,20 +9,21 @@
 /* Begin PBXBuildFile section */
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
 		90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */; };
-		90B20A8023FD08EB00653F0C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7F23FD08EB00653F0C /* ViewController.swift */; };
+		90B20A8023FD08EB00653F0C /* MP3ConverterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7F23FD08EB00653F0C /* MP3ConverterViewController.swift */; };
 		90B20A8323FD08EB00653F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B20A8123FD08EB00653F0C /* Main.storyboard */; };
 		90B20A8523FD08EE00653F0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90B20A8423FD08EE00653F0C /* Assets.xcassets */; };
 		90B20A8823FD08EE00653F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B20A8623FD08EE00653F0C /* LaunchScreen.storyboard */; };
 		90B20A9023FD236200653F0C /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A8F23FD236200653F0C /* VideoManager.swift */; };
 		90B20A9523FD23D400653F0C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9423FD23D400653F0C /* Video.swift */; };
 		90B20A9723FD261500653F0C /* AddVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */; };
+		90B20A9A23FD339600653F0C /* VideoPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9923FD339600653F0C /* VideoPreviewCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B20A7B23FD08EB00653F0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		90B20A7F23FD08EB00653F0C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		90B20A7F23FD08EB00653F0C /* MP3ConverterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MP3ConverterViewController.swift; sourceTree = "<group>"; };
 		90B20A8223FD08EB00653F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		90B20A8423FD08EE00653F0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90B20A8723FD08EE00653F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -30,6 +31,7 @@
 		90B20A8F23FD236200653F0C /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
 		90B20A9423FD23D400653F0C /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		90B20A9923FD339600653F0C /* VideoPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +81,7 @@
 			children = (
 				90B20A8F23FD236200653F0C /* VideoManager.swift */,
 				90B20A9423FD23D400653F0C /* Video.swift */,
-				90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */,
+				90B20A9823FD320800653F0C /* CollectionViewCell */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -87,7 +89,7 @@
 		90B20A9223FD237000653F0C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				90B20A7F23FD08EB00653F0C /* ViewController.swift */,
+				90B20A7F23FD08EB00653F0C /* MP3ConverterViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -98,6 +100,15 @@
 				90B20A8123FD08EB00653F0C /* Main.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		90B20A9823FD320800653F0C /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */,
+				90B20A9923FD339600653F0C /* VideoPreviewCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,7 +183,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				90B20A9723FD261500653F0C /* AddVideoCollectionViewCell.swift in Sources */,
-				90B20A8023FD08EB00653F0C /* ViewController.swift in Sources */,
+				90B20A9A23FD339600653F0C /* VideoPreviewCollectionViewCell.swift in Sources */,
+				90B20A8023FD08EB00653F0C /* MP3ConverterViewController.swift in Sources */,
 				90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */,
 				90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */,
 				90B20A9023FD236200653F0C /* VideoManager.swift in Sources */,

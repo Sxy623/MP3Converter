@@ -10,17 +10,13 @@ import UIKit
 
 class AddVideoCollectionViewCell: UICollectionViewCell {
     
-    var videoManager: VideoManager?
-    var collectionView: UICollectionView?
+    var rootViewController: MP3ConverterViewController?
     
     @IBAction func addVideoButtonPressed(_ sender: UIButton) {
         
-        guard let videoManager = videoManager else { return }
-        guard let collectionView = collectionView else { return }
+        guard let rootViewController = rootViewController else { return }
         
-        videoManager.addVideo()
-        collectionView.reloadData()
-        
+        rootViewController.addVideo()
+
     }
-    
 }
