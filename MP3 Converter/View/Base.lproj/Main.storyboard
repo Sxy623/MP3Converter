@@ -102,7 +102,7 @@
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2aC-or-EqA">
                                                 <rect key="frame" x="17" y="0.0" width="358" height="687"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="3Sj-g4-Xc6">
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="3Sj-g4-Xc6" customClass="LeftAlignLayout" customModule="MP3_Converter" customModuleProvider="target">
                                                     <size key="itemSize" width="114" height="114"/>
                                                     <size key="estimatedItemSize" width="114" height="114"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
