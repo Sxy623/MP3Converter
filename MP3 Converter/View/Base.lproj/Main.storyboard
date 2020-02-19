@@ -37,6 +37,9 @@
                                                         <state key="normal" title="原视频">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="toggleToOriginal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2XK-DD-GGn"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="k0t-gz-TNA">
                                                         <rect key="frame" x="2" y="30" width="64" height="13"/>
@@ -61,6 +64,9 @@
                                                         <state key="normal" title="已转换">
                                                             <color key="titleColor" white="0.0" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="toggleToConverted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YxA-7s-HOc"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="AWm-WB-rTL">
                                                         <rect key="frame" x="2" y="30" width="64" height="13"/>
@@ -99,6 +105,61 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGD-be-r5H" userLabel="Body View">
                                         <rect key="frame" x="0.0" y="71" width="375" height="687"/>
                                         <subviews>
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mth-FJ-EeM" userLabel="Nothing Converted View">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Box" translatesAutoresizingMaskIntoConstraints="NO" id="RYg-q7-M4W">
+                                                        <rect key="frame" x="131" y="175" width="113" height="112"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="113" id="0E3-Wr-aOv"/>
+                                                            <constraint firstAttribute="height" constant="112" id="7Gx-VV-0J8"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你的音乐列表空空如也" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DzE-lz-M1b">
+                                                        <rect key="frame" x="112.66666666666669" y="321" width="150" height="32"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="nWH-xB-TIJ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u8N-Tc-b5C">
+                                                        <rect key="frame" x="82.666666666666686" y="353" width="210" height="32"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="试试" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQQ-tX-WDM">
+                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="32"/>
+                                                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="「导入视频」" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LOs-gH-xwd">
+                                                                <rect key="frame" x="30" y="0.0" width="90" height="32"/>
+                                                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
+                                                                <color key="textColor" red="1" green="0.37254901960784315" blue="0.33725490196078434" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一键提取音乐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eUG-pI-Xjy">
+                                                                <rect key="frame" x="120" y="0.0" width="90" height="32"/>
+                                                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="15"/>
+                                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="32" id="Klg-5V-Nwt"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="DzE-lz-M1b" firstAttribute="top" secondItem="RYg-q7-M4W" secondAttribute="bottom" constant="34" id="54B-9V-Dxy"/>
+                                                    <constraint firstItem="u8N-Tc-b5C" firstAttribute="centerX" secondItem="Mth-FJ-EeM" secondAttribute="centerX" id="5oE-Tu-HVK"/>
+                                                    <constraint firstItem="u8N-Tc-b5C" firstAttribute="top" secondItem="DzE-lz-M1b" secondAttribute="bottom" id="72v-2f-2q0"/>
+                                                    <constraint firstItem="DzE-lz-M1b" firstAttribute="centerX" secondItem="Mth-FJ-EeM" secondAttribute="centerX" id="TdR-fY-L2z"/>
+                                                    <constraint firstItem="RYg-q7-M4W" firstAttribute="centerX" secondItem="Mth-FJ-EeM" secondAttribute="centerX" id="rF1-T1-z0R"/>
+                                                    <constraint firstItem="RYg-q7-M4W" firstAttribute="top" secondItem="Mth-FJ-EeM" secondAttribute="top" constant="175" id="vdD-t9-eN2"/>
+                                                </constraints>
+                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2aC-or-EqA">
                                                 <rect key="frame" x="17" y="0.0" width="358" height="687"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -185,7 +246,11 @@
                                             <constraint firstAttribute="trailing" secondItem="2aC-or-EqA" secondAttribute="trailing" id="Myj-01-TnK"/>
                                             <constraint firstAttribute="bottom" secondItem="2aC-or-EqA" secondAttribute="bottom" id="N3R-db-oTb"/>
                                             <constraint firstItem="2aC-or-EqA" firstAttribute="leading" secondItem="mGD-be-r5H" secondAttribute="leading" constant="17" id="PJj-eY-BSu"/>
+                                            <constraint firstItem="Mth-FJ-EeM" firstAttribute="top" secondItem="mGD-be-r5H" secondAttribute="top" id="SEv-9J-mdf"/>
                                             <constraint firstItem="2aC-or-EqA" firstAttribute="top" secondItem="mGD-be-r5H" secondAttribute="top" id="i2D-r3-DMt"/>
+                                            <constraint firstItem="Mth-FJ-EeM" firstAttribute="leading" secondItem="mGD-be-r5H" secondAttribute="leading" id="jaw-1h-KOS"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mth-FJ-EeM" secondAttribute="bottom" id="rVt-Jm-K3G"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mth-FJ-EeM" secondAttribute="trailing" id="xdG-0c-PL8"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -205,7 +270,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="convertedButton" destination="Wqe-AB-RCV" id="swf-Mn-u7N"/>
+                        <outlet property="convertedIndicator" destination="AWm-WB-rTL" id="QwB-by-4ZE"/>
+                        <outlet property="nothingConvertedView" destination="Mth-FJ-EeM" id="ijb-8o-akE"/>
+                        <outlet property="originalButton" destination="LfH-q0-uZp" id="cZn-dl-VK9"/>
                         <outlet property="originalCollectionView" destination="2aC-or-EqA" id="BbD-Fy-hwa"/>
+                        <outlet property="originalIndicator" destination="k0t-gz-TNA" id="9Fo-vh-ItH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -215,6 +285,7 @@
     </scenes>
     <resources>
         <image name="Background" width="375" height="803"/>
+        <image name="Box" width="81" height="81"/>
         <image name="Indicator" width="64" height="13"/>
         <image name="Settings" width="33" height="33"/>
         <image name="Video" width="86" height="86"/>
