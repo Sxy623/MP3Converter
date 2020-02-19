@@ -13,6 +13,9 @@
 		90B20A8323FD08EB00653F0C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B20A8123FD08EB00653F0C /* Main.storyboard */; };
 		90B20A8523FD08EE00653F0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90B20A8423FD08EE00653F0C /* Assets.xcassets */; };
 		90B20A8823FD08EE00653F0C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B20A8623FD08EE00653F0C /* LaunchScreen.storyboard */; };
+		90B20A9023FD236200653F0C /* VideoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A8F23FD236200653F0C /* VideoManager.swift */; };
+		90B20A9523FD23D400653F0C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9423FD23D400653F0C /* Video.swift */; };
+		90B20A9723FD261500653F0C /* AddVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		90B20A8423FD08EE00653F0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90B20A8723FD08EE00653F0C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90B20A8923FD08EE00653F0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90B20A8F23FD236200653F0C /* VideoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoManager.swift; sourceTree = "<group>"; };
+		90B20A9423FD23D400653F0C /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVideoCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +64,40 @@
 			children = (
 				90B20A7B23FD08EB00653F0C /* AppDelegate.swift */,
 				90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */,
-				90B20A7F23FD08EB00653F0C /* ViewController.swift */,
-				90B20A8123FD08EB00653F0C /* Main.storyboard */,
+				90B20A9123FD236900653F0C /* Model */,
+				90B20A9323FD237800653F0C /* View */,
+				90B20A9223FD237000653F0C /* Controller */,
 				90B20A8423FD08EE00653F0C /* Assets.xcassets */,
 				90B20A8623FD08EE00653F0C /* LaunchScreen.storyboard */,
 				90B20A8923FD08EE00653F0C /* Info.plist */,
 			);
 			path = "MP3 Converter";
+			sourceTree = "<group>";
+		};
+		90B20A9123FD236900653F0C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				90B20A8F23FD236200653F0C /* VideoManager.swift */,
+				90B20A9423FD23D400653F0C /* Video.swift */,
+				90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		90B20A9223FD237000653F0C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				90B20A7F23FD08EB00653F0C /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		90B20A9323FD237800653F0C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				90B20A8123FD08EB00653F0C /* Main.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +171,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90B20A9723FD261500653F0C /* AddVideoCollectionViewCell.swift in Sources */,
 				90B20A8023FD08EB00653F0C /* ViewController.swift in Sources */,
 				90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */,
 				90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */,
+				90B20A9023FD236200653F0C /* VideoManager.swift in Sources */,
+				90B20A9523FD23D400653F0C /* Video.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

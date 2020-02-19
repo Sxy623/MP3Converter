@@ -12,6 +12,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBOutlet weak var originalCollectionView: UICollectionView!
     
+    let videoManager = VideoManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,14 +22,28 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return videoManager.getNumOfVideos() + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = originalCollectionView.dequeueReusableCell(withReuseIdentifier: "Add Video", for: indexPath)
         
-        return cell
-    }
+        if (indexPath.item == 0) { // Add video button
+            
+            let cell = originalCollectionView.dequeueReusableCell(withReuseIdentifier: "Add Video", for: indexPath) as! AddVideoCollectionViewCell
+            
+            cell.videoManager = videoManager
+            cell.collectionView = originalCollectionView
+            
+            return cell
+            
+        } else {  // Show video details
+            
+            let cell = originalCollectionView.dequeueReusableCell(withReuseIdentifier: "Video Details", for: indexPath)
+            
+            return cell
 
+        }
+        
+    }
 }
 
