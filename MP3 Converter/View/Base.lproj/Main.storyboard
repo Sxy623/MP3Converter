@@ -290,7 +290,7 @@
         <scene sceneID="3yM-yO-RtO">
             <objects>
                 <tableViewController id="lio-xn-gGh" customClass="SettingsTableViewController" customModule="MP3_Converter" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="38" sectionFooterHeight="-1" estimatedSectionFooterHeight="19" id="R5p-2H-9mG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="38" sectionFooterHeight="-1" estimatedSectionFooterHeight="19" id="R5p-2H-9mG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -409,10 +409,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="设置" id="JbY-8O-08M"/>
+                    <connections>
+                        <outlet property="audioTypeLabel" destination="ME3-wy-Cjc" id="odF-km-hR8"/>
+                        <outlet property="videoTypeLabel" destination="xWW-kB-ioS" id="Igu-Yv-sqo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psm-zn-xWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2007.2" y="108.62068965517241"/>
+            <point key="canvasLocation" x="2050" y="109"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="33K-qW-tmu">

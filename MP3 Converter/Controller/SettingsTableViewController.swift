@@ -7,29 +7,81 @@
 //
 
 import UIKit
+import StoreKit
 
 class SettingsTableViewController: UITableViewController {
-
+    
+    @IBOutlet weak var videoTypeLabel: UILabel!
+    @IBOutlet weak var audioTypeLabel: UILabel!
+    
     let headerTitles = ["", "关于MP3转换器"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.backgroundColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.968627451, alpha: 1)
+        updateUI()
     }
-
+    
+    func changeVideoType() {
+        
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        VideoType.allCases.forEach { type in
+            let action = UIAlertAction(title: type.string, style: .default) { action in
+                Configuration.sharedInstance.videoType = type
+                self.updateUI()
+            }
+            optionMenu.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+        optionMenu.addAction(cancelAction)
+        
+        present(optionMenu, animated: true, completion: nil)
+    }
+    
+    func changeAudioType() {
+        
+        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        AudioType.allCases.forEach { type in
+            let action = UIAlertAction(title: type.string, style: .default) { action in
+                Configuration.sharedInstance.audioType = type
+                self.updateUI()
+            }
+            optionMenu.addAction(action)
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+        optionMenu.addAction(cancelAction)
+        
+        present(optionMenu, animated: true, completion: nil)
+    }
+    
+    func rateApp() {
+        SKStoreReviewController.requestReview()
+    }
+    
+    func adviseApp() {
+        
+    }
+    
+    func shareApp() {
+        
+    }
+    
+    func updateUI() {
+        videoTypeLabel.text = Configuration.sharedInstance.videoType.string
+        audioTypeLabel.text = Configuration.sharedInstance.audioType.string
+    }
+    
     // MARK: - TableView Data Source
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -45,13 +97,13 @@ class SettingsTableViewController: UITableViewController {
         
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 38))
         headerView.backgroundColor = tableView.backgroundColor
-
+        
         let headerLabel = UILabel(frame: CGRect(x: 16, y: 14, width: view.frame.size.width, height: 18))
         headerLabel.text = headerTitles[section]
         headerLabel.font = .systemFont(ofSize: 13.0, weight: .regular)
         headerLabel.textColor = #colorLiteral(red: 0.2352941176, green: 0.2352941176, blue: 0.262745098, alpha: 0.6)
         headerView.addSubview(headerLabel)
-
+        
         return headerView
     }
     
@@ -64,59 +116,32 @@ class SettingsTableViewController: UITableViewController {
         return footerView
     }
     
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                changeVideoType()
+            case 1:
+                changeAudioType()
+            default:
+                break
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                rateApp()
+            case 1:
+                adviseApp()
+            case 2:
+                shareApp()
+            default:
+                break
+            }
+        default:
+            break
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
