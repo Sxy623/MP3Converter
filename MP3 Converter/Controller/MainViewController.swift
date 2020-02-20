@@ -14,6 +14,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var originalCollectionView: UICollectionView!
     @IBOutlet weak var nothingConvertedView: UIView!
+    @IBOutlet weak var convertedTableView: UITableView!
     @IBOutlet weak var originalButton: UIButton!
     @IBOutlet weak var originalIndicator: UIImageView!
     @IBOutlet weak var convertedButton: UIButton!
@@ -26,6 +27,9 @@ class MainViewController: UIViewController {
         
         originalCollectionView.delegate = self
         originalCollectionView.dataSource = self
+        
+        convertedTableView.delegate = self
+        convertedTableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,8 +40,9 @@ class MainViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
+    
+    // MARK: - Upload Video
     
     func displayActionSheet() {
         
@@ -78,6 +83,14 @@ class MainViewController: UIViewController {
         present(documentPickerViewController, animated: true, completion: nil)
     }
     
+    // MARK: - Extract Audio
+    
+    func extractAudio() {
+        performSegue(withIdentifier: "extractAudio", sender: nil)
+    }
+    
+    // MARK: - User Interface
+    
     @IBAction func toggleToOriginal(_ sender: UIButton) {
         originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         originalIndicator.alpha = 1.0
@@ -94,6 +107,16 @@ class MainViewController: UIViewController {
         convertedIndicator.alpha = 1.0
         originalCollectionView.isHidden = true
         nothingConvertedView.isHidden = false
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "Settings" {
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        } else if segue.identifier == "Extract Audio" {
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "原视频", style: .plain, target: nil, action: nil)
+        }
     }
 }
 
@@ -123,6 +146,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             
             let cell = originalCollectionView.dequeueReusableCell(withReuseIdentifier: "Video Preview", for: indexPath) as! VideoPreviewCollectionViewCell
+            cell.rootViewController = self
             cell.previewImageView.image = videoManager.getPreviewImage(at: index - 1)
             cell.durationTimeLabel.text = videoManager.getDurationTime(at: index - 1)
             return cell
@@ -153,5 +177,31 @@ extension MainViewController: UIDocumentPickerDelegate {
         }
         originalCollectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - TableView Delegate
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = convertedTableView.dequeueReusableCell(withIdentifier: "Audio Preview", for: indexPath) as! AudioPreviewTableViewCell
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 108
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

@@ -13,4 +13,9 @@ class VideoPreviewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var previewImageView: UIImageView!
     @IBOutlet weak var durationTimeLabel: UILabel!
     
+    var rootViewController: MainViewController?
+    
+    @IBAction func extractAudioButtonPressed(_ sender: UIButton) {
+        rootViewController?.extractAudio()
+    }
 }
