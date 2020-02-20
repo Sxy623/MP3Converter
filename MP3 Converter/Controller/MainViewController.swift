@@ -1,5 +1,5 @@
 //
-//  MP3ConverterViewController.swift
+//  MainViewController.swift
 //  MP3 Converter
 //
 //  Created by 沈心逸 on 2020/2/19.
@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import CoreServices
 
-class MP3ConverterViewController: UIViewController {
+class MainViewController: UIViewController {
     
     @IBOutlet weak var originalCollectionView: UICollectionView!
     @IBOutlet weak var nothingConvertedView: UIView!
@@ -28,10 +28,21 @@ class MP3ConverterViewController: UIViewController {
         originalCollectionView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
     func displayActionSheet() {
         
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            
+        
         let uploadFromAlbumAction = UIAlertAction(title: "从相册上传", style: .default) { (action) in
             self.uploadVideoFromAlbum()
         }
@@ -39,11 +50,11 @@ class MP3ConverterViewController: UIViewController {
             self.uploadVideoFromFiles()
         }
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
-            
+        
         optionMenu.addAction(uploadFromAlbumAction)
         optionMenu.addAction(uploadFromFilesAction)
         optionMenu.addAction(cancelAction)
-            
+        
         present(optionMenu, animated: true, completion: nil)
     }
     
@@ -86,9 +97,9 @@ class MP3ConverterViewController: UIViewController {
     }
 }
 
-/* UICollectionView Delegate */
+// MARK: - CollectionView Delegate
 
-extension MP3ConverterViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videoManager.getNumOfVideos() + 1
@@ -120,9 +131,9 @@ extension MP3ConverterViewController: UICollectionViewDelegate, UICollectionView
     }
 }
 
-/* UIImagePickerController Delegate */
+// MARK: - ImagePickerController Delegate
 
-extension MP3ConverterViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension MainViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let videoURL = info[.mediaURL] as! URL
@@ -132,9 +143,9 @@ extension MP3ConverterViewController: UINavigationControllerDelegate, UIImagePic
     }
 }
 
-/* UIDocumentPicker Delegate */
+// MARK: - DocumentPicker Delegate
 
-extension MP3ConverterViewController: UIDocumentPickerDelegate {
+extension MainViewController: UIDocumentPickerDelegate {
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls {

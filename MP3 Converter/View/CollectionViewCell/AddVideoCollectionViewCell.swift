@@ -10,7 +10,7 @@ import UIKit
 
 class AddVideoCollectionViewCell: UICollectionViewCell {
     
-    var rootViewController: MP3ConverterViewController?
+    var rootViewController: MainViewController?
     
     @IBAction func addVideoButtonPressed(_ sender: UIButton) {
         guard let rootViewController = rootViewController else { return }
