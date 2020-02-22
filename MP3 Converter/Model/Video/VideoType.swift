@@ -15,8 +15,6 @@ enum VideoType: CaseIterable {
     case bbb
 
     var string: String {
-        get {
-            return "\(self)"
-        }
+        return "\(self)"
     }
 }

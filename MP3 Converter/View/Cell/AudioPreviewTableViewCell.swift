@@ -7,9 +7,16 @@
 //
 
 import UIKit
+import AVFoundation
 
 class AudioPreviewTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var audioTitleLabel: UILabel!
+    @IBOutlet weak var durationTimeLabel: UILabel!
+    
+    var rootViewController: MainViewController?
+    var audio: Audio!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -17,5 +24,10 @@ class AudioPreviewTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
+    @IBAction func playButtonPressed(_ sender: UIButton) {
+        sender.setBackgroundImage(#imageLiteral(resourceName: "Pause.circle"), for: .normal)
+        rootViewController?.playAudio(url: audio.url)
+    }
+    
 }

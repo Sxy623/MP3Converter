@@ -10,4 +10,22 @@ import Foundation
 
 struct Audio {
     
+    let url: URL
+    let title: String
+    let durationTime: Double
+    
+    init(url: URL, title: String, durationTime: Double) {
+        self.url = url
+        self.title = title
+        self.durationTime = durationTime
+    }
+    
+    func getDurationTime() -> String {
+        let totalSeconds = Int(durationTime) + 1
+        let secondsPerMinute = 60
+        let minutes = totalSeconds / secondsPerMinute
+        let seconds = totalSeconds - minutes * secondsPerMinute
+        let secondsToString = String(format: "%02d", seconds)
+        return "\(minutes):" + secondsToString
+    }
 }

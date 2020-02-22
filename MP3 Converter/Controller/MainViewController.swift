@@ -21,6 +21,10 @@ class MainViewController: UIViewController {
     @IBOutlet weak var convertedIndicator: UIImageView!
     
     let videoManager = VideoManager()
+    let audioManager = AudioManager()
+    var player: AVAudioPlayer!
+    
+    var selectedIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +90,17 @@ class MainViewController: UIViewController {
     // MARK: - Extract Audio
     
     func extractAudio() {
-        performSegue(withIdentifier: "extractAudio", sender: nil)
+        performSegue(withIdentifier: "Extract Audio", sender: nil)
+    }
+    
+    func addAudio(url: URL, title: String, durationTime: Double) {
+        audioManager.addAudio(url: url, title: title, durationTime: durationTime)
+        convertedTableView.reloadData()
+    }
+    
+    func playAudio(url: URL) {
+        player = try! AVAudioPlayer(contentsOf: url)
+        player.play()
     }
     
     // MARK: - User Interface
@@ -98,6 +112,7 @@ class MainViewController: UIViewController {
         convertedIndicator.alpha = 0.0
         originalCollectionView.isHidden = false
         nothingConvertedView.isHidden = true
+        convertedTableView.isHidden = true
     }
     
     @IBAction func toggleToConverted(_ sender: UIButton) {
@@ -106,7 +121,11 @@ class MainViewController: UIViewController {
         convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         convertedIndicator.alpha = 1.0
         originalCollectionView.isHidden = true
-        nothingConvertedView.isHidden = false
+        if audioManager.getNumOfAudios() == 0 {
+            nothingConvertedView.isHidden = false
+        } else {
+            convertedTableView.isHidden = false
+        }
     }
     
     // MARK: - Navigation
@@ -115,6 +134,9 @@ class MainViewController: UIViewController {
         if segue.identifier == "Settings" {
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         } else if segue.identifier == "Extract Audio" {
+            let destinationViewController = segue.destination as! ExtractAudioViewController
+            destinationViewController.rootViewController = self
+            destinationViewController.video = videoManager.videos[selectedIndex]
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "原视频", style: .plain, target: nil, action: nil)
         }
     }
@@ -153,6 +175,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedIndex = indexPath.row
+    }
 }
 
 // MARK: - ImagePickerController Delegate
@@ -189,11 +215,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return audioManager.getNumOfAudios()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = convertedTableView.dequeueReusableCell(withIdentifier: "Audio Preview", for: indexPath) as! AudioPreviewTableViewCell
+        cell.rootViewController = self
+        cell.audioTitleLabel.text = audioManager.getTitle(at: indexPath.row)
+        cell.durationTimeLabel.text = audioManager.getDurationTime(at: indexPath.row)
+        cell.audio = audioManager.audios[indexPath.row]
         return cell
     }
     

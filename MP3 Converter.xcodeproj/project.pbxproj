@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		902AF1A3240115C50036CB1A /* SoundWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; };
+		902AF1A4240115C50036CB1A /* SoundWave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
 		90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */; };
 		90B20A8023FD08EB00653F0C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7F23FD08EB00653F0C /* MainViewController.swift */; };
@@ -28,7 +30,22 @@
 		90FF3C5523FEAA92006AEFC7 /* AudioPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C5423FEAA92006AEFC7 /* AudioPreviewTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		902AF1A5240115C50036CB1A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				902AF1A4240115C50036CB1A /* SoundWave.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		902AF1A2240115C50036CB1A /* SoundWave.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundWave.framework; path = Carthage/Build/iOS/SoundWave.framework; sourceTree = "<group>"; };
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B20A7B23FD08EB00653F0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,17 +74,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				902AF1A3240115C50036CB1A /* SoundWave.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		902AF1A1240115C40036CB1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				902AF1A2240115C50036CB1A /* SoundWave.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		90B20A6F23FD08EB00653F0C = {
 			isa = PBXGroup;
 			children = (
 				90B20A7A23FD08EB00653F0C /* MP3 Converter */,
 				90B20A7923FD08EB00653F0C /* Products */,
+				902AF1A1240115C40036CB1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -172,6 +199,8 @@
 				90B20A7423FD08EB00653F0C /* Sources */,
 				90B20A7523FD08EB00653F0C /* Frameworks */,
 				90B20A7623FD08EB00653F0C /* Resources */,
+				902AF1A5240115C50036CB1A /* Embed Frameworks */,
+				902AF1A6240115F10036CB1A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -227,6 +256,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		902AF1A6240115F10036CB1A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SoundWave.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		90B20A7423FD08EB00653F0C /* Sources */ = {
@@ -393,6 +443,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "MP3 Converter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -410,6 +464,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "MP3 Converter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

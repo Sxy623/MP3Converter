@@ -15,8 +15,6 @@ enum AudioType: CaseIterable {
     case ddd
     
     var string: String {
-        get {
-            return "\(self)"
-        }
+        return "\(self)"
     }
 }

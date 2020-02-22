@@ -36,6 +36,7 @@ Pods
 !Podfile.lock
  
 # Carthage
+Cartfile.resolved
 Carthage/Build
 Carthage/Checkouts
  
