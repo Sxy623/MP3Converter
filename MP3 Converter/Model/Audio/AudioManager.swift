@@ -21,6 +21,10 @@ class AudioManager {
         audios.append(audio)
     }
     
+    func getURL(at index: Int) -> URL {
+        return audios[index].url
+    }
+    
     func getTitle(at index: Int) -> String {
         return audios[index].title
     }

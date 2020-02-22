@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		902AF1A3240115C50036CB1A /* SoundWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; };
 		902AF1A4240115C50036CB1A /* SoundWave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9085E4DD24014CA300525479 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085E4DC24014CA300525479 /* TestViewController.swift */; };
+		9085E4DF24015A1B00525479 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085E4DE24015A1B00525479 /* PlayerState.swift */; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
 		90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */; };
 		90B20A8023FD08EB00653F0C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7F23FD08EB00653F0C /* MainViewController.swift */; };
@@ -46,6 +48,8 @@
 
 /* Begin PBXFileReference section */
 		902AF1A2240115C50036CB1A /* SoundWave.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundWave.framework; path = Carthage/Build/iOS/SoundWave.framework; sourceTree = "<group>"; };
+		9085E4DC24014CA300525479 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		9085E4DE24015A1B00525479 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B20A7B23FD08EB00653F0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		903C035B24016195000D430B /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				9085E4DE24015A1B00525479 /* PlayerState.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		90B20A6F23FD08EB00653F0C = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				90FF3C4F23FE7A12006AEFC7 /* Audio */,
+				903C035B24016195000D430B /* Player */,
 				90FF3C4E23FE79FE006AEFC7 /* Video */,
 				90FF3C5023FE7B02006AEFC7 /* Configuration.swift */,
 			);
@@ -137,6 +150,7 @@
 				90FF3C5223FE8310006AEFC7 /* ExtractAudioViewController.swift */,
 				90B20A7F23FD08EB00653F0C /* MainViewController.swift */,
 				90FF3C4823FDC668006AEFC7 /* SettingsTableViewController.swift */,
+				9085E4DC24014CA300525479 /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -285,6 +299,7 @@
 			files = (
 				90B20A9723FD261500653F0C /* AddVideoCollectionViewCell.swift in Sources */,
 				90FF3C5523FEAA92006AEFC7 /* AudioPreviewTableViewCell.swift in Sources */,
+				9085E4DD24014CA300525479 /* TestViewController.swift in Sources */,
 				90B20A9A23FD339600653F0C /* VideoPreviewCollectionViewCell.swift in Sources */,
 				90FF3C5123FE7B02006AEFC7 /* Configuration.swift in Sources */,
 				90FF3C5323FE8310006AEFC7 /* ExtractAudioViewController.swift in Sources */,
@@ -292,6 +307,7 @@
 				90FF3C4923FDC668006AEFC7 /* SettingsTableViewController.swift in Sources */,
 				90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */,
 				90FF3C4123FD624E006AEFC7 /* Audio.swift in Sources */,
+				9085E4DF24015A1B00525479 /* PlayerState.swift in Sources */,
 				90E471C823FD527E00028D96 /* LeftAlignLayout.swift in Sources */,
 				90FF3C4B23FE7314006AEFC7 /* VideoType.swift in Sources */,
 				90FF3C4D23FE78A7006AEFC7 /* AudioType.swift in Sources */,

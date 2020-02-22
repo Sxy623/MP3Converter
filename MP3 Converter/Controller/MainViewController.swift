@@ -22,7 +22,10 @@ class MainViewController: UIViewController {
     
     let videoManager = VideoManager()
     let audioManager = AudioManager()
+    
     var player: AVAudioPlayer!
+    var currentPlayingIndex: Int = 0
+    var playerState: PlayerState = .finish
     
     var selectedIndex: Int = 0
     
@@ -34,6 +37,7 @@ class MainViewController: UIViewController {
         
         convertedTableView.delegate = self
         convertedTableView.dataSource = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,9 +102,54 @@ class MainViewController: UIViewController {
         convertedTableView.reloadData()
     }
     
-    func playAudio(url: URL) {
-        player = try! AVAudioPlayer(contentsOf: url)
-        player.play()
+    // MARK: - Player Manager
+    
+    func playAudio(index: Int) {
+        
+        let oldCell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
+        oldCell.triangleImage.isHidden = true
+        
+        switch playerState {
+            
+        case .finish:
+            currentPlayingIndex = index
+            player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
+            player.delegate = self
+            player.play()
+            playerState = .play
+            
+        case .play:
+            if currentPlayingIndex == index {
+                player.pause()
+                playerState = .pause
+            } else {
+                player.stop()
+                oldCell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+                
+                currentPlayingIndex = index
+                player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
+                player.delegate = self
+                player.play()
+                playerState = .play
+            }
+            
+        case .pause:
+            if currentPlayingIndex == index {
+                player.play()
+                playerState = .play
+            } else {
+                player.stop()
+                
+                currentPlayingIndex = index
+                player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
+                player.delegate = self
+                player.play()
+                playerState = .play
+            }
+        }
+        
+        let newCell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
+        newCell.triangleImage.isHidden = false
     }
     
     // MARK: - User Interface
@@ -223,7 +272,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.rootViewController = self
         cell.audioTitleLabel.text = audioManager.getTitle(at: indexPath.row)
         cell.durationTimeLabel.text = audioManager.getDurationTime(at: indexPath.row)
-        cell.audio = audioManager.audios[indexPath.row]
+        cell.index = indexPath.row
         return cell
     }
     
@@ -234,4 +283,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+// MARK: - AudioPlayer Delegate
+
+extension MainViewController: AVAudioPlayerDelegate {
+    
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        let cell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
+        cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+        playerState = .finish
+    }
+    
 }

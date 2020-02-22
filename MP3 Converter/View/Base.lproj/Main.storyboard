@@ -265,7 +265,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="375" height="108"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Triangle" translatesAutoresizingMaskIntoConstraints="NO" id="13l-28-Fdg">
+                                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Triangle" translatesAutoresizingMaskIntoConstraints="NO" id="13l-28-Fdg">
                                                                     <rect key="frame" x="15" y="25" width="9" height="13"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="9" id="VQE-CB-Pa8"/>
@@ -320,12 +320,6 @@
                                                                     <color key="textColor" red="1" green="0.37254901960784315" blue="0.33725490196078434" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VsR-Bb-Df6">
-                                                                    <rect key="frame" x="87" y="64" width="198" height="24"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="24" id="ziU-Em-GLa"/>
-                                                                    </constraints>
-                                                                </imageView>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kK-bu-7jh">
                                                                     <rect key="frame" x="43" y="60" width="32" height="32"/>
                                                                     <constraints>
@@ -337,10 +331,16 @@
                                                                         <action selector="playButtonPressed:" destination="sUD-5H-eHk" eventType="touchUpInside" id="Ztb-2K-84v"/>
                                                                     </connections>
                                                                 </button>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Jh-UQ-pwF" customClass="AudioVisualizationView">
+                                                                    <rect key="frame" x="87" y="64" width="206" height="24"/>
+                                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="24" id="v04-X6-4Fz"/>
+                                                                    </constraints>
+                                                                </view>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="13l-28-Fdg" firstAttribute="top" secondItem="9eY-jY-vtj" secondAttribute="top" constant="25" id="6yv-Dv-8BY"/>
-                                                                <constraint firstItem="9n8-tG-LuF" firstAttribute="leading" secondItem="VsR-Bb-Df6" secondAttribute="trailing" constant="20" id="7Hv-iq-AiJ"/>
                                                                 <constraint firstItem="0kK-bu-7jh" firstAttribute="leading" secondItem="9eY-jY-vtj" secondAttribute="leadingMargin" constant="28" id="8z1-QT-3f1"/>
                                                                 <constraint firstItem="FOS-Qf-Bsz" firstAttribute="top" secondItem="9eY-jY-vtj" secondAttribute="top" constant="14" id="CLe-I0-os1"/>
                                                                 <constraint firstAttribute="trailing" secondItem="FOS-Qf-Bsz" secondAttribute="trailing" constant="12" id="DX5-Pr-Ut4"/>
@@ -348,17 +348,20 @@
                                                                 <constraint firstItem="FOS-Qf-Bsz" firstAttribute="leading" secondItem="9d5-us-rJf" secondAttribute="trailing" constant="8" id="Icx-NE-eBI"/>
                                                                 <constraint firstItem="9d5-us-rJf" firstAttribute="leading" secondItem="13l-28-Fdg" secondAttribute="trailing" constant="8" id="Mp2-Hs-MK5"/>
                                                                 <constraint firstItem="9n8-tG-LuF" firstAttribute="top" secondItem="FOS-Qf-Bsz" secondAttribute="bottom" constant="17" id="QB7-QL-xDD"/>
+                                                                <constraint firstItem="9n8-tG-LuF" firstAttribute="leadingMargin" secondItem="5Jh-UQ-pwF" secondAttribute="trailing" constant="20" id="Qph-4G-3Nn"/>
                                                                 <constraint firstAttribute="trailing" secondItem="9n8-tG-LuF" secondAttribute="trailing" constant="20" id="TY4-I0-8V3"/>
-                                                                <constraint firstItem="VsR-Bb-Df6" firstAttribute="leading" secondItem="0kK-bu-7jh" secondAttribute="trailing" constant="12" id="TgY-ar-5ZJ"/>
                                                                 <constraint firstItem="9d5-us-rJf" firstAttribute="top" secondItem="9eY-jY-vtj" secondAttribute="top" constant="20" id="VD9-3F-FpL"/>
                                                                 <constraint firstItem="0kK-bu-7jh" firstAttribute="top" secondItem="9d5-us-rJf" secondAttribute="bottom" constant="18" id="bU4-BX-a8I"/>
-                                                                <constraint firstAttribute="bottom" secondItem="VsR-Bb-Df6" secondAttribute="bottom" constant="20" id="yu2-8Z-AoF"/>
+                                                                <constraint firstItem="5Jh-UQ-pwF" firstAttribute="leading" secondItem="0kK-bu-7jh" secondAttribute="trailing" constant="12" id="h6y-I1-3Kx"/>
+                                                                <constraint firstAttribute="bottom" secondItem="5Jh-UQ-pwF" secondAttribute="bottom" constant="20" id="sYF-9g-c2B"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
                                                             <outlet property="audioTitleLabel" destination="9d5-us-rJf" id="miK-eG-qkD"/>
                                                             <outlet property="durationTimeLabel" destination="9n8-tG-LuF" id="JV1-KF-D5h"/>
+                                                            <outlet property="playButton" destination="0kK-bu-7jh" id="NXo-bl-w1g"/>
+                                                            <outlet property="triangleImage" destination="13l-28-Fdg" id="zDn-jX-3G7"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -542,6 +545,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psm-zn-xWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2303" y="-253"/>
+        </scene>
+        <!--Test View Controller-->
+        <scene sceneID="jqi-ps-CW2">
+            <objects>
+                <viewController id="SCB-Cj-sre" customClass="TestViewController" customModule="MP3_Converter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pNZ-nI-oaN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yu1-yt-5EQ" customClass="AudioVisualizationView" customModule="SoundWave">
+                                <rect key="frame" x="20" y="64" width="335" height="694"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnq-4Q-zZc">
+                                <rect key="frame" x="208" y="766" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.98039215690000003" green="0.68627450980000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="SCB-Cj-sre" eventType="touchUpInside" id="nCK-i0-Lm8"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="yu1-yt-5EQ" firstAttribute="top" secondItem="s4D-DQ-ArR" secondAttribute="top" constant="20" id="EWc-3i-DnL"/>
+                            <constraint firstItem="s4D-DQ-ArR" firstAttribute="bottom" secondItem="yu1-yt-5EQ" secondAttribute="bottom" constant="20" id="G2k-2s-0LT"/>
+                            <constraint firstItem="s4D-DQ-ArR" firstAttribute="trailing" secondItem="yu1-yt-5EQ" secondAttribute="trailing" constant="20" id="J2N-Bd-k6d"/>
+                            <constraint firstItem="yu1-yt-5EQ" firstAttribute="leading" secondItem="s4D-DQ-ArR" secondAttribute="leading" constant="20" id="yre-V4-dUN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="s4D-DQ-ArR"/>
+                    </view>
+                    <connections>
+                        <outlet property="audioVisualizationView" destination="yu1-yt-5EQ" id="heY-IV-9oD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yhL-vD-d31" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="867" y="1107"/>
         </scene>
         <!--提取音频-->
         <scene sceneID="HlA-Wn-WmH">
