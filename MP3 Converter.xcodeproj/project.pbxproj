@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		900905C024017DF2006AD5A0 /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 900905BF24017D2D006AD5A0 /* test1.mp4 */; };
 		902AF1A3240115C50036CB1A /* SoundWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; };
 		902AF1A4240115C50036CB1A /* SoundWave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9085E4DD24014CA300525479 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085E4DC24014CA300525479 /* TestViewController.swift */; };
@@ -47,6 +48,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		900905BF24017D2D006AD5A0 /* test1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mp4; sourceTree = "<group>"; };
 		902AF1A2240115C50036CB1A /* SoundWave.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundWave.framework; path = Carthage/Build/iOS/SoundWave.framework; sourceTree = "<group>"; };
 		9085E4DC24014CA300525479 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		9085E4DE24015A1B00525479 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				90B20A9323FD237800653F0C /* View */,
 				90B20A9223FD237000653F0C /* Controller */,
 				90B20A8423FD08EE00653F0C /* Assets.xcassets */,
+				900905BF24017D2D006AD5A0 /* test1.mp4 */,
 				90B20A8623FD08EE00653F0C /* LaunchScreen.storyboard */,
 				90B20A8923FD08EE00653F0C /* Info.plist */,
 			);
@@ -264,6 +267,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90B20A8823FD08EE00653F0C /* LaunchScreen.storyboard in Resources */,
+				900905C024017DF2006AD5A0 /* test1.mp4 in Resources */,
 				90B20A8523FD08EE00653F0C /* Assets.xcassets in Resources */,
 				90B20A8323FD08EB00653F0C /* Main.storyboard in Resources */,
 			);

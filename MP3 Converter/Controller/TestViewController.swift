@@ -35,7 +35,7 @@ class TestViewController: UIViewController {
             self.audioVisualizationView.meteringLevels?.append(Float(i) / 10)
         }
         
-        
+    
         //        self.audioVisualizationView.reset()
     }
     

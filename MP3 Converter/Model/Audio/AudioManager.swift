@@ -21,6 +21,14 @@ class AudioManager {
         audios.append(audio)
     }
     
+    func removeAudio(at index: Int) {
+        audios.remove(at: index)
+    }
+    
+    func renameAudio(name: String, at index: Int) {
+        audios[index].title = name
+    }
+    
     func getURL(at index: Int) -> URL {
         return audios[index].url
     }

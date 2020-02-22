@@ -282,6 +282,9 @@
                                                                                 <constraint firstAttribute="height" constant="35" id="GFJ-HU-s12"/>
                                                                             </constraints>
                                                                             <state key="normal" backgroundImage="Ringtone"/>
+                                                                            <connections>
+                                                                                <action selector="ringtonePressed:" destination="sUD-5H-eHk" eventType="touchUpInside" id="gho-yz-cas"/>
+                                                                            </connections>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gEz-D3-wkL" userLabel="Share">
                                                                             <rect key="frame" x="43" y="0.0" width="35" height="35"/>
@@ -290,6 +293,9 @@
                                                                                 <constraint firstAttribute="height" constant="35" id="3HV-g5-0GD"/>
                                                                             </constraints>
                                                                             <state key="normal" backgroundImage="Share"/>
+                                                                            <connections>
+                                                                                <action selector="sharePressed:" destination="sUD-5H-eHk" eventType="touchUpInside" id="mV0-9b-ALX"/>
+                                                                            </connections>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KK0-fW-L2l" userLabel="More">
                                                                             <rect key="frame" x="86" y="0.0" width="35" height="35"/>
@@ -298,6 +304,9 @@
                                                                                 <constraint firstAttribute="width" constant="35" id="ubt-QK-Emh"/>
                                                                             </constraints>
                                                                             <state key="normal" backgroundImage="More"/>
+                                                                            <connections>
+                                                                                <action selector="morePressed:" destination="sUD-5H-eHk" eventType="touchUpInside" id="6gR-qU-8bV"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                 </stackView>

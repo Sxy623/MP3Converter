@@ -11,7 +11,7 @@ import Foundation
 struct Audio {
     
     let url: URL
-    let title: String
+    var title: String
     let durationTime: Double
     
     init(url: URL, title: String, durationTime: Double) {

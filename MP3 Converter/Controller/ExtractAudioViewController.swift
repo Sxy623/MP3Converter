@@ -24,16 +24,13 @@ class ExtractAudioViewController: UIViewController {
         
         ranameAlert.addTextField { (textField) in
             textField.placeholder = "Placeholder"
+            textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: .editingChanged)
         }
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         let confirmAction = UIAlertAction(title: "确认", style: .default) { action in
             
-            var audioTitle: String = ranameAlert.textFields?[0].text ?? ""
-            
-            if audioTitle.isEmpty {
-                audioTitle = "out.m4a"
-            }
+            let audioTitle: String = ranameAlert.textFields![0].text!
             
             // Create a composition
             let composition = AVMutableComposition()
@@ -66,11 +63,6 @@ class ExtractAudioViewController: UIViewController {
                 guard case exportSession.status = AVAssetExportSession.Status.completed else { return }
                 
                 DispatchQueue.main.async {
-                    //                    // Present a UIActivityViewController to share audio file
-                    //                    guard let outputURL = exportSession.outputURL else { return }
-                    //                    let activityViewController = UIActivityViewController(activityItems: [outputURL], applicationActivities: [])
-                    //                    self.present(activityViewController, animated: true, completion: nil)
-                    
                     self.rootViewController?.addAudio(url: audioURL, title: audioTitle, durationTime: self.video.durationTime)
                     self.navigationController?.popViewController(animated: true)
                 }
@@ -79,8 +71,16 @@ class ExtractAudioViewController: UIViewController {
         
         ranameAlert.addAction(cancelAction)
         ranameAlert.addAction(confirmAction)
+        confirmAction.isEnabled = false
         ranameAlert.preferredAction = confirmAction
         
         present(ranameAlert, animated: true, completion: nil)
+    }
+    
+    @objc func alertTextFieldDidChange(field: UITextField){
+        let alertController: UIAlertController = self.presentedViewController as! UIAlertController;
+        let textField: UITextField  = alertController.textFields![0];
+        let addAction: UIAlertAction = alertController.actions[1];
+        addAction.isEnabled = (textField.text?.count)! > 0;
     }
 }

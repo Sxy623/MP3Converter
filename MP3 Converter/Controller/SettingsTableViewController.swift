@@ -64,11 +64,13 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func adviseApp() {
-        
+        // !
     }
     
     func shareApp() {
-        
+        // !
+//        let activityViewController = UIActivityViewController(activityItems: [], applicationActivities: [])
+//        self.present(activityViewController, animated: true, completion: nil)
     }
     
     func updateUI() {

@@ -38,6 +38,10 @@ class MainViewController: UIViewController {
         convertedTableView.delegate = self
         convertedTableView.dataSource = self
         
+        // Test
+        let url = Bundle.main.url(forResource: "test1", withExtension: "mp4")
+        videoManager.addVideo(url: url!)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,7 +58,7 @@ class MainViewController: UIViewController {
     
     func displayActionSheet() {
         
-        let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let uploadFromAlbumAction = UIAlertAction(title: "从相册上传", style: .default) { (action) in
             self.uploadVideoFromAlbum()
@@ -64,11 +68,11 @@ class MainViewController: UIViewController {
         }
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         
-        optionMenu.addAction(uploadFromAlbumAction)
-        optionMenu.addAction(uploadFromFilesAction)
-        optionMenu.addAction(cancelAction)
+        actionSheet.addAction(uploadFromAlbumAction)
+        actionSheet.addAction(uploadFromFilesAction)
+        actionSheet.addAction(cancelAction)
         
-        present(optionMenu, animated: true, completion: nil)
+        present(actionSheet, animated: true, completion: nil)
     }
     
     func uploadVideoFromAlbum() {
@@ -275,9 +279,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = convertedTableView.dequeueReusableCell(withIdentifier: "Audio Preview", for: indexPath) as! AudioPreviewTableViewCell
         cell.rootViewController = self
+        cell.delegate = self
+        cell.index = indexPath.row
         cell.audioTitleLabel.text = audioManager.getTitle(at: indexPath.row)
         cell.durationTimeLabel.text = audioManager.getDurationTime(at: indexPath.row)
-        cell.index = indexPath.row
         return cell
     }
     
@@ -287,6 +292,50 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+// MARK: - AudioPreviewTableView Delegate
+
+extension MainViewController: AudioPreviewTableViewCellDelegate {
+    
+    func rename(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+        let ranameAlert = UIAlertController(title: "重命名", message: "请输入新名称", preferredStyle: .alert)
+        
+        ranameAlert.addTextField { (textField) in
+            textField.placeholder = "Placeholder"
+            textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: .editingChanged)
+        }
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+        let confirmAction = UIAlertAction(title: "确认", style: .default) { action in
+            let audioTitle: String = ranameAlert.textFields![0].text!
+            self.audioManager.renameAudio(name: audioTitle, at: index)
+            self.convertedTableView.reloadData()
+        }
+        
+        ranameAlert.addAction(cancelAction)
+        ranameAlert.addAction(confirmAction)
+        confirmAction.isEnabled = false
+        ranameAlert.preferredAction = confirmAction
+        
+        present(ranameAlert, animated: true, completion: nil)
+    }
+    
+    func clip(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+        // !
+    }
+    
+    func delete(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+        audioManager.removeAudio(at: index)
+        convertedTableView.reloadData()
+    }
+    
+    @objc func alertTextFieldDidChange(field: UITextField){
+        let alertController: UIAlertController = self.presentedViewController as! UIAlertController;
+        let textField: UITextField  = alertController.textFields![0];
+        let addAction: UIAlertAction = alertController.actions[1];
+        addAction.isEnabled = (textField.text?.count)! > 0;
     }
 }
 

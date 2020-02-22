@@ -9,6 +9,12 @@
 import UIKit
 import AVFoundation
 
+protocol AudioPreviewTableViewCellDelegate {
+    func rename(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
+    func clip(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
+    func delete(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
+}
+
 class AudioPreviewTableViewCell: UITableViewCell {
     
     @IBOutlet weak var audioTitleLabel: UILabel!
@@ -17,7 +23,9 @@ class AudioPreviewTableViewCell: UITableViewCell {
     @IBOutlet weak var triangleImage: UIImageView!
     
     var rootViewController: MainViewController?
+    var delegate: AudioPreviewTableViewCellDelegate?
     var index: Int!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,4 +44,33 @@ class AudioPreviewTableViewCell: UITableViewCell {
         rootViewController?.playAudio(index: index)
     }
     
+    @IBAction func ringtonePressed(_ sender: UIButton) {
+    }
+    
+    @IBAction func sharePressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func morePressed(_ sender: UIButton) {
+        
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let renameAction = UIAlertAction(title: "重命名", style: .default) { (action) in
+            self.delegate?.rename(self, index: self.index)
+        }
+        let clipAction = UIAlertAction(title: "裁剪", style: .default) { (action) in
+            self.delegate?.clip(self, index: self.index)
+        }
+        let deleteAction = UIAlertAction(title: "删除", style: .destructive) { (action) in
+            self.delegate?.delete(self, index: self.index)
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+        
+        actionSheet.addAction(renameAction)
+        actionSheet.addAction(clipAction)
+        actionSheet.addAction(deleteAction)
+        actionSheet.addAction(cancelAction)
+        
+        rootViewController?.present(actionSheet, animated: true, completion: nil)
+    }
 }
