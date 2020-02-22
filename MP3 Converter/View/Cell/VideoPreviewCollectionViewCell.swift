@@ -14,8 +14,10 @@ class VideoPreviewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var durationTimeLabel: UILabel!
     
     var rootViewController: MainViewController?
+    var index: Int = 0
     
     @IBAction func extractAudioButtonPressed(_ sender: UIButton) {
+        rootViewController?.selectedIndex = index
         rootViewController?.extractAudio()
     }
 }

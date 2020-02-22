@@ -78,6 +78,8 @@ class MainViewController: UIViewController {
         imagePicker.sourceType = .savedPhotosAlbum
         imagePicker.allowsEditing = false
         imagePicker.mediaTypes = ["public.movie"]
+        // Avoid compression
+        imagePicker.videoExportPreset = AVAssetExportPresetPassthrough
         
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
             present(imagePicker, animated: true, completion: nil)
@@ -88,6 +90,12 @@ class MainViewController: UIViewController {
         let types = [String(kUTTypeMPEG4)]
         let documentPickerViewController = UIDocumentPickerViewController(documentTypes: types, in: .import)
         documentPickerViewController.delegate = self
+        
+        // Multiple Selection
+        if #available(iOS 11.0, *) {
+            documentPickerViewController.allowsMultipleSelection = true
+        }
+        
         present(documentPickerViewController, animated: true, completion: nil)
     }
     
@@ -217,16 +225,13 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         } else {
             
             let cell = originalCollectionView.dequeueReusableCell(withReuseIdentifier: "Video Preview", for: indexPath) as! VideoPreviewCollectionViewCell
+            cell.index = indexPath.item - 1
             cell.rootViewController = self
             cell.previewImageView.image = videoManager.getPreviewImage(at: index - 1)
             cell.durationTimeLabel.text = videoManager.getDurationTime(at: index - 1)
             return cell
             
         }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndex = indexPath.row
     }
 }
 
