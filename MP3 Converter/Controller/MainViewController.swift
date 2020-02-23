@@ -26,6 +26,7 @@ class MainViewController: UIViewController {
     var player: AVAudioPlayer!
     var currentPlayingIndex: Int = 0
     var playerState: PlayerState = .finish
+    var durationLeft = 0.0
     
     var selectedIndex: Int = 0
     
@@ -121,6 +122,8 @@ class MainViewController: UIViewController {
         let oldCell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
         oldCell.triangleImage.isHidden = true
         
+        let newCell = convertedTableView.cellForRow(at: IndexPath(row: index, section: 0)) as! AudioPreviewTableViewCell
+        
         switch playerState {
             
         case .finish:
@@ -130,10 +133,16 @@ class MainViewController: UIViewController {
             player.play()
             playerState = .play
             
+//            durationLeft = audioManager.audios[index].durationTime
+//            newCell.audioVisualizationView.play(for: durationLeft)
+            
         case .play:
             if currentPlayingIndex == index {
                 player.pause()
                 playerState = .pause
+                
+//                newCell.audioVisualizationView.pause()
+                
             } else {
                 player.stop()
                 oldCell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
@@ -160,7 +169,6 @@ class MainViewController: UIViewController {
             }
         }
         
-        let newCell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
         newCell.triangleImage.isHidden = false
     }
     
@@ -283,6 +291,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.index = indexPath.row
         cell.audioTitleLabel.text = audioManager.getTitle(at: indexPath.row)
         cell.durationTimeLabel.text = audioManager.getDurationTime(at: indexPath.row)
+        
+        cell.audioVisualizationView.meteringLevelBarWidth = 3.0
+        cell.audioVisualizationView.meteringLevelBarInterItem = 3.0
+        cell.audioVisualizationView.meteringLevelBarCornerRadius = 1.5
+        cell.audioVisualizationView.gradientStartColor = #colorLiteral(red: 1, green: 0.3725490196, blue: 0.337254902, alpha: 0.3)
+        cell.audioVisualizationView.gradientEndColor = #colorLiteral(red: 1, green: 0.3725490196, blue: 0.337254902, alpha: 1)
+        cell.audioVisualizationView.audioVisualizationMode = .read
+        cell.audioVisualizationView.meteringLevels = audioManager.audios[indexPath.row].meteringLevels
+        cell.audioVisualizationView.meteringLevelBarSingleStick = true
+        
         return cell
     }
     
@@ -298,6 +316,12 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - AudioPreviewTableView Delegate
 
 extension MainViewController: AudioPreviewTableViewCellDelegate {
+    
+    func share(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+        let audioURL = audioManager.getURL(at: index)
+        let activityViewController = UIActivityViewController(activityItems: [audioURL], applicationActivities: [])
+        present(activityViewController, animated: true, completion: nil)
+    }
     
     func rename(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
         let ranameAlert = UIAlertController(title: "重命名", message: "请输入新名称", preferredStyle: .alert)
@@ -327,8 +351,19 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
     }
     
     func delete(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
-        audioManager.removeAudio(at: index)
-        convertedTableView.reloadData()
+        let deleteAlert = UIAlertController(title: "删除", message: "确认删除该文件吗？", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel)
+        let confirmAction = UIAlertAction(title: "确认", style: .default) { action in
+            self.audioManager.removeAudio(at: index)
+            self.convertedTableView.reloadData()
+        }
+        
+        deleteAlert.addAction(cancelAction)
+        deleteAlert.addAction(confirmAction)
+        deleteAlert.preferredAction = confirmAction
+        
+        present(deleteAlert, animated: true, completion: nil)
     }
     
     @objc func alertTextFieldDidChange(field: UITextField){

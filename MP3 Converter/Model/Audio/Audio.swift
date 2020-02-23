@@ -13,11 +13,17 @@ struct Audio {
     let url: URL
     var title: String
     let durationTime: Double
+    var meteringLevels: [Float]
     
     init(url: URL, title: String, durationTime: Double) {
         self.url = url
         self.title = title
         self.durationTime = durationTime
+        
+        self.meteringLevels = []
+        for _ in 0 ..< 50 {
+            self.meteringLevels.append(Float.random(in: 0...1))
+        }
     }
     
     func getDurationTime() -> String {

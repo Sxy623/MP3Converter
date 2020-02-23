@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		900905C024017DF2006AD5A0 /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 900905BF24017D2D006AD5A0 /* test1.mp4 */; };
-		902AF1A3240115C50036CB1A /* SoundWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; };
-		902AF1A4240115C50036CB1A /* SoundWave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		900905C12402485F006AD5A0 /* SoundWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; };
+		900905C22402485F006AD5A0 /* SoundWave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9085E4DD24014CA300525479 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085E4DC24014CA300525479 /* TestViewController.swift */; };
 		9085E4DF24015A1B00525479 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085E4DE24015A1B00525479 /* PlayerState.swift */; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
@@ -34,13 +34,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		902AF1A5240115C50036CB1A /* Embed Frameworks */ = {
+		900905C32402485F006AD5A0 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				902AF1A4240115C50036CB1A /* SoundWave.framework in Embed Frameworks */,
+				900905C22402485F006AD5A0 /* SoundWave.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,7 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				902AF1A3240115C50036CB1A /* SoundWave.framework in Frameworks */,
+				900905C12402485F006AD5A0 /* SoundWave.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,8 +216,8 @@
 				90B20A7423FD08EB00653F0C /* Sources */,
 				90B20A7523FD08EB00653F0C /* Frameworks */,
 				90B20A7623FD08EB00653F0C /* Resources */,
-				902AF1A5240115C50036CB1A /* Embed Frameworks */,
-				902AF1A6240115F10036CB1A /* ShellScript */,
+				902AF1A6240115F10036CB1A /* Run Script */,
+				900905C32402485F006AD5A0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -276,7 +276,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		902AF1A6240115F10036CB1A /* ShellScript */ = {
+		902AF1A6240115F10036CB1A /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -286,6 +286,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/SoundWave.framework",
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (

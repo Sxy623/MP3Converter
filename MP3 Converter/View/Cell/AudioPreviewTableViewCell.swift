@@ -8,8 +8,10 @@
 
 import UIKit
 import AVFoundation
+import SoundWave
 
 protocol AudioPreviewTableViewCellDelegate {
+    func share(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
     func rename(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
     func clip(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
     func delete(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
@@ -21,11 +23,11 @@ class AudioPreviewTableViewCell: UITableViewCell {
     @IBOutlet weak var durationTimeLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var triangleImage: UIImageView!
+    @IBOutlet weak var audioVisualizationView: AudioVisualizationView!
     
     var rootViewController: MainViewController?
     var delegate: AudioPreviewTableViewCellDelegate?
     var index: Int!
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,7 +50,7 @@ class AudioPreviewTableViewCell: UITableViewCell {
     }
     
     @IBAction func sharePressed(_ sender: UIButton) {
-        
+        self.delegate?.share(self, index: index)
     }
     
     @IBAction func morePressed(_ sender: UIButton) {
