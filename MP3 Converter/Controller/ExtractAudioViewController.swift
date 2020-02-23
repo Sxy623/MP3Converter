@@ -11,11 +11,17 @@ import AVFoundation
 
 class ExtractAudioViewController: UIViewController {
     
+    @IBOutlet weak var volumeSlider: VolumeSlider!
+    @IBOutlet weak var volumeImage: UIImageView!
+    
     var rootViewController: MainViewController?
     var video: Video!
+
+    var volume: Float = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
     }
     
     @IBAction func startButtonPressed(_ sender: UIBarButtonItem) {
@@ -82,5 +88,16 @@ class ExtractAudioViewController: UIViewController {
         let textField: UITextField  = alertController.textFields![0];
         let addAction: UIAlertAction = alertController.actions[1];
         addAction.isEnabled = (textField.text?.count)! > 0;
+    }
+    
+    @IBAction func volumeChanged(_ sender: UISlider) {
+        volume = sender.value
+        if volume == 0 {
+            volumeImage.image = #imageLiteral(resourceName: "音量 min")
+        } else if volume == 200 {
+            volumeImage.image = #imageLiteral(resourceName: "音量 max")
+        } else {
+            volumeImage.image = #imageLiteral(resourceName: "音量 mid")
+        }
     }
 }
