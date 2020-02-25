@@ -8,7 +8,6 @@
 
 import UIKit
 import AVFoundation
-import SoundWave
 
 protocol AudioPreviewTableViewCellDelegate {
     func share(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
@@ -23,7 +22,7 @@ class AudioPreviewTableViewCell: UITableViewCell {
     @IBOutlet weak var durationTimeLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var triangleImage: UIImageView!
-    @IBOutlet weak var audioVisualizationView: AudioVisualizationView!
+    @IBOutlet weak var audioProgressView: AudioProgressView!
     
     var rootViewController: MainViewController?
     var delegate: AudioPreviewTableViewCellDelegate?

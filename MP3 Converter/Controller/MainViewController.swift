@@ -132,40 +132,41 @@ class MainViewController: UIViewController {
             player.delegate = self
             player.play()
             playerState = .play
-            
-//            durationLeft = audioManager.audios[index].durationTime
-//            newCell.audioVisualizationView.play(for: durationLeft)
+            newCell.audioProgressView.play()
             
         case .play:
             if currentPlayingIndex == index {
                 player.pause()
                 playerState = .pause
-                
-//                newCell.audioVisualizationView.pause()
-                
+                oldCell.audioProgressView.pause()
             } else {
                 player.stop()
                 oldCell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+                oldCell.audioProgressView.reset()
                 
                 currentPlayingIndex = index
                 player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
                 player.delegate = self
                 player.play()
                 playerState = .play
+                newCell.audioProgressView.play()
             }
             
         case .pause:
             if currentPlayingIndex == index {
                 player.play()
                 playerState = .play
+                oldCell.audioProgressView.resume()
             } else {
                 player.stop()
+                oldCell.audioProgressView.reset()
                 
                 currentPlayingIndex = index
                 player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
                 player.delegate = self
                 player.play()
                 playerState = .play
+                newCell.audioProgressView.play()
             }
         }
         
@@ -291,16 +292,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.index = indexPath.row
         cell.audioTitleLabel.text = audioManager.getTitle(at: indexPath.row)
         cell.durationTimeLabel.text = audioManager.getDurationTime(at: indexPath.row)
-        
-        cell.audioVisualizationView.meteringLevelBarWidth = 3.0
-        cell.audioVisualizationView.meteringLevelBarInterItem = 3.0
-        cell.audioVisualizationView.meteringLevelBarCornerRadius = 1.5
-        cell.audioVisualizationView.gradientStartColor = #colorLiteral(red: 1, green: 0.3725490196, blue: 0.337254902, alpha: 0.3)
-        cell.audioVisualizationView.gradientEndColor = #colorLiteral(red: 1, green: 0.3725490196, blue: 0.337254902, alpha: 1)
-        cell.audioVisualizationView.audioVisualizationMode = .read
-        cell.audioVisualizationView.meteringLevels = audioManager.audios[indexPath.row].meteringLevels
-        cell.audioVisualizationView.meteringLevelBarSingleStick = true
-        
+        cell.audioProgressView.initLayers()
+        cell.audioProgressView.time = CGFloat(audioManager.audios[indexPath.row].durationTime)
         return cell
     }
     

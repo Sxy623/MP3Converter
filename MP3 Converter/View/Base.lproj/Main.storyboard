@@ -341,7 +341,7 @@
                                                                         <action selector="playButtonPressed:" destination="sUD-5H-eHk" eventType="touchUpInside" id="Ztb-2K-84v"/>
                                                                     </connections>
                                                                 </button>
-                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Jh-UQ-pwF" customClass="AudioVisualizationView" customModule="SoundWave">
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Jh-UQ-pwF" customClass="AudioProgressView" customModule="MP3_Converter" customModuleProvider="target">
                                                                     <rect key="frame" x="87" y="64" width="206" height="24"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
@@ -368,8 +368,8 @@
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
+                                                            <outlet property="audioProgressView" destination="5Jh-UQ-pwF" id="sLk-vn-VUp"/>
                                                             <outlet property="audioTitleLabel" destination="9d5-us-rJf" id="miK-eG-qkD"/>
-                                                            <outlet property="audioVisualizationView" destination="5Jh-UQ-pwF" id="sLk-vn-VUp"/>
                                                             <outlet property="durationTimeLabel" destination="9n8-tG-LuF" id="JV1-KF-D5h"/>
                                                             <outlet property="playButton" destination="0kK-bu-7jh" id="NXo-bl-w1g"/>
                                                             <outlet property="triangleImage" destination="13l-28-Fdg" id="zDn-jX-3G7"/>
