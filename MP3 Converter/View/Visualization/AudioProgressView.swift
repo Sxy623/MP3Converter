@@ -23,10 +23,12 @@ class AudioProgressView: UIView, CAAnimationDelegate {
     var percentage: CGFloat = 0
     var time: CGFloat = 10
     
-    func initLayers() {
-        
+    override func draw(_ rect: CGRect) {
         backgroundColor = .clear
-        
+        initLayers()
+    }
+    
+    func initLayers() {
         backgroundLineLayer.lineWidth = lineWidth
         backgroundLineLayer.fillColor = UIColor.clear.cgColor
         backgroundLineLayer.lineCap = CAShapeLayerLineCap.round
