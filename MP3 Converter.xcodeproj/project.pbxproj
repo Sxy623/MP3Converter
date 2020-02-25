@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		900905C024017DF2006AD5A0 /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 900905BF24017D2D006AD5A0 /* test1.mp4 */; };
-		900905C12402485F006AD5A0 /* SoundWave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; };
 		900905C22402485F006AD5A0 /* SoundWave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900905C624029D0D006AD5A0 /* VolumeSlider.swift */; };
 		901572CA2405335700E0BCC6 /* AudioProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901572C92405335600E0BCC6 /* AudioProgressView.swift */; };
-		9085E4DD24014CA300525479 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085E4DC24014CA300525479 /* TestViewController.swift */; };
 		9085E4DF24015A1B00525479 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9085E4DE24015A1B00525479 /* PlayerState.swift */; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
 		90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */; };
@@ -24,6 +22,7 @@
 		90B20A9523FD23D400653F0C /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9423FD23D400653F0C /* Video.swift */; };
 		90B20A9723FD261500653F0C /* AddVideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */; };
 		90B20A9A23FD339600653F0C /* VideoPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9923FD339600653F0C /* VideoPreviewCollectionViewCell.swift */; };
+		90B5977B24056AC900679644 /* ClipAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B5977A24056AC900679644 /* ClipAudioViewController.swift */; };
 		90E471C823FD527E00028D96 /* LeftAlignLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E471C723FD527E00028D96 /* LeftAlignLayout.swift */; };
 		90FF3C3F23FD622A006AEFC7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C3E23FD622A006AEFC7 /* AudioManager.swift */; };
 		90FF3C4123FD624E006AEFC7 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C4023FD624E006AEFC7 /* Audio.swift */; };
@@ -54,7 +53,6 @@
 		900905C624029D0D006AD5A0 /* VolumeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSlider.swift; sourceTree = "<group>"; };
 		901572C92405335600E0BCC6 /* AudioProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioProgressView.swift; sourceTree = "<group>"; };
 		902AF1A2240115C50036CB1A /* SoundWave.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundWave.framework; path = Carthage/Build/iOS/SoundWave.framework; sourceTree = "<group>"; };
-		9085E4DC24014CA300525479 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		9085E4DE24015A1B00525479 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B20A7B23FD08EB00653F0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +66,7 @@
 		90B20A9423FD23D400653F0C /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		90B20A9623FD261500653F0C /* AddVideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		90B20A9923FD339600653F0C /* VideoPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
+		90B5977A24056AC900679644 /* ClipAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipAudioViewController.swift; sourceTree = "<group>"; };
 		90E471C723FD527E00028D96 /* LeftAlignLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignLayout.swift; sourceTree = "<group>"; };
 		90FF3C3E23FD622A006AEFC7 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioManager.swift; path = "MP3 Converter/Model/Audio/AudioManager.swift"; sourceTree = SOURCE_ROOT; };
 		90FF3C4023FD624E006AEFC7 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
@@ -84,7 +83,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				900905C12402485F006AD5A0 /* SoundWave.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,9 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				90FF3C5223FE8310006AEFC7 /* ExtractAudioViewController.swift */,
+				90B5977A24056AC900679644 /* ClipAudioViewController.swift */,
 				90B20A7F23FD08EB00653F0C /* MainViewController.swift */,
 				90FF3C4823FDC668006AEFC7 /* SettingsTableViewController.swift */,
-				9085E4DC24014CA300525479 /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -314,8 +312,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+			shellScript = "
+";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -328,12 +326,12 @@
 				900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */,
 				90B20A9723FD261500653F0C /* AddVideoCollectionViewCell.swift in Sources */,
 				90FF3C5523FEAA92006AEFC7 /* AudioPreviewTableViewCell.swift in Sources */,
-				9085E4DD24014CA300525479 /* TestViewController.swift in Sources */,
 				90B20A9A23FD339600653F0C /* VideoPreviewCollectionViewCell.swift in Sources */,
 				90FF3C5123FE7B02006AEFC7 /* Configuration.swift in Sources */,
 				90FF3C5323FE8310006AEFC7 /* ExtractAudioViewController.swift in Sources */,
 				90B20A8023FD08EB00653F0C /* MainViewController.swift in Sources */,
 				90FF3C4923FDC668006AEFC7 /* SettingsTableViewController.swift in Sources */,
+				90B5977B24056AC900679644 /* ClipAudioViewController.swift in Sources */,
 				90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */,
 				90FF3C4123FD624E006AEFC7 /* Audio.swift in Sources */,
 				9085E4DF24015A1B00525479 /* PlayerState.swift in Sources */,

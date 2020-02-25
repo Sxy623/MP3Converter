@@ -11,10 +11,24 @@ import Foundation
 enum VideoType: CaseIterable {
     
     case mp4
-    case aaa
-    case bbb
+    case asf
+    case mov
+    case _3gp
+    case _3g2
+    case mk4
+    case vob
+    case mpeg
+    case wmv
+    case flv
+    case avi
+    case m4v
 
     var string: String {
+        if self == ._3g2 {
+            return "3g2"
+        } else if self == ._3gp {
+            return "3gp"
+        }
         return "\(self)"
     }
 }

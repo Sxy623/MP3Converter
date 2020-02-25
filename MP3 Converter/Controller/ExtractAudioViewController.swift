@@ -16,6 +16,7 @@ class ExtractAudioViewController: UIViewController {
     
     var rootViewController: MainViewController?
     var video: Video!
+    var type: AudioType = Configuration.sharedInstance.audioType
 
     var volume: Float = 100
     
@@ -52,7 +53,7 @@ class ExtractAudioViewController: UIViewController {
             }
             
             // Get url for output
-            let outputUrl = URL(fileURLWithPath: NSTemporaryDirectory() + audioTitle)
+            let outputUrl = URL(fileURLWithPath: NSTemporaryDirectory() + audioTitle + ".\(self.type.string)")
             let audioURL = outputUrl
             
             if FileManager.default.fileExists(atPath: outputUrl.path) {

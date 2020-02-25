@@ -10,6 +10,7 @@ import UIKit
 import AVFoundation
 
 protocol AudioPreviewTableViewCellDelegate {
+    func ringtone(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
     func share(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
     func rename(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
     func clip(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
@@ -46,6 +47,7 @@ class AudioPreviewTableViewCell: UITableViewCell {
     }
     
     @IBAction func ringtonePressed(_ sender: UIButton) {
+        self.delegate?.ringtone(self, index: index)
     }
     
     @IBAction func sharePressed(_ sender: UIButton) {
@@ -60,6 +62,7 @@ class AudioPreviewTableViewCell: UITableViewCell {
             self.delegate?.rename(self, index: self.index)
         }
         let clipAction = UIAlertAction(title: "裁剪", style: .default) { (action) in
+            self.rootViewController?.selectedIndex = self.index
             self.delegate?.clip(self, index: self.index)
         }
         let deleteAction = UIAlertAction(title: "删除", style: .destructive) { (action) in

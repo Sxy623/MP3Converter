@@ -419,6 +419,7 @@
                         <outlet property="originalCollectionView" destination="2aC-or-EqA" id="BbD-Fy-hwa"/>
                         <outlet property="originalIndicator" destination="k0t-gz-TNA" id="9Fo-vh-ItH"/>
                         <segue destination="eDS-0l-IPQ" kind="show" identifier="Extract Audio" id="nur-Pw-DXg"/>
+                        <segue destination="E37-9b-RwM" kind="show" identifier="Clip Audio" id="IFX-s8-2Wk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -555,46 +556,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psm-zn-xWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2303" y="-253"/>
-        </scene>
-        <!--Test View Controller-->
-        <scene sceneID="jqi-ps-CW2">
-            <objects>
-                <viewController id="SCB-Cj-sre" customClass="TestViewController" customModule="MP3_Converter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pNZ-nI-oaN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yu1-yt-5EQ" customClass="AudioVisualizationView" customModule="SoundWave">
-                                <rect key="frame" x="20" y="64" width="335" height="694"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qnq-4Q-zZc">
-                                <rect key="frame" x="208" y="766" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.98039215690000003" green="0.68627450980000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="buttonPressed:" destination="SCB-Cj-sre" eventType="touchUpInside" id="nCK-i0-Lm8"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="yu1-yt-5EQ" firstAttribute="top" secondItem="s4D-DQ-ArR" secondAttribute="top" constant="20" id="EWc-3i-DnL"/>
-                            <constraint firstItem="s4D-DQ-ArR" firstAttribute="bottom" secondItem="yu1-yt-5EQ" secondAttribute="bottom" constant="20" id="G2k-2s-0LT"/>
-                            <constraint firstItem="s4D-DQ-ArR" firstAttribute="trailing" secondItem="yu1-yt-5EQ" secondAttribute="trailing" constant="20" id="J2N-Bd-k6d"/>
-                            <constraint firstItem="yu1-yt-5EQ" firstAttribute="leading" secondItem="s4D-DQ-ArR" secondAttribute="leading" constant="20" id="yre-V4-dUN"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="s4D-DQ-ArR"/>
-                    </view>
-                    <connections>
-                        <outlet property="audioVisualizationView" destination="yu1-yt-5EQ" id="heY-IV-9oD"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="yhL-vD-d31" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="867" y="1107"/>
+            <point key="canvasLocation" x="2666" y="-639"/>
         </scene>
         <!--提取音频-->
         <scene sceneID="HlA-Wn-WmH">
@@ -648,50 +610,30 @@
                                         <rect key="frame" x="100" y="78" width="275" height="20"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q5J-ck-Htr">
-                                                <rect key="frame" x="0.0" y="0.0" width="400" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="542" height="20"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjD-Ry-FEO">
-                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="0w8-uA-GJ2"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="mp3">
-                                                            <color key="titleColor" name="FF5F56 100%"/>
-                                                        </state>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-9g-MJT">
-                                                        <rect key="frame" x="46" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="n9R-9y-aTR"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="m4a">
-                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="titleColor" name="FF5F56 100%"/>
                                                         </state>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbA-iO-HmH">
-                                                        <rect key="frame" x="92" y="0.0" width="30" height="20"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjD-Ry-FEO">
+                                                        <rect key="frame" x="46" y="0.0" width="30" height="20"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="wTT-x7-PcD"/>
+                                                            <constraint firstAttribute="height" constant="20" id="0w8-uA-GJ2"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="ogg">
-                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qo4-pR-1cS">
-                                                        <rect key="frame" x="138" y="0.0" width="30" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="q2Q-IO-agD"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="m4r">
+                                                        <state key="normal" title="mp3">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXY-V6-3BQ">
-                                                        <rect key="frame" x="184" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="92" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="dkx-3y-3Mj"/>
                                                         </constraints>
@@ -700,18 +642,8 @@
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzl-9Q-3z8">
-                                                        <rect key="frame" x="230" y="0.0" width="30" height="20"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="20" id="OWy-dk-eAn"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="flac">
-                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNY-Bv-65n">
-                                                        <rect key="frame" x="276" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="138" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="doS-sI-yXF"/>
                                                         </constraints>
@@ -721,7 +653,7 @@
                                                         </state>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubJ-aP-ns9">
-                                                        <rect key="frame" x="322" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="184" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="F23-B9-qh2"/>
                                                         </constraints>
@@ -730,13 +662,73 @@
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qo4-pR-1cS">
+                                                        <rect key="frame" x="230" y="0.0" width="30" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="q2Q-IO-agD"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <state key="normal" title="m4r">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzl-9Q-3z8">
+                                                        <rect key="frame" x="276" y="0.0" width="30" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="OWy-dk-eAn"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <state key="normal" title="flac">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhM-RT-YTc">
-                                                        <rect key="frame" x="368" y="0.0" width="32" height="20"/>
+                                                        <rect key="frame" x="322" y="0.0" width="32" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="H4f-Kz-hmp"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <state key="normal" title="opus">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jy7-Zg-Rs6" userLabel="caf">
+                                                        <rect key="frame" x="370" y="0.0" width="32" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="ma3-Vn-00h"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <state key="normal" title="opus">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ps4-lC-ewq" userLabel="wma">
+                                                        <rect key="frame" x="418" y="0.0" width="32" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="PgS-G1-pMA"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <state key="normal" title="opus">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbA-iO-HmH">
+                                                        <rect key="frame" x="466" y="0.0" width="30" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="wTT-x7-PcD"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <state key="normal" title="ogg">
+                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWR-XL-9ni" userLabel="adx">
+                                                        <rect key="frame" x="512" y="0.0" width="30" height="20"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="xWa-4O-hWw"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <state key="normal" title="ogg">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
                                                     </button>
@@ -793,7 +785,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="272-Iw-olZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2301.5999999999999" y="515.76354679802955"/>
+            <point key="canvasLocation" x="2666" y="130"/>
+        </scene>
+        <!--剪切音频-->
+        <scene sceneID="hmm-MS-Q5r">
+            <objects>
+                <viewController id="E37-9b-RwM" customClass="ClipAudioViewController" customModule="MP3_Converter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yc7-V6-ewl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BP-5D-jrc">
+                                <rect key="frame" x="100.33333333333333" y="220" width="174.66666666666669" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="gUt-2V-pL4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7n-3c-dzC">
+                                <rect key="frame" x="0.0" y="317" width="375" height="66"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="qLm-b7-Hzp"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="音量 mid" translatesAutoresizingMaskIntoConstraints="NO" id="ke7-y0-c1y">
+                                <rect key="frame" x="76" y="719" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ieu-jZ-DZU"/>
+                                    <constraint firstAttribute="width" constant="40" id="jAX-YI-7uB"/>
+                                </constraints>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="WTM-dN-myO" customClass="VolumeSlider" customModule="MP3_Converter" customModuleProvider="target">
+                                <rect key="frame" x="118" y="736" width="184" height="7"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="6" id="kIR-ft-Pc3"/>
+                                    <constraint firstAttribute="width" constant="180" id="mWc-Ly-xyJ"/>
+                                </constraints>
+                                <color key="minimumTrackTintColor" name="FF5F56 100%"/>
+                                <color key="maximumTrackTintColor" name="FF5F56 30%"/>
+                                <connections>
+                                    <action selector="volumeChanged:" destination="E37-9b-RwM" eventType="valueChanged" id="YDI-2p-p69"/>
+                                </connections>
+                            </slider>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="O5T-Vq-r0s">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WTM-dN-myO" firstAttribute="leading" secondItem="ke7-y0-c1y" secondAttribute="trailing" constant="4" id="5iQ-1k-UW5"/>
+                            <constraint firstItem="ke7-y0-c1y" firstAttribute="leading" secondItem="mYv-gv-649" secondAttribute="leading" constant="76" id="8Qr-hO-ob8"/>
+                            <constraint firstItem="mYv-gv-649" firstAttribute="trailing" secondItem="t7n-3c-dzC" secondAttribute="trailing" id="8fL-iL-r3T"/>
+                            <constraint firstItem="WTM-dN-myO" firstAttribute="centerY" secondItem="ke7-y0-c1y" secondAttribute="centerY" id="Elo-Bl-zEs"/>
+                            <constraint firstItem="O5T-Vq-r0s" firstAttribute="top" secondItem="Yc7-V6-ewl" secondAttribute="top" id="OVe-8T-anb"/>
+                            <constraint firstItem="t7n-3c-dzC" firstAttribute="leading" secondItem="mYv-gv-649" secondAttribute="leading" id="dB9-vn-Imw"/>
+                            <constraint firstItem="6BP-5D-jrc" firstAttribute="centerX" secondItem="Yc7-V6-ewl" secondAttribute="centerX" id="dDd-EG-LMx"/>
+                            <constraint firstAttribute="bottom" secondItem="O5T-Vq-r0s" secondAttribute="bottom" id="dat-7a-fs0"/>
+                            <constraint firstAttribute="trailing" secondItem="O5T-Vq-r0s" secondAttribute="trailing" id="dlf-Ff-3JV"/>
+                            <constraint firstItem="6BP-5D-jrc" firstAttribute="top" secondItem="mYv-gv-649" secondAttribute="top" constant="176" id="htS-dg-4om"/>
+                            <constraint firstAttribute="bottom" secondItem="ke7-y0-c1y" secondAttribute="bottom" constant="53" id="jV3-hO-tiz"/>
+                            <constraint firstItem="t7n-3c-dzC" firstAttribute="top" secondItem="6BP-5D-jrc" secondAttribute="bottom" constant="63" id="kGx-Vz-SgP"/>
+                            <constraint firstItem="O5T-Vq-r0s" firstAttribute="leading" secondItem="Yc7-V6-ewl" secondAttribute="leading" id="lLd-B7-CwZ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mYv-gv-649"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="剪切音频" id="k5a-92-zRV">
+                        <barButtonItem key="rightBarButtonItem" title="保存" id="ujT-Wz-EfO">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="E37-9b-RwM" id="vsJ-wV-mgL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="titleLabel" destination="6BP-5D-jrc" id="xLN-q8-qw8"/>
+                        <outlet property="volumeImage" destination="ke7-y0-c1y" id="h9t-G2-lIO"/>
+                        <outlet property="volumeSlider" destination="WTM-dN-myO" id="2wO-YC-KaD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UjJ-KG-kmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2665" y="899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="33K-qW-tmu">

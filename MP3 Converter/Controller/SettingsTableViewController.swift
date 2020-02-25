@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import MessageUI
 
 class SettingsTableViewController: UITableViewController {
     
@@ -64,7 +65,16 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func adviseApp() {
-        // !
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients(["shenxinyi@zju.edu.com"])
+            mail.setSubject("Hello!")
+            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            present(mail, animated: true)
+        } else {
+            print("Mail services are not available")
+        }
     }
     
     func shareApp() {
@@ -145,5 +155,11 @@ class SettingsTableViewController: UITableViewController {
         default:
             break
         }
+    }
+}
+
+extension SettingsTableViewController: MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

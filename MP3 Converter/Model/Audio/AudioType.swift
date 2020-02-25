@@ -12,7 +12,16 @@ enum AudioType: CaseIterable {
     
     case m4a
     case mp3
-    case ddd
+    case wav
+    case aiff
+    case acc
+    case m4r
+    case flac
+    case opus
+    case caf
+    case wma
+    case ogg
+    case adx
     
     var string: String {
         return "\(self)"

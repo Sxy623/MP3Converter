@@ -208,6 +208,11 @@ class MainViewController: UIViewController {
             destinationViewController.rootViewController = self
             destinationViewController.video = videoManager.videos[selectedIndex]
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "原视频", style: .plain, target: nil, action: nil)
+        } else if segue.identifier == "Clip Audio" {
+            let destinationViewController = segue.destination as! ClipAudioViewController
+            destinationViewController.rootViewController = self
+            destinationViewController.audio = audioManager.audios[selectedIndex]
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "已完成", style: .plain, target: nil, action: nil)
         }
     }
 }
@@ -219,11 +224,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videoManager.getNumOfVideos() + 1
     }
-    
-    //    func collectionView(_ collectionView: UICollectionView,
-    //        layout collectionViewLayout: UICollectionViewLayout,
-    //        sizeForItemAt indexPath: IndexPath) -> CGSize {
-    //    }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
@@ -310,6 +310,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainViewController: AudioPreviewTableViewCellDelegate {
     
+    func ringtone(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+        // !
+    }
+    
     func share(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
         let audioURL = audioManager.getURL(at: index)
         let activityViewController = UIActivityViewController(activityItems: [audioURL], applicationActivities: [])
@@ -340,7 +344,7 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
     }
     
     func clip(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
-        // !
+        performSegue(withIdentifier: "Clip Audio", sender: nil)
     }
     
     func delete(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
