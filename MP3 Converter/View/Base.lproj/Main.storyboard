@@ -860,6 +860,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="audioClipView" destination="t7n-3c-dzC" id="yn2-tX-MfB"/>
                         <outlet property="titleLabel" destination="6BP-5D-jrc" id="xLN-q8-qw8"/>
                         <outlet property="volumeImage" destination="ke7-y0-c1y" id="h9t-G2-lIO"/>
                         <outlet property="volumeSlider" destination="WTM-dN-myO" id="2wO-YC-KaD"/>

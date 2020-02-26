@@ -14,7 +14,7 @@ class Audio {
     var url: URL
     var title: String
     var type: AudioType?
-    let durationTime: Double
+    var durationTime: Double
     
     init(url: URL) {
         self.url = url
