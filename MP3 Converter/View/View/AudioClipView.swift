@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol AudioClipViewDelegate {
+    func touchBegan(_ audioClipView: AudioClipView)
+    func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat)
+    func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat)
+}
+
 class AudioClipView: UIView {
+    
+    var delegate: AudioClipViewDelegate?
     
     var lineMargin: CGFloat = 3.0
     var lineWidth: CGFloat = 3.0
@@ -120,10 +128,12 @@ class AudioClipView: UIView {
         } else {
             choice = .end
         }
+        delegate?.touchBegan(self)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         choice = .empty
+        delegate?.touchEnd(self, startPercentage: startPercentage, endPercentage: endPercentage)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -137,5 +147,6 @@ class AudioClipView: UIView {
         default:
             break
         }
+        delegate?.touchMove(self, startPercentage: startPercentage, endPercentage: endPercentage)
     }
 }

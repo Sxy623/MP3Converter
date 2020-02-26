@@ -11,13 +11,15 @@ import AVFoundation
 
 class ExtractAudioViewController: UIViewController {
     
+    @IBOutlet weak var videoPlayView: VideoPlayView!
+    @IBOutlet weak var audioClipView: AudioClipView!
     @IBOutlet weak var volumeSlider: VolumeSlider!
     @IBOutlet weak var volumeImage: UIImageView!
     
     var rootViewController: MainViewController?
     var video: Video!
     var type: AudioType = Configuration.sharedInstance.audioType
-
+    
     var volume: Float = 100
     
     let dataFilePath = Configuration.sharedInstance.dataFilePath()
@@ -26,7 +28,13 @@ class ExtractAudioViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        videoPlayView.video = video
+        audioClipView.delegate = self
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        videoPlayView.player.pause()
     }
     
     @IBAction func startButtonPressed(_ sender: UIBarButtonItem) {
@@ -70,6 +78,17 @@ class ExtractAudioViewController: UIViewController {
             exportSession.outputFileType = AVFileType.m4a
             exportSession.outputURL = outputUrl
             
+            // Set time range
+            let start = Double(self.audioClipView.startPercentage) * self.video.durationTime
+            let end = Double(self.audioClipView.endPercentage) * self.video.durationTime
+            
+            let startTime = CMTime(seconds: start, preferredTimescale: 120)
+            let endTime = CMTime(seconds: end, preferredTimescale: 120)
+            let duration = endTime - startTime
+            
+            let exportTimeRange = CMTimeRangeMake(start: startTime, duration: duration)
+            exportSession.timeRange = exportTimeRange
+            
             // Export file
             exportSession.exportAsynchronously {
                 guard case exportSession.status = AVAssetExportSession.Status.completed else { return }
@@ -105,5 +124,22 @@ class ExtractAudioViewController: UIViewController {
         } else {
             volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         }
+    }
+}
+
+extension ExtractAudioViewController: AudioClipViewDelegate {
+    
+    func touchBegan(_ audioClipView: AudioClipView) {
+        videoPlayView.player.pause()
+    }
+    
+    func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
+        let start = Double(audioClipView.startPercentage) * video.durationTime
+        let startTime = CMTime(seconds: start, preferredTimescale: 120)
+        videoPlayView.player.seek(to: startTime)
+    }
+    
+    func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
+        videoPlayView.player.play()
     }
 }

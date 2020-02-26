@@ -23,6 +23,7 @@
 		90B20A9A23FD339600653F0C /* VideoPreviewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A9923FD339600653F0C /* VideoPreviewCollectionViewCell.swift */; };
 		90B5977B24056AC900679644 /* ClipAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B5977A24056AC900679644 /* ClipAudioViewController.swift */; };
 		90B5977D2405745000679644 /* AudioClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B5977C2405745000679644 /* AudioClipView.swift */; };
+		90B597A12406C6F500679644 /* VideoPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B597A02406C6F500679644 /* VideoPlayView.swift */; };
 		90E471C823FD527E00028D96 /* LeftAlignLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E471C723FD527E00028D96 /* LeftAlignLayout.swift */; };
 		90FF3C3F23FD622A006AEFC7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C3E23FD622A006AEFC7 /* AudioManager.swift */; };
 		90FF3C4123FD624E006AEFC7 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C4023FD624E006AEFC7 /* Audio.swift */; };
@@ -67,6 +68,7 @@
 		90B20A9923FD339600653F0C /* VideoPreviewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewCollectionViewCell.swift; sourceTree = "<group>"; };
 		90B5977A24056AC900679644 /* ClipAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipAudioViewController.swift; sourceTree = "<group>"; };
 		90B5977C2405745000679644 /* AudioClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioClipView.swift; sourceTree = "<group>"; };
+		90B597A02406C6F500679644 /* VideoPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayView.swift; sourceTree = "<group>"; };
 		90E471C723FD527E00028D96 /* LeftAlignLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignLayout.swift; sourceTree = "<group>"; };
 		90FF3C3E23FD622A006AEFC7 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioManager.swift; path = "MP3 Converter/Model/Audio/AudioManager.swift"; sourceTree = SOURCE_ROOT; };
 		90FF3C4023FD624E006AEFC7 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
@@ -171,7 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				90B20A8123FD08EB00653F0C /* Main.storyboard */,
-				90BE6B47240532DC00227F03 /* Visualization */,
+				90BE6B47240532DC00227F03 /* View */,
 				90FF3C3D23FD5687006AEFC7 /* Layout */,
 				90B20A9823FD320800653F0C /* Cell */,
 				900905C824029F6E006AD5A0 /* Slider */,
@@ -189,13 +191,14 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		90BE6B47240532DC00227F03 /* Visualization */ = {
+		90BE6B47240532DC00227F03 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				901572C92405335600E0BCC6 /* AudioProgressView.swift */,
 				90B5977C2405745000679644 /* AudioClipView.swift */,
+				90B597A02406C6F500679644 /* VideoPlayView.swift */,
 			);
-			path = Visualization;
+			path = View;
 			sourceTree = "<group>";
 		};
 		90FF3C3D23FD5687006AEFC7 /* Layout */ = {
@@ -335,6 +338,7 @@
 				90FF3C4123FD624E006AEFC7 /* Audio.swift in Sources */,
 				9085E4DF24015A1B00525479 /* PlayerState.swift in Sources */,
 				90E471C823FD527E00028D96 /* LeftAlignLayout.swift in Sources */,
+				90B597A12406C6F500679644 /* VideoPlayView.swift in Sources */,
 				90B5977D2405745000679644 /* AudioClipView.swift in Sources */,
 				90FF3C4B23FE7314006AEFC7 /* VideoType.swift in Sources */,
 				90FF3C4D23FE78A7006AEFC7 /* AudioType.swift in Sources */,

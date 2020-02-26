@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
     let videoListPath = Configuration.sharedInstance.videoListPath()
     let audioListPath = Configuration.sharedInstance.audioListPath()
     
-    var player: AVAudioPlayer!
+    var player = AVAudioPlayer()
     var currentPlayingIndex: Int = 0
     var playerState: PlayerState = .finish
     
@@ -188,6 +188,7 @@ class MainViewController: UIViewController {
         originalCollectionView.isHidden = false
         nothingConvertedView.isHidden = true
         convertedTableView.isHidden = true
+        player.stop()
     }
     
     @IBAction func toggleToConverted(_ sender: UIButton) {

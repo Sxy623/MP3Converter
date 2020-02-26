@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="rhh-mT-Yq9" userLabel="Main Stack View">
-                                <rect key="frame" x="0.0" y="54" width="375" height="758"/>
+                                <rect key="frame" x="0.0" y="98" width="375" height="714"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymm-DH-qr2" userLabel="Header View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
@@ -107,10 +107,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGD-be-r5H" userLabel="Body View">
-                                        <rect key="frame" x="0.0" y="71" width="375" height="687"/>
+                                        <rect key="frame" x="0.0" y="71" width="375" height="643"/>
                                         <subviews>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mth-FJ-EeM" userLabel="Nothing Converted View">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="643"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Box" translatesAutoresizingMaskIntoConstraints="NO" id="RYg-q7-M4W">
                                                         <rect key="frame" x="131" y="175" width="113" height="112"/>
@@ -165,7 +165,7 @@
                                                 </constraints>
                                             </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2aC-or-EqA">
-                                                <rect key="frame" x="9" y="0.0" width="358" height="687"/>
+                                                <rect key="frame" x="9" y="0.0" width="358" height="643"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="3Sj-g4-Xc6" customClass="LeftAlignLayout" customModule="MP3_Converter" customModuleProvider="target">
                                                     <size key="itemSize" width="114" height="114"/>
@@ -256,7 +256,7 @@
                                                 </cells>
                                             </collectionView>
                                             <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FFv-8D-toe">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="643"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Audio Preview" rowHeight="108" id="sUD-5H-eHk" customClass="AudioPreviewTableViewCell" customModule="MP3_Converter" customModuleProvider="target">
@@ -566,6 +566,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUT-KV-9ze" customClass="VideoPlayView" customModule="MP3_Converter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="88" width="375" height="495"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuQ-Zr-z32" customClass="AudioClipView" customModule="MP3_Converter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="583" width="375" height="73"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="73" id="IEJ-3E-guT"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYL-1E-MaV">
                                 <rect key="frame" x="0.0" y="656" width="375" height="156"/>
                                 <subviews>
@@ -765,7 +776,14 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="4se-6l-zlN" firstAttribute="trailing" secondItem="CUT-KV-9ze" secondAttribute="trailing" id="0rS-Py-DQg"/>
+                            <constraint firstItem="YYL-1E-MaV" firstAttribute="top" secondItem="FuQ-Zr-z32" secondAttribute="bottom" id="614-1P-Uuz"/>
+                            <constraint firstItem="CUT-KV-9ze" firstAttribute="top" secondItem="4se-6l-zlN" secondAttribute="top" id="DPL-qU-5iN"/>
+                            <constraint firstItem="FuQ-Zr-z32" firstAttribute="top" secondItem="CUT-KV-9ze" secondAttribute="bottom" id="SDa-A2-cc0"/>
+                            <constraint firstItem="4se-6l-zlN" firstAttribute="trailing" secondItem="FuQ-Zr-z32" secondAttribute="trailing" id="brW-8G-wY0"/>
+                            <constraint firstItem="CUT-KV-9ze" firstAttribute="leading" secondItem="4se-6l-zlN" secondAttribute="leading" id="chH-s5-UNe"/>
                             <constraint firstItem="YYL-1E-MaV" firstAttribute="leading" secondItem="lDL-2n-POZ" secondAttribute="leading" id="f05-0b-04v"/>
+                            <constraint firstItem="FuQ-Zr-z32" firstAttribute="leading" secondItem="4se-6l-zlN" secondAttribute="leading" id="hxc-Yo-nu3"/>
                             <constraint firstAttribute="bottom" secondItem="YYL-1E-MaV" secondAttribute="bottom" id="r2L-f6-TbG"/>
                             <constraint firstAttribute="trailing" secondItem="YYL-1E-MaV" secondAttribute="trailing" id="x0u-cX-3CH"/>
                         </constraints>
@@ -779,6 +797,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="audioClipView" destination="FuQ-Zr-z32" id="zbn-To-AGc"/>
+                        <outlet property="videoPlayView" destination="CUT-KV-9ze" id="5gj-Qb-ZnY"/>
                         <outlet property="volumeImage" destination="4MZ-Sf-5l7" id="Sfa-aa-oOy"/>
                         <outlet property="volumeSlider" destination="FND-L6-dcB" id="Ix6-LT-9bc"/>
                     </connections>
@@ -796,7 +816,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of music" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6BP-5D-jrc">
-                                <rect key="frame" x="100.33333333333333" y="220" width="174.66666666666669" height="34"/>
+                                <rect key="frame" x="100.33333333333333" y="264" width="174.66666666666669" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="gUt-2V-pL4"/>
                                 </constraints>
@@ -805,7 +825,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7n-3c-dzC" customClass="AudioClipView" customModule="MP3_Converter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="317" width="375" height="66"/>
+                                <rect key="frame" x="0.0" y="361" width="375" height="66"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="qLm-b7-Hzp"/>
@@ -873,9 +893,10 @@
         <!--Navigation Controller-->
         <scene sceneID="33K-qW-tmu">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="P9l-kS-fm1" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P9l-kS-fm1" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hJZ-jN-yX1">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
