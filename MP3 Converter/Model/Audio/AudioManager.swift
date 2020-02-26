@@ -26,7 +26,9 @@ class AudioManager {
     }
     
     func renameAudio(name: String, at index: Int) {
-        audios[index].title = name
+        let audio = audios[index]
+        audio.title = name
+        audio.url = audio.url.deletingLastPathComponent().appendingPathComponent("\(name).\(audio.type?.string ?? "")")
     }
     
     func getURL(at index: Int) -> URL {
@@ -35,6 +37,10 @@ class AudioManager {
     
     func getTitle(at index: Int) -> String {
         return audios[index].title
+    }
+    
+    func getType(at index: Int) -> AudioType? {
+        return audios[index].type
     }
     
     func getDurationTime(at index: Int) -> String {

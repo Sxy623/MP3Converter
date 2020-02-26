@@ -9,9 +9,9 @@
 import Foundation
 import AVFoundation
 
-struct Audio {
+class Audio {
     
-    let url: URL
+    var url: URL
     var title: String
     var type: AudioType?
     let durationTime: Double

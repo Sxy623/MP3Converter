@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-struct Video {
+class Video {
     
     let url: URL
     let fileName: String

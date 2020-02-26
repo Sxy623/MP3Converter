@@ -116,14 +116,7 @@ class MainViewController: UIViewController {
     
     func addAudio(url: URL) {
         audioManager.addAudio(url: url)
-        
-        if FileManager.default.fileExists(atPath: audioListPath) {
-            FileManager.default.createFile(atPath: audioListPath, contents: nil, attributes: nil)
-        }
-        
-        let array = audioManager.getFileNameArray() as NSArray
-        array.write(toFile: audioListPath, atomically: true)
-        
+        recordAudio()
         convertedTableView.reloadData()
     }
     
@@ -277,6 +270,26 @@ class MainViewController: UIViewController {
             convertedTableView.reloadData()
         }
     }
+    
+    /* 将视频数据保存到文件 */
+    func recordVideo() {
+        if FileManager.default.fileExists(atPath: self.videoListPath) {
+            FileManager.default.createFile(atPath: self.videoListPath, contents: nil, attributes: nil)
+        }
+        
+        let array = self.videoManager.getFileNameArray() as NSArray
+        array.write(toFile: self.videoListPath, atomically: true)
+    }
+    
+    /* 将音频数据保存到文件 */
+    func recordAudio() {
+        if FileManager.default.fileExists(atPath: audioListPath) {
+            FileManager.default.createFile(atPath: audioListPath, contents: nil, attributes: nil)
+        }
+        
+        let array = audioManager.getFileNameArray() as NSArray
+        array.write(toFile: audioListPath, atomically: true)
+    }
 }
 
 // MARK: - CollectionView Delegate
@@ -327,13 +340,7 @@ extension MainViewController: UINavigationControllerDelegate, UIImagePickerContr
         exportSession.exportAsynchronously{
             
             self.videoManager.addVideo(url: videoURL)
-            
-            if FileManager.default.fileExists(atPath: self.videoListPath) {
-                FileManager.default.createFile(atPath: self.videoListPath, contents: nil, attributes: nil)
-            }
-            
-            let array = self.videoManager.getFileNameArray() as NSArray
-            array.write(toFile: self.videoListPath, atomically: true)
+            self.recordVideo()
             
             DispatchQueue.main.async {
                 self.originalCollectionView.reloadData()
@@ -360,13 +367,7 @@ extension MainViewController: UIDocumentPickerDelegate {
             exportSession.exportAsynchronously{
                 
                 self.videoManager.addVideo(url: videoURL)
-                
-                if FileManager.default.fileExists(atPath: self.videoListPath) {
-                    FileManager.default.createFile(atPath: self.videoListPath, contents: nil, attributes: nil)
-                }
-                
-                let array = self.videoManager.getFileNameArray() as NSArray
-                array.write(toFile: self.videoListPath, atomically: true)
+                self.recordVideo()
                 
                 DispatchQueue.main.async {
                     self.originalCollectionView.reloadData()
@@ -433,8 +434,20 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         let confirmAction = UIAlertAction(title: "确认", style: .default) { action in
-            let audioTitle: String = ranameAlert.textFields![0].text!
-            self.audioManager.renameAudio(name: audioTitle, at: index)
+            
+            guard let type = self.audioManager.getType(at: index) else { return }
+            let oldTitle = self.audioManager.getTitle(at: index)
+            let newTitle: String = ranameAlert.textFields![0].text!
+            let oldPath = self.dataFilePath + "/audios/\(oldTitle).\(type.string)"
+            let newPath = self.dataFilePath + "/audios/\(newTitle).\(type.string)"
+            
+            self.audioManager.renameAudio(name: newTitle, at: index)
+            do {
+                try FileManager.default.moveItem(atPath: oldPath, toPath: newPath)
+            } catch {
+                print("Rename error")
+            }
+            self.recordAudio()
             self.convertedTableView.reloadData()
         }
         
@@ -455,7 +468,18 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         let confirmAction = UIAlertAction(title: "确认", style: .default) { action in
+            
+            guard let type = self.audioManager.getType(at: index) else { return }
+            let title = self.audioManager.getTitle(at: index)
+            let path = self.dataFilePath + "/audios/\(title).\(type.string)"
+            
             self.audioManager.removeAudio(at: index)
+            do {
+                try FileManager.default.removeItem(atPath: path)
+            } catch {
+                print("Delete error")
+            }
+            self.recordAudio()
             self.convertedTableView.reloadData()
         }
         
