@@ -13,8 +13,8 @@ class ExtractAudioViewController: UIViewController {
     
     @IBOutlet weak var videoPlayView: VideoPlayView!
     @IBOutlet weak var audioClipView: AudioClipView!
-    @IBOutlet weak var volumeSlider: VolumeSlider!
     @IBOutlet weak var volumeImage: UIImageView!
+    @IBOutlet weak var volumeSlider: VolumeSlider!
     
     var rootViewController: MainViewController?
     var video: Video!
@@ -29,6 +29,7 @@ class ExtractAudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         videoPlayView.video = video
+        volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         audioClipView.delegate = self
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
     }

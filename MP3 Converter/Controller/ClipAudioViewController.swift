@@ -27,6 +27,7 @@ class ClipAudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = audio.title
+        volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
     }
     

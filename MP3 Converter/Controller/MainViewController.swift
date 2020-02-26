@@ -10,6 +10,10 @@ import UIKit
 import AVFoundation
 import CoreServices
 
+enum PlayerState {
+    case play, pause, finish
+}
+
 class MainViewController: UIViewController {
     
     @IBOutlet weak var originalCollectionView: UICollectionView!
@@ -29,6 +33,7 @@ class MainViewController: UIViewController {
     
     var player = AVAudioPlayer()
     var currentPlayingIndex: Int = 0
+
     var playerState: PlayerState = .finish
     
     var selectedIndex: Int = 0
@@ -416,7 +421,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: AudioPreviewTableViewCellDelegate {
     
     func ringtone(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
-        // !
+        let audioURL = audioManager.getURL(at: index)
+        let activityViewController = UIActivityViewController(activityItems: [audioURL], applicationActivities: [])
+        present(activityViewController, animated: true, completion: nil)
     }
     
     func share(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
@@ -482,6 +489,10 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
             }
             self.recordAudio()
             self.convertedTableView.reloadData()
+            if self.audioManager.getNumOfAudios() == 0 {
+                self.nothingConvertedView.isHidden = false
+                self.convertedTableView.isHidden = true
+            }
         }
         
         deleteAlert.addAction(cancelAction)
