@@ -15,4 +15,21 @@ class Configuration {
     var videoType: VideoType = .mp4
     var audioType: AudioType = .m4a
     
+    func dataFilePath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0] as NSString
+        return documentsDirectory as String
+    }
+    
+    func videoListPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0] as NSString
+        return documentsDirectory as String + "/videos/data.plist"
+    }
+    
+    func audioListPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let documentsDirectory = paths[0] as NSString
+        return documentsDirectory as String + "/audios/data.plist"
+    }
 }

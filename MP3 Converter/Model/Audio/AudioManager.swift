@@ -16,8 +16,8 @@ class AudioManager {
         return audios.count
     }
     
-    func addAudio(url: URL, title: String, durationTime: Double) {
-        let audio = Audio(url: url, title: title, durationTime: durationTime)
+    func addAudio(url: URL) {
+        let audio = Audio(url: url)
         audios.append(audio)
     }
     
@@ -39,5 +39,9 @@ class AudioManager {
     
     func getDurationTime(at index: Int) -> String {
         return audios[index].getDurationTime()
+    }
+    
+    func getFileNameArray() -> [String] {
+        return audios.map { $0.url.lastPathComponent }
     }
 }

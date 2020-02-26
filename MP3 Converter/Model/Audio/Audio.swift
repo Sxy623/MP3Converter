@@ -7,17 +7,23 @@
 //
 
 import Foundation
+import AVFoundation
 
 struct Audio {
     
     let url: URL
     var title: String
+    var type: AudioType?
     let durationTime: Double
     
-    init(url: URL, title: String, durationTime: Double) {
+    init(url: URL) {
         self.url = url
-        self.title = title
-        self.durationTime = durationTime
+        self.title = url.deletingPathExtension().lastPathComponent
+        self.type = AudioType(string: url.pathExtension)
+        
+        let asset = AVURLAsset(url: url)
+        let duration = asset.duration
+        self.durationTime = CMTimeGetSeconds(duration)
     }
     
     func getDurationTime() -> String {

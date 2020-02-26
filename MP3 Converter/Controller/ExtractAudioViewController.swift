@@ -20,6 +20,10 @@ class ExtractAudioViewController: UIViewController {
 
     var volume: Float = 100
     
+    let dataFilePath = Configuration.sharedInstance.dataFilePath()
+    let videoListPath = Configuration.sharedInstance.videoListPath()
+    let audioListPath = Configuration.sharedInstance.audioListPath()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
@@ -53,8 +57,9 @@ class ExtractAudioViewController: UIViewController {
             }
             
             // Get url for output
-            let outputUrl = URL(fileURLWithPath: NSTemporaryDirectory() + audioTitle + ".\(self.type.string)")
-            let audioURL = outputUrl
+            let outputURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)"
+            
+            guard let outputUrl = URL(string: outputURLString) else { return }
             
             if FileManager.default.fileExists(atPath: outputUrl.path) {
                 try? FileManager.default.removeItem(atPath: outputUrl.path)
@@ -70,7 +75,7 @@ class ExtractAudioViewController: UIViewController {
                 guard case exportSession.status = AVAssetExportSession.Status.completed else { return }
                 
                 DispatchQueue.main.async {
-                    self.rootViewController?.addAudio(url: audioURL, title: audioTitle, durationTime: self.video.durationTime)
+                    self.rootViewController?.addAudio(url: outputUrl)
                     self.navigationController?.popViewController(animated: true)
                 }
             }

@@ -29,4 +29,8 @@ class VideoManager {
     func getDurationTime(at index: Int) -> String {
         return videos[index].getDurationTime()
     }
+    
+    func getFileNameArray() -> [String] {
+        return videos.map { $0.fileName }
+    }
 }

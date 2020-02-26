@@ -12,12 +12,14 @@ import AVFoundation
 struct Video {
     
     let url: URL
+    let fileName: String
     let preview: UIImage
     let durationTime: Double
     
     init?(url: URL) {
         
         self.url = url
+        self.fileName = url.lastPathComponent
         
         let asset = AVURLAsset(url: url)
         let generator = AVAssetImageGenerator(asset: asset)

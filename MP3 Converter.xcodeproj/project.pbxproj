@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		900905C024017DF2006AD5A0 /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 900905BF24017D2D006AD5A0 /* test1.mp4 */; };
 		900905C22402485F006AD5A0 /* SoundWave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900905C624029D0D006AD5A0 /* VolumeSlider.swift */; };
 		901572CA2405335700E0BCC6 /* AudioProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901572C92405335600E0BCC6 /* AudioProgressView.swift */; };
@@ -50,7 +49,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		900905BF24017D2D006AD5A0 /* test1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mp4; sourceTree = "<group>"; };
 		900905C624029D0D006AD5A0 /* VolumeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSlider.swift; sourceTree = "<group>"; };
 		901572C92405335600E0BCC6 /* AudioProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioProgressView.swift; sourceTree = "<group>"; };
 		902AF1A2240115C50036CB1A /* SoundWave.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundWave.framework; path = Carthage/Build/iOS/SoundWave.framework; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 				90B20A9323FD237800653F0C /* View */,
 				90B20A9223FD237000653F0C /* Controller */,
 				90B20A8423FD08EE00653F0C /* Assets.xcassets */,
-				900905BF24017D2D006AD5A0 /* test1.mp4 */,
 				90B20A8623FD08EE00653F0C /* LaunchScreen.storyboard */,
 				90B20A8923FD08EE00653F0C /* Info.plist */,
 			);
@@ -290,7 +287,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90B20A8823FD08EE00653F0C /* LaunchScreen.storyboard in Resources */,
-				900905C024017DF2006AD5A0 /* test1.mp4 in Resources */,
 				90B20A8523FD08EE00653F0C /* Assets.xcassets in Resources */,
 				90B20A8323FD08EB00653F0C /* Main.storyboard in Resources */,
 			);

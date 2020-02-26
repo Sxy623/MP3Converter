@@ -23,26 +23,30 @@ class MainViewController: UIViewController {
     let videoManager = VideoManager()
     let audioManager = AudioManager()
     
+    let dataFilePath = Configuration.sharedInstance.dataFilePath()
+    let videoListPath = Configuration.sharedInstance.videoListPath()
+    let audioListPath = Configuration.sharedInstance.audioListPath()
+    
     var player: AVAudioPlayer!
     var currentPlayingIndex: Int = 0
     var playerState: PlayerState = .finish
-    var durationLeft = 0.0
     
     var selectedIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Test
+        print(Configuration.sharedInstance.dataFilePath())
+        
+        checkDirectory()
+        loadData()
+        
         originalCollectionView.delegate = self
         originalCollectionView.dataSource = self
         
         convertedTableView.delegate = self
         convertedTableView.dataSource = self
-        
-        // Test
-        let url = Bundle.main.url(forResource: "test1", withExtension: "mp4")
-        videoManager.addVideo(url: url!)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -110,8 +114,16 @@ class MainViewController: UIViewController {
         performSegue(withIdentifier: "Extract Audio", sender: nil)
     }
     
-    func addAudio(url: URL, title: String, durationTime: Double) {
-        audioManager.addAudio(url: url, title: title, durationTime: durationTime)
+    func addAudio(url: URL) {
+        audioManager.addAudio(url: url)
+        
+        if FileManager.default.fileExists(atPath: audioListPath) {
+            FileManager.default.createFile(atPath: audioListPath, contents: nil, attributes: nil)
+        }
+        
+        let array = audioManager.getFileNameArray() as NSArray
+        array.write(toFile: audioListPath, atomically: true)
+        
         convertedTableView.reloadData()
     }
     
@@ -215,6 +227,56 @@ class MainViewController: UIViewController {
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "已完成", style: .plain, target: nil, action: nil)
         }
     }
+    
+    // MARK: - File Manager
+    
+    /* 新建目录 */
+    func checkDirectory() {
+        
+        // Video directory
+        if (!FileManager.default.fileExists(atPath: dataFilePath + "/videos/")) {
+            do {
+                try FileManager.default.createDirectory(atPath: dataFilePath + "/videos/", withIntermediateDirectories: false, attributes: nil)
+            } catch {
+                print("Create directory error.")
+            }
+        }
+        
+        // Audio directory
+        if (!FileManager.default.fileExists(atPath: dataFilePath + "/audios/")) {
+            do {
+                try FileManager.default.createDirectory(atPath: dataFilePath + "/audios/", withIntermediateDirectories: false, attributes: nil)
+            } catch {
+                print("Create directory error.")
+            }
+        }
+    }
+    
+    /* 加载视频和音频文件 */
+    func loadData() {
+        
+        // Load videos
+        if FileManager.default.fileExists(atPath: videoListPath) {
+            let array = NSArray(contentsOfFile: videoListPath) as! [String]
+            for videoFileName in array {
+                let videoURLString = "file://" + dataFilePath + "/videos/\(videoFileName)"
+                guard let videoURL = URL(string: videoURLString) else { continue }
+                videoManager.addVideo(url: videoURL)
+            }
+            originalCollectionView.reloadData()
+        }
+        
+        // Load audios
+        if FileManager.default.fileExists(atPath: audioListPath) {
+            let array = NSArray(contentsOfFile: audioListPath) as! [String]
+            for audioFileName in array {
+                let audioURLString = "file://" + dataFilePath + "/audios/\(audioFileName)"
+                guard let audioURL = URL(string: audioURLString) else { continue }
+                audioManager.addAudio(url: audioURL)
+            }
+            convertedTableView.reloadData()
+        }
+    }
 }
 
 // MARK: - CollectionView Delegate
@@ -254,8 +316,29 @@ extension MainViewController: UINavigationControllerDelegate, UIImagePickerContr
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let videoURL = info[.mediaURL] as! URL
-        videoManager.addVideo(url: videoURL)
-        originalCollectionView.reloadData()
+        let fileName = videoURL.lastPathComponent
+        let outputURLString = "file://" + dataFilePath + "/videos/\(fileName)"
+        
+        let asset = AVURLAsset(url: videoURL)
+        
+        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else { return }
+        exportSession.outputFileType = AVFileType.mov
+        exportSession.outputURL = URL(string: outputURLString)
+        exportSession.exportAsynchronously{
+            
+            self.videoManager.addVideo(url: videoURL)
+            
+            if FileManager.default.fileExists(atPath: self.videoListPath) {
+                FileManager.default.createFile(atPath: self.videoListPath, contents: nil, attributes: nil)
+            }
+            
+            let array = self.videoManager.getFileNameArray() as NSArray
+            array.write(toFile: self.videoListPath, atomically: true)
+            
+            DispatchQueue.main.async {
+                self.originalCollectionView.reloadData()
+            }
+        }
         picker.dismiss(animated: true, completion: nil)
     }
 }
@@ -265,10 +348,31 @@ extension MainViewController: UINavigationControllerDelegate, UIImagePickerContr
 extension MainViewController: UIDocumentPickerDelegate {
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
-        for url in urls {
-            videoManager.addVideo(url: url)
+        for videoURL in urls {
+            let fileName = videoURL.lastPathComponent
+            let outputURLString = "file://" + dataFilePath + "/videos/\(fileName)"
+            
+            let asset = AVURLAsset(url: videoURL)
+            
+            guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else { return }
+            exportSession.outputFileType = AVFileType.mov
+            exportSession.outputURL = URL(string: outputURLString)
+            exportSession.exportAsynchronously{
+                
+                self.videoManager.addVideo(url: videoURL)
+                
+                if FileManager.default.fileExists(atPath: self.videoListPath) {
+                    FileManager.default.createFile(atPath: self.videoListPath, contents: nil, attributes: nil)
+                }
+                
+                let array = self.videoManager.getFileNameArray() as NSArray
+                array.write(toFile: self.videoListPath, atomically: true)
+                
+                DispatchQueue.main.async {
+                    self.originalCollectionView.reloadData()
+                }
+            }
         }
-        originalCollectionView.reloadData()
         controller.dismiss(animated: true, completion: nil)
     }
 }
