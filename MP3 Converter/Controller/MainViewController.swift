@@ -138,12 +138,7 @@ class MainViewController: UIViewController {
             
         case .finish:
             currentPlayingIndex = index
-            do {
-                player = try AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
-            } catch{
-                print(audioManager.getURL(at: index))
-                print(error)
-            }
+            player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
             player.delegate = self
             player.play()
             playerState = .play

@@ -28,8 +28,10 @@ class AudioClipView: UIView {
     var foregroundLineLayer = CAShapeLayer()
     var maskLayer = CAShapeLayer()
     var clipLayer = CAShapeLayer()
+    var playerLayer = CAShapeLayer()
     
     var startPercentage: CGFloat = 0.0
+    var currentPercentage: CGFloat = 0.0
     var endPercentage: CGFloat = 1.0
     
     enum Choice { case empty, start, end }
@@ -67,6 +69,13 @@ class AudioClipView: UIView {
         clipLayer.strokeColor = UIColor.gray.cgColor
         layer.addSublayer(clipLayer)
         updateClip()
+        
+        playerLayer.lineWidth = 2
+        playerLayer.fillColor = UIColor.clear.cgColor
+        playerLayer.lineCap = CAShapeLayerLineCap.round
+        playerLayer.strokeColor = CGColor(srgbRed: 0.0, green: 0.48, blue: 1.0, alpha: 1.0)
+        layer.addSublayer(playerLayer)
+        updatePlayer()
     }
     
     func setStartPercentage(_ percentage: CGFloat) {
@@ -117,6 +126,14 @@ class AudioClipView: UIView {
         path.move(to: CGPoint(x: endX, y: self.frame.size.height * 0.01))
         path.addLine(to: CGPoint(x: endX, y: self.frame.size.height * 0.99))
         self.clipLayer.path = path.cgPath
+    }
+    
+    func updatePlayer() {
+        let x = self.frame.size.width * currentPercentage
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: x, y: self.frame.size.height * 0.01))
+        path.addLine(to: CGPoint(x: x, y: self.frame.size.height * 0.99))
+        self.playerLayer.path = path.cgPath
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -21,14 +21,36 @@ class ClipAudioViewController: UIViewController {
     let audioListPath = Configuration.sharedInstance.audioListPath()
     
     var rootViewController: MainViewController?
+    var player = AVPlayer()
     var audio: Audio!
+    var timer: Timer!
+    var interval: TimeInterval = 0.03
     var volume: Float = 100
     
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = audio.title
+        audioClipView.delegate = self
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
+        
+        player = AVPlayer(url: audio.url)
+        player.play()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
+            var percantage = self.audioClipView.currentPercentage
+            percantage += CGFloat(self.interval) / CGFloat(self.audio.durationTime)
+            if percantage > self.audioClipView.endPercentage {
+                percantage = self.audioClipView.endPercentage
+                self.player.pause()
+            }
+            self.audioClipView.currentPercentage = percantage
+            self.audioClipView.updatePlayer()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        player.pause()
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
@@ -82,6 +104,39 @@ class ClipAudioViewController: UIViewController {
             volumeImage.image = #imageLiteral(resourceName: "音量 max")
         } else {
             volumeImage.image = #imageLiteral(resourceName: "音量 mid")
+        }
+        player.volume = volume / 100
+    }
+}
+
+extension ClipAudioViewController: AudioClipViewDelegate {
+    
+    func touchBegan(_ audioClipView: AudioClipView) {
+        player.pause()
+        timer.invalidate()
+    }
+    
+    func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
+    }
+    
+    func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
+        let start = Double(startPercentage) * audio.durationTime
+        let startTime = CMTime(seconds: start, preferredTimescale: 120)
+        player.seek(to: startTime)
+        player.play()
+        
+        audioClipView.currentPercentage = startPercentage
+        audioClipView.updatePlayer()
+        
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
+            var percantage = self.audioClipView.currentPercentage
+            percantage += CGFloat(self.interval) / CGFloat(self.audio.durationTime)
+            if percantage > self.audioClipView.endPercentage {
+                percantage = self.audioClipView.endPercentage
+                self.player.pause()
+            }
+            self.audioClipView.currentPercentage = percantage
+            self.audioClipView.updatePlayer()
         }
     }
 }

@@ -120,6 +120,8 @@ class ExtractAudioViewController: UIViewController {
             // Create an export session
             let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetPassthrough)!
             
+            // m4a 和 caf 直接通过 exportSession 导出
+            // 其他格式通过 m4a 转换
             if self.type == .m4a || self.type == .caf {
                 exportSession.outputFileType = self.type.avFileType
                 exportSession.outputURL = outputURL
