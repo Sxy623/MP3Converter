@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9l-kS-fm1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9l-kS-fm1">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -573,8 +573,29 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CUT-KV-9ze" customClass="VideoPlayView" customModule="MP3_Converter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="44" width="375" height="539"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kz8-xf-o6r">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                                        <connections>
+                                            <action selector="videoPlayViewPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="nUG-vF-fWq"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="kz8-xf-o6r" firstAttribute="leading" secondItem="CUT-KV-9ze" secondAttribute="leading" id="Xa9-sp-xOB"/>
+                                    <constraint firstAttribute="trailing" secondItem="kz8-xf-o6r" secondAttribute="trailing" id="aMm-Ta-v3d"/>
+                                    <constraint firstItem="kz8-xf-o6r" firstAttribute="top" secondItem="CUT-KV-9ze" secondAttribute="top" id="g6k-0g-6F3"/>
+                                    <constraint firstAttribute="bottom" secondItem="kz8-xf-o6r" secondAttribute="bottom" id="urm-LH-rbX"/>
+                                </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rb0-pG-g6i">
+                                <rect key="frame" x="155.66666666666666" y="281.66666666666669" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="3wt-0e-XVw"/>
+                                    <constraint firstAttribute="width" constant="64" id="ddf-AF-1YW"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuQ-Zr-z32" customClass="AudioClipView" customModule="MP3_Converter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="583" width="375" height="73"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -626,7 +647,7 @@
                                         <rect key="frame" x="100" y="78" width="275" height="20"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q5J-ck-Htr">
-                                                <rect key="frame" x="0.0" y="0.0" width="542" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="539" height="20"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-9g-MJT">
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
@@ -637,6 +658,9 @@
                                                         <state key="normal" title="m4a">
                                                             <color key="titleColor" name="FF5F56 100%"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="ne5-uv-o6e"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjD-Ry-FEO">
                                                         <rect key="frame" x="46" y="0.0" width="30" height="20"/>
@@ -647,6 +671,9 @@
                                                         <state key="normal" title="mp3">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="YJU-Rj-N1W"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXY-V6-3BQ">
                                                         <rect key="frame" x="92" y="0.0" width="30" height="20"/>
@@ -657,6 +684,9 @@
                                                         <state key="normal" title="wav">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="yt7-kF-tWS"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yNY-Bv-65n">
                                                         <rect key="frame" x="138" y="0.0" width="30" height="20"/>
@@ -667,6 +697,9 @@
                                                         <state key="normal" title="aiff">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="EQZ-d5-zxy"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubJ-aP-ns9">
                                                         <rect key="frame" x="184" y="0.0" width="30" height="20"/>
@@ -677,6 +710,9 @@
                                                         <state key="normal" title="acc">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="PEv-OH-8Od"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qo4-pR-1cS">
                                                         <rect key="frame" x="230" y="0.0" width="30" height="20"/>
@@ -687,6 +723,9 @@
                                                         <state key="normal" title="m4r">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="Z7a-ro-kuk"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzl-9Q-3z8">
                                                         <rect key="frame" x="276" y="0.0" width="30" height="20"/>
@@ -697,6 +736,9 @@
                                                         <state key="normal" title="flac">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="tB2-sA-fl9"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhM-RT-YTc">
                                                         <rect key="frame" x="322" y="0.0" width="32" height="20"/>
@@ -707,29 +749,38 @@
                                                         <state key="normal" title="opus">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="eX6-mb-2dn"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jy7-Zg-Rs6" userLabel="caf">
-                                                        <rect key="frame" x="370" y="0.0" width="32" height="20"/>
+                                                        <rect key="frame" x="370" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="ma3-Vn-00h"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="opus">
+                                                        <state key="normal" title="caf">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="quZ-hp-cT9"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ps4-lC-ewq" userLabel="wma">
-                                                        <rect key="frame" x="418" y="0.0" width="32" height="20"/>
+                                                        <rect key="frame" x="416" y="0.0" width="31" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="PgS-G1-pMA"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="opus">
+                                                        <state key="normal" title="wma">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="Cit-3V-LyH"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbA-iO-HmH">
-                                                        <rect key="frame" x="466" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="463" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="wTT-x7-PcD"/>
                                                         </constraints>
@@ -737,16 +788,22 @@
                                                         <state key="normal" title="ogg">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="dTL-nS-73J"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWR-XL-9ni" userLabel="adx">
-                                                        <rect key="frame" x="512" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="509" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="xWa-4O-hWw"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <state key="normal" title="ogg">
+                                                        <state key="normal" title="adx">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="z7f-7B-nbc"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -782,8 +839,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="4se-6l-zlN" firstAttribute="trailing" secondItem="CUT-KV-9ze" secondAttribute="trailing" id="0rS-Py-DQg"/>
+                            <constraint firstItem="Rb0-pG-g6i" firstAttribute="centerY" secondItem="CUT-KV-9ze" secondAttribute="centerY" id="24K-HT-g3R"/>
                             <constraint firstItem="YYL-1E-MaV" firstAttribute="top" secondItem="FuQ-Zr-z32" secondAttribute="bottom" id="614-1P-Uuz"/>
                             <constraint firstItem="CUT-KV-9ze" firstAttribute="top" secondItem="4se-6l-zlN" secondAttribute="top" id="DPL-qU-5iN"/>
+                            <constraint firstItem="Rb0-pG-g6i" firstAttribute="centerX" secondItem="CUT-KV-9ze" secondAttribute="centerX" id="I4t-Wk-Gix"/>
                             <constraint firstItem="FuQ-Zr-z32" firstAttribute="top" secondItem="CUT-KV-9ze" secondAttribute="bottom" id="SDa-A2-cc0"/>
                             <constraint firstItem="4se-6l-zlN" firstAttribute="trailing" secondItem="FuQ-Zr-z32" secondAttribute="trailing" id="brW-8G-wY0"/>
                             <constraint firstItem="CUT-KV-9ze" firstAttribute="leading" secondItem="4se-6l-zlN" secondAttribute="leading" id="chH-s5-UNe"/>
@@ -803,9 +862,22 @@
                     </navigationItem>
                     <connections>
                         <outlet property="audioClipView" destination="FuQ-Zr-z32" id="zbn-To-AGc"/>
+                        <outlet property="pauseImageView" destination="Rb0-pG-g6i" id="s1L-Li-gCj"/>
                         <outlet property="videoPlayView" destination="CUT-KV-9ze" id="5gj-Qb-ZnY"/>
                         <outlet property="volumeImage" destination="4MZ-Sf-5l7" id="Sfa-aa-oOy"/>
                         <outlet property="volumeSlider" destination="FND-L6-dcB" id="Ix6-LT-9bc"/>
+                        <outletCollection property="buttons" destination="K0o-9g-MJT" collectionClass="NSMutableArray" id="els-cC-2NG"/>
+                        <outletCollection property="buttons" destination="wjD-Ry-FEO" collectionClass="NSMutableArray" id="vhV-2G-uCB"/>
+                        <outletCollection property="buttons" destination="hXY-V6-3BQ" collectionClass="NSMutableArray" id="KSk-p9-NUa"/>
+                        <outletCollection property="buttons" destination="yNY-Bv-65n" collectionClass="NSMutableArray" id="nDn-dR-GzO"/>
+                        <outletCollection property="buttons" destination="ubJ-aP-ns9" collectionClass="NSMutableArray" id="2zp-um-vL2"/>
+                        <outletCollection property="buttons" destination="qo4-pR-1cS" collectionClass="NSMutableArray" id="Iec-lK-wUK"/>
+                        <outletCollection property="buttons" destination="pzl-9Q-3z8" collectionClass="NSMutableArray" id="R5X-Bg-k4G"/>
+                        <outletCollection property="buttons" destination="AhM-RT-YTc" collectionClass="NSMutableArray" id="39Q-Jc-Msd"/>
+                        <outletCollection property="buttons" destination="jy7-Zg-Rs6" collectionClass="NSMutableArray" id="Qal-DF-IpL"/>
+                        <outletCollection property="buttons" destination="Ps4-lC-ewq" collectionClass="NSMutableArray" id="TUw-Al-PpH"/>
+                        <outletCollection property="buttons" destination="vbA-iO-HmH" collectionClass="NSMutableArray" id="AtV-0b-6xe"/>
+                        <outletCollection property="buttons" destination="CWR-XL-9ni" collectionClass="NSMutableArray" id="kr6-LJ-0BT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="272-Iw-olZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

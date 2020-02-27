@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AVFoundation
 
 enum AudioType: CaseIterable {
     
@@ -25,6 +26,37 @@ enum AudioType: CaseIterable {
     
     var string: String {
         return "\(self)"
+    }
+    
+    var avFileType: AVFileType {
+        switch self {
+        case .m4a:
+            return AVFileType.m4a
+        case .mp3:
+            return AVFileType.mp3
+        case .wav:
+            return AVFileType.wav
+        case .aiff:
+            return AVFileType.aiff
+//        case .acc:
+//            return AVFileType.acc
+//        case .m4r:
+//            return AVFileType.m4r
+//        case .flac:
+//            return AVFileType.flac
+//        case .opus:
+//            return AVFileType.opus
+        case .caf:
+            return AVFileType.caf
+//        case .wma:
+//            return AVFileType.wma
+//        case .ogg:
+//            return AVFileType.ogg
+//        case .adx:
+//            return AVFileType.adx
+        default:
+            return AVFileType.m4a
+        }
     }
     
     init?(string: String) {

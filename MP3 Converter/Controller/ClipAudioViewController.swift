@@ -42,8 +42,10 @@ class ClipAudioViewController: UIViewController {
         let duration = endTime - startTime
         
         let audioURL = audio.url
-        let outputURL = URL(string: "file://" + self.dataFilePath + "/audios/out.m4a")!
+        let type = audio.type!
+        
         let asset = AVURLAsset(url: audioURL)
+        let outputURL = URL(string: "file://" + self.dataFilePath + "/audios/out.\(type.string)")!
         
         if FileManager.default.fileExists(atPath: outputURL.path) {
             try? FileManager.default.removeItem(atPath: outputURL.path)
@@ -51,15 +53,17 @@ class ClipAudioViewController: UIViewController {
         
         guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetPassthrough) else { return }
         let exportTimeRange = CMTimeRangeMake(start: startTime, duration: duration)
-        exportSession.outputFileType = AVFileType.m4a
+        
+        exportSession.outputFileType = type.avFileType
         exportSession.outputURL = outputURL
         exportSession.timeRange = exportTimeRange
-        exportSession.exportAsynchronously{
+        exportSession.exportAsynchronously {
             
-            if AVAssetExportSession.Status.failed == exportSession.status {
+            guard case exportSession.status = AVAssetExportSession.Status.completed else {
                 print("\(String(describing: exportSession.error?.localizedDescription))")
+                return
             }
-        
+            
             try? FileManager.default.removeItem(at: audioURL)
             try? FileManager.default.moveItem(at: outputURL, to: audioURL)
             

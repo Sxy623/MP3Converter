@@ -10,6 +10,7 @@
 		900905C22402485F006AD5A0 /* SoundWave.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 902AF1A2240115C50036CB1A /* SoundWave.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900905C624029D0D006AD5A0 /* VolumeSlider.swift */; };
 		901572CA2405335700E0BCC6 /* AudioProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901572C92405335600E0BCC6 /* AudioProgressView.swift */; };
+		90A159512407987700232192 /* AudioConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A159502407987700232192 /* AudioConverter.swift */; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
 		90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */; };
 		90B20A8023FD08EB00653F0C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7F23FD08EB00653F0C /* MainViewController.swift */; };
@@ -52,6 +53,7 @@
 		900905C624029D0D006AD5A0 /* VolumeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSlider.swift; sourceTree = "<group>"; };
 		901572C92405335600E0BCC6 /* AudioProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioProgressView.swift; sourceTree = "<group>"; };
 		902AF1A2240115C50036CB1A /* SoundWave.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SoundWave.framework; path = Carthage/Build/iOS/SoundWave.framework; sourceTree = "<group>"; };
+		90A159502407987700232192 /* AudioConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConverter.swift; sourceTree = "<group>"; };
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B20A7B23FD08EB00653F0C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				90FF3C3E23FD622A006AEFC7 /* AudioManager.swift */,
+				90A159502407987700232192 /* AudioConverter.swift */,
 				90FF3C4023FD624E006AEFC7 /* Audio.swift */,
 				90FF3C4C23FE78A7006AEFC7 /* AudioType.swift */,
 			);
@@ -330,6 +333,7 @@
 				90B5977D2405745000679644 /* AudioClipView.swift in Sources */,
 				90FF3C4B23FE7314006AEFC7 /* VideoType.swift in Sources */,
 				90FF3C4D23FE78A7006AEFC7 /* AudioType.swift in Sources */,
+				90A159512407987700232192 /* AudioConverter.swift in Sources */,
 				90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */,
 				90FF3C3F23FD622A006AEFC7 /* AudioManager.swift in Sources */,
 				90B20A9023FD236200653F0C /* VideoManager.swift in Sources */,
