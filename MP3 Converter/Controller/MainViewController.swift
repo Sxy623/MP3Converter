@@ -30,6 +30,8 @@ class MainViewController: UIViewController {
     let dataFilePath = Configuration.sharedInstance.dataFilePath()
     let videoListPath = Configuration.sharedInstance.videoListPath()
     let audioListPath = Configuration.sharedInstance.audioListPath()
+    let bandfolderPath = Configuration.sharedInstance.bandfolderPath()
+    let bandfolderDirectoryPath = Configuration.sharedInstance.bandfolderDirectoryPath()
     
     var player = AVAudioPlayer()
     var currentPlayingIndex: Int = 0
@@ -42,7 +44,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         // Test
-        print(Configuration.sharedInstance.dataFilePath())
+        print(bandfolderPath)
         
         checkDirectory()
         loadData()
@@ -249,6 +251,24 @@ class MainViewController: UIViewController {
                 print("Create directory error.")
             }
         }
+        
+        // Bandfolder
+        if (!FileManager.default.fileExists(atPath: bandfolderPath)) {
+            do {
+                try FileManager.default.copyItem(atPath: Bundle.main.path(forResource: "bandfolder.band", ofType: nil)!, toPath: bandfolderPath)
+            } catch {
+                print("Create directory error.")
+            }
+        }
+        
+        // Bandfolder Directory
+        if (!FileManager.default.fileExists(atPath: bandfolderDirectoryPath)) {
+            do {
+                try FileManager.default.createDirectory(atPath: bandfolderDirectoryPath, withIntermediateDirectories: false, attributes: nil)
+            } catch {
+                print("Create directory error.")
+            }
+        }
     }
     
     /* 加载视频和音频文件 */
@@ -421,8 +441,21 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: AudioPreviewTableViewCellDelegate {
     
     func ringtone(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+        
+        let copyAtPath = Configuration.sharedInstance.bandfolderPath()
+        let copyToPath = Configuration.sharedInstance.bandfolderDirectoryPath() + "/\(audioManager.getTitle(at: index)).band"
+        do {
+            try FileManager.default.copyItem(atPath: copyAtPath, toPath: copyToPath)
+        } catch {
+            print(error)
+        }
+        
         let audioURL = audioManager.getURL(at: index)
-        let activityViewController = UIActivityViewController(activityItems: [audioURL], applicationActivities: [])
+        let aiffURL = URL(fileURLWithPath: "\(copyToPath)/Media/ringtone.aiff")
+        
+        AudioConverter.sharedInstance.convertAudioToAIFF(audioURL, outputURL: aiffURL)
+        
+        let activityViewController = UIActivityViewController(activityItems: [URL(fileURLWithPath: copyToPath)], applicationActivities: [])
         present(activityViewController, animated: true, completion: nil)
     }
     

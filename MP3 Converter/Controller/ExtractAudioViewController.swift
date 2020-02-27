@@ -24,10 +24,11 @@ class ExtractAudioViewController: UIViewController {
     
     var rootViewController: MainViewController?
     var video: Video!
-    var type: AudioType = Configuration.sharedInstance.audioType
-    
+    var timer: Timer!
+    var interval: TimeInterval = 0.03
     var volume: Float = 100
     var state: PlayerState = .play
+    var type: AudioType = Configuration.sharedInstance.audioType
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class ExtractAudioViewController: UIViewController {
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
         updateTypeButtons()
+        progressContinue()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -57,10 +59,12 @@ class ExtractAudioViewController: UIViewController {
             pauseImageView.image = #imageLiteral(resourceName: "Play")
             videoPlayView.player.pause()
             state = .pause
+            progressPause()
         } else {
             pauseImageView.image = nil
             videoPlayView.player.play()
             state = .play
+            progressContinue()
         }
     }
     
@@ -195,6 +199,28 @@ class ExtractAudioViewController: UIViewController {
             volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         }
         videoPlayView.player.volume = volume / 100
+    }
+    
+    func progressPause() {
+        timer.invalidate()
+    }
+    
+    func progressContinue() {
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
+            var percantage = self.audioClipView.currentPercentage
+            percantage += CGFloat(self.interval) / CGFloat(self.video.durationTime)
+            if percantage > self.audioClipView.endPercentage {
+                percantage = self.audioClipView.endPercentage
+                self.pauseImageView.image = #imageLiteral(resourceName: "Play")
+                self.videoPlayView.player.pause()
+                self.progressPause()
+                self.state = .pause
+                self.audioClipView.currentPercentage = self.audioClipView.startPercentage
+                self.audioClipView.updatePlayer()
+            }
+            self.audioClipView.currentPercentage = percantage
+            self.audioClipView.updatePlayer()
+        }
     }
 }
 

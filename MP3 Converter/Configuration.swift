@@ -32,4 +32,16 @@ class Configuration {
         let documentsDirectory = paths[0] as NSString
         return documentsDirectory as String + "/audios/data.plist"
     }
+    
+    func bandfolderPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
+        let cachesDirectory = paths[0] as NSString
+        return cachesDirectory as String + "/bandfolder"
+    }
+    
+    func bandfolderDirectoryPath() -> String {
+        let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
+        let cachesDirectory = paths[0] as NSString
+        return cachesDirectory as String + "/bandfolderDirectory"
+    }
 }

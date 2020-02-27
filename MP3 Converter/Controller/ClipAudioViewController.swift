@@ -37,16 +37,7 @@ class ClipAudioViewController: UIViewController {
         player = AVPlayer(url: audio.url)
         player.play()
         
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
-            var percantage = self.audioClipView.currentPercentage
-            percantage += CGFloat(self.interval) / CGFloat(self.audio.durationTime)
-            if percantage > self.audioClipView.endPercentage {
-                percantage = self.audioClipView.endPercentage
-                self.player.pause()
-            }
-            self.audioClipView.currentPercentage = percantage
-            self.audioClipView.updatePlayer()
-        }
+        progressContinue()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,13 +98,30 @@ class ClipAudioViewController: UIViewController {
         }
         player.volume = volume / 100
     }
+    
+    func progressPause() {
+        timer.invalidate()
+    }
+    
+    func progressContinue() {
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
+            var percantage = self.audioClipView.currentPercentage
+            percantage += CGFloat(self.interval) / CGFloat(self.audio.durationTime)
+            if percantage > self.audioClipView.endPercentage {
+                percantage = self.audioClipView.endPercentage
+                self.player.pause()
+            }
+            self.audioClipView.currentPercentage = percantage
+            self.audioClipView.updatePlayer()
+        }
+    }
 }
 
 extension ClipAudioViewController: AudioClipViewDelegate {
     
     func touchBegan(_ audioClipView: AudioClipView) {
         player.pause()
-        timer.invalidate()
+        progressPause()
     }
     
     func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
@@ -128,15 +136,6 @@ extension ClipAudioViewController: AudioClipViewDelegate {
         audioClipView.currentPercentage = startPercentage
         audioClipView.updatePlayer()
         
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
-            var percantage = self.audioClipView.currentPercentage
-            percantage += CGFloat(self.interval) / CGFloat(self.audio.durationTime)
-            if percantage > self.audioClipView.endPercentage {
-                percantage = self.audioClipView.endPercentage
-                self.player.pause()
-            }
-            self.audioClipView.currentPercentage = percantage
-            self.audioClipView.updatePlayer()
-        }
+        progressContinue()
     }
 }
