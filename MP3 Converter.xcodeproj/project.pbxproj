@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900905C624029D0D006AD5A0 /* VolumeSlider.swift */; };
 		901572CA2405335700E0BCC6 /* AudioProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901572C92405335600E0BCC6 /* AudioProgressView.swift */; };
+		905A5DC12408FB2B00E50E60 /* BSImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */; };
+		905A5DC22408FB2B00E50E60 /* BSImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		905A5DC5240901B600E50E60 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC4240901B600E50E60 /* PHAsset.swift */; };
+		905A5DC82409023D00E50E60 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC72409023D00E50E60 /* PlayerState.swift */; };
 		90A159512407987700232192 /* AudioConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A159502407987700232192 /* AudioConverter.swift */; };
 		90A159542408071B00232192 /* bandfolder.band in Resources */ = {isa = PBXBuildFile; fileRef = 90A159532408071B00232192 /* bandfolder.band */; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
@@ -36,12 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		900905C32402485F006AD5A0 /* Embed Frameworks */ = {
+		905A5DC32408FB2B00E50E60 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				905A5DC22408FB2B00E50E60 /* BSImagePicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -51,6 +56,9 @@
 /* Begin PBXFileReference section */
 		900905C624029D0D006AD5A0 /* VolumeSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeSlider.swift; sourceTree = "<group>"; };
 		901572C92405335600E0BCC6 /* AudioProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioProgressView.swift; sourceTree = "<group>"; };
+		905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSImagePicker.framework; path = Carthage/Build/iOS/BSImagePicker.framework; sourceTree = "<group>"; };
+		905A5DC4240901B600E50E60 /* PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAsset.swift; sourceTree = "<group>"; };
+		905A5DC72409023D00E50E60 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		90A159502407987700232192 /* AudioConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConverter.swift; sourceTree = "<group>"; };
 		90A159532408071B00232192 /* bandfolder.band */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = bandfolder.band; sourceTree = "<group>"; };
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +92,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				905A5DC12408FB2B00E50E60 /* BSImagePicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,8 +110,25 @@
 		902AF1A1240115C40036CB1A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		905A5DC62409022200E50E60 /* Asset */ = {
+			isa = PBXGroup;
+			children = (
+				905A5DC4240901B600E50E60 /* PHAsset.swift */,
+			);
+			path = Asset;
+			sourceTree = "<group>";
+		};
+		905A5DC92409024400E50E60 /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				905A5DC72409023D00E50E60 /* PlayerState.swift */,
+			);
+			path = Player;
 			sourceTree = "<group>";
 		};
 		90A159522408071B00232192 /* Band Resource */ = {
@@ -151,8 +177,10 @@
 		90B20A9123FD236900653F0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				905A5DC92409024400E50E60 /* Player */,
 				90FF3C4F23FE7A12006AEFC7 /* Audio */,
 				90FF3C4E23FE79FE006AEFC7 /* Video */,
+				905A5DC62409022200E50E60 /* Asset */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -239,7 +267,7 @@
 				90B20A7523FD08EB00653F0C /* Frameworks */,
 				90B20A7623FD08EB00653F0C /* Resources */,
 				902AF1A6240115F10036CB1A /* Run Script */,
-				900905C32402485F006AD5A0 /* Embed Frameworks */,
+				905A5DC32408FB2B00E50E60 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -306,6 +334,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/BSImagePicker.framework",
 			);
 			name = "Run Script";
 			outputFileListPaths = (
@@ -313,8 +342,8 @@
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellScript = "
-";
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -333,11 +362,13 @@
 				90B20A8023FD08EB00653F0C /* MainViewController.swift in Sources */,
 				90FF3C4923FDC668006AEFC7 /* SettingsTableViewController.swift in Sources */,
 				90B5977B24056AC900679644 /* ClipAudioViewController.swift in Sources */,
+				905A5DC82409023D00E50E60 /* PlayerState.swift in Sources */,
 				90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */,
 				90FF3C4123FD624E006AEFC7 /* Audio.swift in Sources */,
 				90E471C823FD527E00028D96 /* LeftAlignLayout.swift in Sources */,
 				90B597A12406C6F500679644 /* VideoPlayView.swift in Sources */,
 				90B5977D2405745000679644 /* AudioClipView.swift in Sources */,
+				905A5DC5240901B600E50E60 /* PHAsset.swift in Sources */,
 				90FF3C4B23FE7314006AEFC7 /* VideoType.swift in Sources */,
 				90FF3C4D23FE78A7006AEFC7 /* AudioType.swift in Sources */,
 				90A159512407987700232192 /* AudioConverter.swift in Sources */,
@@ -499,6 +530,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shenxinyi.MP3-Converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -521,6 +553,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shenxinyi.MP3-Converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

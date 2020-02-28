@@ -167,16 +167,6 @@ class ExtractAudioViewController: UIViewController {
                     if FileManager.default.fileExists(atPath: outputURL.path) {
                         try? FileManager.default.removeItem(atPath: outputURL.path)
                     }
-                } else if self.type == .acc {
-                    AudioConverter.sharedInstance.convertAudioToACC(outputURL, outputURL: targetURL)
-                    if FileManager.default.fileExists(atPath: outputURL.path) {
-                        try? FileManager.default.removeItem(atPath: outputURL.path)
-                    }
-                } else if self.type == .flac {
-                    AudioConverter.sharedInstance.convertAudioToFLAC(outputURL, outputURL: targetURL)
-                    if FileManager.default.fileExists(atPath: outputURL.path) {
-                        try? FileManager.default.removeItem(atPath: outputURL.path)
-                    }
                 }
                 
                 DispatchQueue.main.async {

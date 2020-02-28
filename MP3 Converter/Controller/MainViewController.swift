@@ -9,10 +9,8 @@
 import UIKit
 import AVFoundation
 import CoreServices
-
-enum PlayerState {
-    case play, pause, finish
-}
+import BSImagePicker
+import Photos
 
 class MainViewController: UIViewController {
     
@@ -88,18 +86,41 @@ class MainViewController: UIViewController {
     }
     
     func uploadVideoFromAlbum() {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .savedPhotosAlbum
-        imagePicker.allowsEditing = false
-        imagePicker.mediaTypes = ["public.movie"]
-        // Avoid compression
-        imagePicker.videoExportPreset = AVAssetExportPresetPassthrough
-        
-        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-            present(imagePicker, animated: true, completion: nil)
-        }
+
+        let imagePicker = ImagePickerController()
+        imagePicker.settings.selection.max = 20
+        imagePicker.settings.fetch.assets.supportedMediaTypes = [.video]
+        imagePicker.doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
+
+        self.presentImagePicker(imagePicker, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
+            
+            for asset in assets {
+                
+                var videoURL: URL!
+                var outputURLString = String()
+                asset.getURL { url in
+                    guard let url = url else { return }
+                    videoURL = url
+                    let fileName = videoURL.lastPathComponent
+                    outputURLString = "file://" + self.dataFilePath + "/videos/\(fileName)"
+                }
+                
+                PHImageManager.default().requestExportSession(forVideo: asset, options: nil, exportPreset: AVAssetExportPresetHighestQuality) { (exportSession, _) in
+
+                    exportSession?.outputFileType = AVFileType.mov
+                    exportSession?.outputURL = URL(string: outputURLString)
+                    exportSession?.exportAsynchronously{
+
+                        self.videoManager.addVideo(url: videoURL)
+                        self.recordVideo()
+
+                        DispatchQueue.main.async {
+                            self.originalCollectionView.reloadData()
+                        }
+                    }
+                }
+            }
+        })
     }
     
     func uploadVideoFromFiles() {
@@ -352,33 +373,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return cell
             
         }
-    }
-}
-
-// MARK: - ImagePickerController Delegate
-
-extension MainViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let videoURL = info[.mediaURL] as! URL
-        let fileName = videoURL.lastPathComponent
-        let outputURLString = "file://" + dataFilePath + "/videos/\(fileName)"
-        
-        let asset = AVURLAsset(url: videoURL)
-        
-        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else { return }
-        exportSession.outputFileType = AVFileType.mov
-        exportSession.outputURL = URL(string: outputURLString)
-        exportSession.exportAsynchronously{
-            
-            self.videoManager.addVideo(url: videoURL)
-            self.recordVideo()
-            
-            DispatchQueue.main.async {
-                self.originalCollectionView.reloadData()
-            }
-        }
-        picker.dismiss(animated: true, completion: nil)
     }
 }
 
