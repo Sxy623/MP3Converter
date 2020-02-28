@@ -90,7 +90,7 @@ class ExtractAudioViewController: UIViewController {
             
             // Create a composition
             let composition = AVMutableComposition()
-//            let mutableAudioMix = AVMutableAudioMix()
+            let mutableAudioMix = AVMutableAudioMix()
             
             do {
                 let sourceUrl = self.video.url
@@ -98,13 +98,11 @@ class ExtractAudioViewController: UIViewController {
                 guard let audioAssetTrack = asset.tracks(withMediaType: AVMediaType.audio).first else { return }
                 
                 guard let audioCompositionTrack = composition.addMutableTrack(withMediaType: AVMediaType.audio, preferredTrackID: kCMPersistentTrackID_Invalid) else { return }
-                audioCompositionTrack.preferredVolume = 0.0
                 try audioCompositionTrack.insertTimeRange(audioAssetTrack.timeRange, of: audioAssetTrack, at: CMTime.zero)
                 
-//                let mixParamters = AVMutableAudioMixInputParameters(track: audioAssetTrack)
-//                mixParamters.setVolumeRamp(fromStartVolume: 1.0, toEndVolume: 0.0, timeRange: CMTimeRangeMake(start: CMTime.zero, duration: composition.duration))
-//                mutableAudioMix.inputParameters = [mixParamters]
-                
+                let mixParamters = AVMutableAudioMixInputParameters(track: audioAssetTrack)
+                mixParamters.setVolume(self.volume / 100, at: .zero)
+                mutableAudioMix.inputParameters = [mixParamters]
             } catch {
                 print(error)
             }
@@ -122,11 +120,12 @@ class ExtractAudioViewController: UIViewController {
             }
             
             // Create an export session
-            let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetPassthrough)!
+            // AVAssetExportPresetPassthrough 无法改变音量
+            let exportSession = AVAssetExportSession(asset: composition, presetName: AVAssetExportPresetAppleM4A)!
             
-            // m4a 和 caf 直接通过 exportSession 导出
+            // m4a 直接通过 exportSession 导出
             // 其他格式通过 m4a 转换
-            if self.type == .m4a || self.type == .caf {
+            if self.type == .m4a {
                 exportSession.outputFileType = self.type.avFileType
                 exportSession.outputURL = outputURL
             } else {
@@ -134,16 +133,14 @@ class ExtractAudioViewController: UIViewController {
                 exportSession.outputURL = m4aURL
             }
             
-//            exportSession.audioMix = mutableAudioMix
+            exportSession.audioMix = mutableAudioMix
             
             // Set time range
             let start = Double(self.audioClipView.startPercentage) * self.video.durationTime
             let end = Double(self.audioClipView.endPercentage) * self.video.durationTime
-            
             let startTime = CMTime(seconds: start, preferredTimescale: 120)
             let endTime = CMTime(seconds: end, preferredTimescale: 120)
             let duration = endTime - startTime
-            
             let exportTimeRange = CMTimeRangeMake(start: startTime, duration: duration)
             exportSession.timeRange = exportTimeRange
             
@@ -155,6 +152,11 @@ class ExtractAudioViewController: UIViewController {
                     return
                 }
                 
+//                if self.type == .caf {
+//                    AudioConverter.sharedInstance.convertAudioToCAF(m4aURL, outputURL: outputURL)
+//                    if FileManager.default.fileExists(atPath: m4aURL.path) {
+//                        try? FileManager.default.removeItem(atPath: m4aURL.path)
+//                    }
                 if self.type == .wav {
                     AudioConverter.sharedInstance.convertAudioToWAV(m4aURL, outputURL: outputURL)
                     if FileManager.default.fileExists(atPath: m4aURL.path) {

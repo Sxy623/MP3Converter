@@ -306,7 +306,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/SoundWave.framework",
 			);
 			name = "Run Script";
 			outputFileListPaths = (

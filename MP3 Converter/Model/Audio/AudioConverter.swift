@@ -12,6 +12,21 @@ class AudioConverter {
     
     static let sharedInstance = AudioConverter()
     
+    func convertAudioToCAF(_ url: URL, outputURL: URL) {
+        
+        let asset = AVURLAsset(url: url)
+        let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetPassthrough)!
+        exportSession.outputFileType = .caf
+        exportSession.outputURL = outputURL
+        
+        exportSession.exportAsynchronously {
+            guard case exportSession.status = AVAssetExportSession.Status.completed else {
+                print("\(String(describing: exportSession.error?.localizedDescription))")
+                return
+            }
+        }
+    }
+    
     func convertAudioToWAV(_ url: URL, outputURL: URL) {
         var error : OSStatus = noErr
         var destinationFile: ExtAudioFileRef? = nil

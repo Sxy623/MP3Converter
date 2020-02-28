@@ -131,8 +131,14 @@ class MainViewController: UIViewController {
     
     func playAudio(index: Int) {
         
-        let oldCell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
-        oldCell.triangleImage.isHidden = true
+        let oldCell: AudioPreviewTableViewCell?
+        
+        if currentPlayingIndex < audioManager.getNumOfAudios() {
+            oldCell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as? AudioPreviewTableViewCell
+        } else {
+            oldCell = nil
+        }
+        oldCell?.triangleImage.isHidden = true
         
         let newCell = convertedTableView.cellForRow(at: IndexPath(row: index, section: 0)) as! AudioPreviewTableViewCell
         
@@ -150,11 +156,11 @@ class MainViewController: UIViewController {
             if currentPlayingIndex == index {
                 player.pause()
                 playerState = .pause
-                oldCell.audioProgressView.pause()
+                oldCell?.audioProgressView.pause()
             } else {
                 player.stop()
-                oldCell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
-                oldCell.audioProgressView.reset()
+                oldCell?.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+                oldCell?.audioProgressView.reset()
                 
                 currentPlayingIndex = index
                 player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
@@ -168,10 +174,10 @@ class MainViewController: UIViewController {
             if currentPlayingIndex == index {
                 player.play()
                 playerState = .play
-                oldCell.audioProgressView.resume()
+                oldCell?.audioProgressView.resume()
             } else {
                 player.stop()
-                oldCell.audioProgressView.reset()
+                oldCell?.audioProgressView.reset()
                 
                 currentPlayingIndex = index
                 player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
@@ -440,7 +446,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MainViewController: AudioPreviewTableViewCellDelegate {
     
-    func ringtone(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+    func ringtone(_ audioPreviewTableViewCell: UITableViewCell, index: Int) {
         
         let copyAtPath = Configuration.sharedInstance.bandfolderPath()
         let copyToPath = Configuration.sharedInstance.bandfolderDirectoryPath() + "/\(audioManager.getTitle(at: index)).band"
@@ -459,13 +465,13 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
         present(activityViewController, animated: true, completion: nil)
     }
     
-    func share(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+    func share(_ audioPreviewTableViewCell: UITableViewCell, index: Int) {
         let audioURL = audioManager.getURL(at: index)
         let activityViewController = UIActivityViewController(activityItems: [audioURL], applicationActivities: [])
         present(activityViewController, animated: true, completion: nil)
     }
     
-    func rename(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+    func rename(_ audioPreviewTableViewCell: UITableViewCell, index: Int) {
         let ranameAlert = UIAlertController(title: "重命名", message: "请输入新名称", preferredStyle: .alert)
         
         ranameAlert.addTextField { (textField) in
@@ -500,11 +506,11 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
         present(ranameAlert, animated: true, completion: nil)
     }
     
-    func clip(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+    func clip(_ audioPreviewTableViewCell: UITableViewCell, index: Int) {
         performSegue(withIdentifier: "Clip Audio", sender: nil)
     }
     
-    func delete(_ AudioPreviewTableViewCell: UITableViewCell, index: Int) {
+    func delete(_ audioPreviewTableViewCell: UITableViewCell, index: Int) {
         let deleteAlert = UIAlertController(title: "删除", message: "确认删除该文件吗？", preferredStyle: .alert)
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
@@ -514,18 +520,28 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
             let title = self.audioManager.getTitle(at: index)
             let path = self.dataFilePath + "/audios/\(title).\(type.string)"
             
-            self.audioManager.removeAudio(at: index)
             do {
                 try FileManager.default.removeItem(atPath: path)
             } catch {
                 print("Delete error")
             }
             self.recordAudio()
-            self.convertedTableView.reloadData()
+            
+            if self.currentPlayingIndex == index {
+                let cell = self.convertedTableView.cellForRow(at: IndexPath(row: self.currentPlayingIndex, section: 0)) as? AudioPreviewTableViewCell
+                cell?.triangleImage.isHidden = true
+                cell?.audioProgressView.reset()
+                cell?.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+                self.player.stop()
+                self.playerState = .finish
+            }
+            
+            self.audioManager.removeAudio(at: index)
             if self.audioManager.getNumOfAudios() == 0 {
                 self.nothingConvertedView.isHidden = false
                 self.convertedTableView.isHidden = true
             }
+            self.convertedTableView.reloadData()
         }
         
         deleteAlert.addAction(cancelAction)

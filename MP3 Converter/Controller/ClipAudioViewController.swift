@@ -58,17 +58,24 @@ class ClipAudioViewController: UIViewController {
         let type = audio.type!
         
         let asset = AVURLAsset(url: audioURL)
-        let outputURL = URL(string: "file://" + self.dataFilePath + "/audios/out.\(type.string)")!
+        let outputURL = URL(string: "file://" + self.dataFilePath + "/audios/out.m4a)")!
         
         if FileManager.default.fileExists(atPath: outputURL.path) {
             try? FileManager.default.removeItem(atPath: outputURL.path)
         }
         
-        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetPassthrough) else { return }
+        guard let audioAssetTrack = asset.tracks(withMediaType: AVMediaType.audio).first else { return }
+        let mixParamters = AVMutableAudioMixInputParameters(track: audioAssetTrack)
+        mixParamters.setVolume(volume / 100, at: .zero)
+        let mutableAudioMix = AVMutableAudioMix()
+        mutableAudioMix.inputParameters = [mixParamters]
+        
+        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A) else { return }
         let exportTimeRange = CMTimeRangeMake(start: startTime, duration: duration)
         
-        exportSession.outputFileType = type.avFileType
+        exportSession.outputFileType = .m4a
         exportSession.outputURL = outputURL
+        exportSession.audioMix = mutableAudioMix
         exportSession.timeRange = exportTimeRange
         exportSession.exportAsynchronously {
             
@@ -77,8 +84,20 @@ class ClipAudioViewController: UIViewController {
                 return
             }
             
-            try? FileManager.default.removeItem(at: audioURL)
-            try? FileManager.default.moveItem(at: outputURL, to: audioURL)
+            if type == .wav {
+                AudioConverter.sharedInstance.convertAudioToWAV(outputURL, outputURL: audioURL)
+                if FileManager.default.fileExists(atPath: outputURL.path) {
+                    try? FileManager.default.removeItem(atPath: outputURL.path)
+                }
+            } else if type == .aiff {
+                AudioConverter.sharedInstance.convertAudioToAIFF(outputURL, outputURL: audioURL)
+                if FileManager.default.fileExists(atPath: outputURL.path) {
+                    try? FileManager.default.removeItem(atPath: outputURL.path)
+                }
+            } else {
+                try? FileManager.default.removeItem(at: audioURL)
+                try? FileManager.default.moveItem(at: outputURL, to: audioURL)
+            }
             
             DispatchQueue.main.async {
                 self.rootViewController?.convertedTableView.reloadData()

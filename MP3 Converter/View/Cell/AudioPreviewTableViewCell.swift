@@ -10,11 +10,11 @@ import UIKit
 import AVFoundation
 
 protocol AudioPreviewTableViewCellDelegate {
-    func ringtone(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
-    func share(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
-    func rename(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
-    func clip(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
-    func delete(_ AudioPreviewTableViewCell: UITableViewCell, index: Int)
+    func ringtone(_ audioPreviewTableViewCell: UITableViewCell, index: Int)
+    func share(_ audioPreviewTableViewCell: UITableViewCell, index: Int)
+    func rename(_ audioPreviewTableViewCell: UITableViewCell, index: Int)
+    func clip(_ audioPreviewTableViewCell: UITableViewCell, index: Int)
+    func delete(_ audioPreviewTableViewCell: UITableViewCell, index: Int)
 }
 
 class AudioPreviewTableViewCell: UITableViewCell {

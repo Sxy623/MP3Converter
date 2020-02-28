@@ -78,9 +78,9 @@ class SettingsTableViewController: UITableViewController {
     }
     
     func shareApp() {
-        // !
-//        let activityViewController = UIActivityViewController(activityItems: [], applicationActivities: [])
-//        self.present(activityViewController, animated: true, completion: nil)
+//        let urlString = ""
+//        let activityViewController = UIActivityViewController(activityItems: [URL(string: urlString)!], applicationActivities: [])
+//        present(activityViewController, animated: true, completion: nil)
     }
     
     func updateUI() {
