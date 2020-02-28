@@ -58,7 +58,7 @@ class ClipAudioViewController: UIViewController {
         let type = audio.type!
         
         let asset = AVURLAsset(url: audioURL)
-        let outputURL = URL(string: "file://" + self.dataFilePath + "/audios/out.m4a)")!
+        let outputURL = URL(string: "file://" + self.dataFilePath + "/audios/out.m4a")!
         
         if FileManager.default.fileExists(atPath: outputURL.path) {
             try? FileManager.default.removeItem(atPath: outputURL.path)
@@ -84,7 +84,12 @@ class ClipAudioViewController: UIViewController {
                 return
             }
             
-            if type == .wav {
+            if type == .caf {
+                AudioConverter.sharedInstance.convertAudioToCAF(outputURL, outputURL: audioURL)
+                if FileManager.default.fileExists(atPath: outputURL.path) {
+                    try? FileManager.default.removeItem(atPath: outputURL.path)
+                }
+            } else if type == .wav {
                 AudioConverter.sharedInstance.convertAudioToWAV(outputURL, outputURL: audioURL)
                 if FileManager.default.fileExists(atPath: outputURL.path) {
                     try? FileManager.default.removeItem(atPath: outputURL.path)

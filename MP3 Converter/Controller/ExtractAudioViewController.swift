@@ -108,15 +108,15 @@ class ExtractAudioViewController: UIViewController {
             }
             
             // Get url for temp m4a file
-            let m4aURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).m4a"
-            guard let m4aURL = URL(string: m4aURLString) else { return }
-            
-            // Get url for output
-            let outputURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)"
+            let outputURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).m4a"
             guard let outputURL = URL(string: outputURLString) else { return }
             
-            if FileManager.default.fileExists(atPath: outputURL.path) {
-                try? FileManager.default.removeItem(atPath: outputURL.path)
+            // Get url for target
+            let targetURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)"
+            guard let targetURL = URL(string: targetURLString) else { return }
+            
+            if FileManager.default.fileExists(atPath: targetURL.path) {
+                try? FileManager.default.removeItem(atPath: targetURL.path)
             }
             
             // Create an export session
@@ -126,11 +126,11 @@ class ExtractAudioViewController: UIViewController {
             // m4a 直接通过 exportSession 导出
             // 其他格式通过 m4a 转换
             if self.type == .m4a {
-                exportSession.outputFileType = self.type.avFileType
-                exportSession.outputURL = outputURL
+                exportSession.outputFileType = .m4a
+                exportSession.outputURL = targetURL
             } else {
                 exportSession.outputFileType = .m4a
-                exportSession.outputURL = m4aURL
+                exportSession.outputURL = outputURL
             }
             
             exportSession.audioMix = mutableAudioMix
@@ -152,25 +152,35 @@ class ExtractAudioViewController: UIViewController {
                     return
                 }
                 
-//                if self.type == .caf {
-//                    AudioConverter.sharedInstance.convertAudioToCAF(m4aURL, outputURL: outputURL)
-//                    if FileManager.default.fileExists(atPath: m4aURL.path) {
-//                        try? FileManager.default.removeItem(atPath: m4aURL.path)
-//                    }
-                if self.type == .wav {
-                    AudioConverter.sharedInstance.convertAudioToWAV(m4aURL, outputURL: outputURL)
-                    if FileManager.default.fileExists(atPath: m4aURL.path) {
-                        try? FileManager.default.removeItem(atPath: m4aURL.path)
+                if self.type == .caf {
+                    AudioConverter.sharedInstance.convertAudioToCAF(outputURL, outputURL: targetURL)
+                    if FileManager.default.fileExists(atPath: outputURL.path) {
+                        try? FileManager.default.removeItem(atPath: outputURL.path)
+                    }
+                } else if self.type == .wav {
+                    AudioConverter.sharedInstance.convertAudioToWAV(outputURL, outputURL: targetURL)
+                    if FileManager.default.fileExists(atPath: outputURL.path) {
+                        try? FileManager.default.removeItem(atPath: outputURL.path)
                     }
                 } else if self.type == .aiff {
-                    AudioConverter.sharedInstance.convertAudioToAIFF(m4aURL, outputURL: outputURL)
-                    if FileManager.default.fileExists(atPath: m4aURL.path) {
-                        try? FileManager.default.removeItem(atPath: m4aURL.path)
+                    AudioConverter.sharedInstance.convertAudioToAIFF(outputURL, outputURL: targetURL)
+                    if FileManager.default.fileExists(atPath: outputURL.path) {
+                        try? FileManager.default.removeItem(atPath: outputURL.path)
+                    }
+                } else if self.type == .acc {
+                    AudioConverter.sharedInstance.convertAudioToACC(outputURL, outputURL: targetURL)
+                    if FileManager.default.fileExists(atPath: outputURL.path) {
+                        try? FileManager.default.removeItem(atPath: outputURL.path)
+                    }
+                } else if self.type == .flac {
+                    AudioConverter.sharedInstance.convertAudioToFLAC(outputURL, outputURL: targetURL)
+                    if FileManager.default.fileExists(atPath: outputURL.path) {
+                        try? FileManager.default.removeItem(atPath: outputURL.path)
                     }
                 }
                 
                 DispatchQueue.main.async {
-                    self.rootViewController?.addAudio(url: outputURL)
+                    self.rootViewController?.addAudio(url: targetURL)
                     self.navigationController?.popViewController(animated: true)
                 }
             }
