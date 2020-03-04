@@ -13,6 +13,7 @@
 		905A5DC22408FB2B00E50E60 /* BSImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		905A5DC5240901B600E50E60 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC4240901B600E50E60 /* PHAsset.swift */; };
 		905A5DC82409023D00E50E60 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC72409023D00E50E60 /* PlayerState.swift */; };
+		907AF1E224100E5A00E16477 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907AF1E124100E5A00E16477 /* GradientView.swift */; };
 		90A159512407987700232192 /* AudioConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A159502407987700232192 /* AudioConverter.swift */; };
 		90A159542408071B00232192 /* bandfolder.band in Resources */ = {isa = PBXBuildFile; fileRef = 90A159532408071B00232192 /* bandfolder.band */; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
@@ -59,6 +60,7 @@
 		905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BSImagePicker.framework; path = Carthage/Build/iOS/BSImagePicker.framework; sourceTree = "<group>"; };
 		905A5DC4240901B600E50E60 /* PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAsset.swift; sourceTree = "<group>"; };
 		905A5DC72409023D00E50E60 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
+		907AF1E124100E5A00E16477 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		90A159502407987700232192 /* AudioConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConverter.swift; sourceTree = "<group>"; };
 		90A159532408071B00232192 /* bandfolder.band */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = bandfolder.band; sourceTree = "<group>"; };
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +225,7 @@
 				901572C92405335600E0BCC6 /* AudioProgressView.swift */,
 				90B5977C2405745000679644 /* AudioClipView.swift */,
 				90B597A02406C6F500679644 /* VideoPlayView.swift */,
+				907AF1E124100E5A00E16477 /* GradientView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				90A159512407987700232192 /* AudioConverter.swift in Sources */,
 				90B20A7E23FD08EB00653F0C /* SceneDelegate.swift in Sources */,
 				90FF3C3F23FD622A006AEFC7 /* AudioManager.swift in Sources */,
+				907AF1E224100E5A00E16477 /* GradientView.swift in Sources */,
 				90B20A9023FD236200653F0C /* VideoManager.swift in Sources */,
 				90B20A9523FD23D400653F0C /* Video.swift in Sources */,
 			);

@@ -555,7 +555,6 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
             } catch {
                 print("Delete error")
             }
-            self.recordAudio()
             
             if self.currentPlayingIndex == index {
                 let cell = self.convertedTableView.cellForRow(at: IndexPath(row: self.currentPlayingIndex, section: 0)) as? AudioPreviewTableViewCell
@@ -572,6 +571,7 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
                 self.convertedTableView.isHidden = true
             }
             self.convertedTableView.reloadData()
+            self.recordAudio()
         }
         
         deleteAlert.addAction(cancelAction)
