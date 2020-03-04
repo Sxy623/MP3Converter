@@ -14,13 +14,14 @@ import Photos
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var originalCollectionView: UICollectionView!
-    @IBOutlet weak var nothingConvertedView: UIView!
-    @IBOutlet weak var convertedTableView: UITableView!
     @IBOutlet weak var originalButton: UIButton!
     @IBOutlet weak var originalIndicator: UIImageView!
     @IBOutlet weak var convertedButton: UIButton!
     @IBOutlet weak var convertedIndicator: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var originalCollectionView: UICollectionView!
+    @IBOutlet weak var nothingConvertedView: UIView!
+    @IBOutlet weak var convertedTableView: UITableView!
     
     let videoManager = VideoManager()
     let audioManager = AudioManager()
@@ -219,10 +220,11 @@ class MainViewController: UIViewController {
         originalIndicator.alpha = 1.0
         convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.18), for: .normal)
         convertedIndicator.alpha = 0.0
-        originalCollectionView.isHidden = false
-        nothingConvertedView.isHidden = true
-        convertedTableView.isHidden = true
+//        originalCollectionView.isHidden = false
+//        nothingConvertedView.isHidden = true
+//        convertedTableView.isHidden = true
         player.stop()
+        scrollToPage(page: 0, animated: true)
     }
     
     @IBAction func toggleToConverted(_ sender: UIButton) {
@@ -230,12 +232,20 @@ class MainViewController: UIViewController {
         originalIndicator.alpha = 0.0
         convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
         convertedIndicator.alpha = 1.0
-        originalCollectionView.isHidden = true
-        if audioManager.getNumOfAudios() == 0 {
-            nothingConvertedView.isHidden = false
-        } else {
-            convertedTableView.isHidden = false
-        }
+//        originalCollectionView.isHidden = true
+//        if audioManager.getNumOfAudios() == 0 {
+//            nothingConvertedView.isHidden = false
+//        } else {
+//            convertedTableView.isHidden = false
+//        }
+        scrollToPage(page: 1, animated: true)
+    }
+    
+    func scrollToPage(page: Int, animated: Bool) {
+        var frame: CGRect = scrollView.frame
+        frame.origin.x = frame.size.width * CGFloat(page)
+        frame.origin.y = 0
+        self.scrollView.scrollRectToVisible(frame, animated: animated)
     }
     
     // MARK: - Navigation
