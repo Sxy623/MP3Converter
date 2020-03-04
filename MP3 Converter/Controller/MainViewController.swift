@@ -36,8 +36,8 @@ class MainViewController: UIViewController {
     var currentPlayingIndex: Int = 0
 
     var playerState: PlayerState = .finish
-    
     var selectedIndex: Int = 0
+    var page = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,11 +48,13 @@ class MainViewController: UIViewController {
         checkDirectory()
         loadData()
         
+        scrollView.delegate = self
         originalCollectionView.delegate = self
         originalCollectionView.dataSource = self
-        
         convertedTableView.delegate = self
         convertedTableView.dataSource = self
+        
+        updateUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -215,37 +217,61 @@ class MainViewController: UIViewController {
     
     // MARK: - User Interface
     
+    /* 切换到原视频界面 */
     @IBAction func toggleToOriginal(_ sender: UIButton) {
-        originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        originalIndicator.alpha = 1.0
-        convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.18), for: .normal)
-        convertedIndicator.alpha = 0.0
-//        originalCollectionView.isHidden = false
-//        nothingConvertedView.isHidden = true
-//        convertedTableView.isHidden = true
+        page = 0
+        updateUI()
         player.stop()
-        scrollToPage(page: 0, animated: true)
     }
     
+    /* 切换到已转换界面 */
     @IBAction func toggleToConverted(_ sender: UIButton) {
-        originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.18), for: .normal)
-        originalIndicator.alpha = 0.0
-        convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-        convertedIndicator.alpha = 1.0
-//        originalCollectionView.isHidden = true
-//        if audioManager.getNumOfAudios() == 0 {
-//            nothingConvertedView.isHidden = false
-//        } else {
-//            convertedTableView.isHidden = false
-//        }
-        scrollToPage(page: 1, animated: true)
+        page = 1
+        updateUI()
     }
     
+    /* 更新所有用户界面 */
+    func updateUI() {
+        
+        // 切换按钮样式
+        if page == 0 {
+            originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+            originalIndicator.alpha = 1.0
+            convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.18), for: .normal)
+            convertedIndicator.alpha = 0.0
+        } else {
+            originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.18), for: .normal)
+            originalIndicator.alpha = 0.0
+            convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+            convertedIndicator.alpha = 1.0
+        }
+        
+        // 根据是否存在已转换音频，显示不同界面
+        if audioManager.getNumOfAudios() == 0 {
+            nothingConvertedView.isHidden = false
+            convertedTableView.isHidden = true
+        } else {
+            nothingConvertedView.isHidden = true
+            convertedTableView.isHidden = false
+        }
+        
+        // 界面滑动
+        scrollToPage(page: page, animated: true)
+    }
+    
+    /* 界面滑动效果，滑到指定页（页号从0开始） */
     func scrollToPage(page: Int, animated: Bool) {
         var frame: CGRect = scrollView.frame
         frame.origin.x = frame.size.width * CGFloat(page)
         frame.origin.y = 0
         self.scrollView.scrollRectToVisible(frame, animated: animated)
+    }
+    
+    /* 手指滑动页面 */
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let pageWidth = scrollView.frame.size.width
+        page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        updateUI()
     }
     
     // MARK: - Navigation
