@@ -459,7 +459,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.index = indexPath.row
         cell.audioTitleLabel.text = audioManager.getTitle(at: indexPath.row)
         cell.durationTimeLabel.text = audioManager.getDurationTime(at: indexPath.row)
-        cell.audioProgressView.time = CGFloat(audioManager.audios[indexPath.row].durationTime)
+        cell.audioProgressView.time = CGFloat(audioManager.audios[indexPath.row].duration)
         return cell
     }
     

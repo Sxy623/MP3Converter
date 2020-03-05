@@ -14,7 +14,7 @@ class Audio {
     var url: URL
     var title: String
     var type: AudioType?
-    var durationTime: Double
+    var duration: Double
     
     init(url: URL) {
         self.url = url
@@ -23,15 +23,10 @@ class Audio {
         
         let asset = AVURLAsset(url: url)
         let duration = asset.duration
-        self.durationTime = CMTimeGetSeconds(duration)
+        self.duration = CMTimeGetSeconds(duration)
     }
     
-    func getDurationTime() -> String {
-        let totalSeconds = Int(durationTime) + 1
-        let secondsPerMinute = 60
-        let minutes = totalSeconds / secondsPerMinute
-        let seconds = totalSeconds - minutes * secondsPerMinute
-        let secondsToString = String(format: "%02d", seconds)
-        return "\(minutes):" + secondsToString
+    func getDurationString() -> String {
+        return duration.timeString
     }
 }

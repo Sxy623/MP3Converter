@@ -12,7 +12,11 @@ import AVFoundation
 class ClipAudioViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
+    
     @IBOutlet weak var audioClipView: AudioClipView!
+    @IBOutlet weak var startLabel: UILabel!
+    @IBOutlet weak var endLabel: UILabel!
+    
     @IBOutlet weak var volumeImage: UIImageView!
     @IBOutlet weak var volumeSlider: VolumeSlider!
     @IBOutlet weak var volumeLabel: UILabel!
@@ -31,7 +35,13 @@ class ClipAudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = audio.title
+        
         audioClipView.delegate = self
+        // 等待 NavigationBar 出现
+        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { timer in
+            self.updateProgressLabel()
+        }
+        
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
         
@@ -42,14 +52,15 @@ class ClipAudioViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
         player.pause()
     }
     
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         
-        let start = Double(audioClipView.startPercentage) * audio.durationTime
-        let end = Double(audioClipView.endPercentage) * audio.durationTime
-        audio.durationTime = end - start
+        let start = Double(audioClipView.startPercentage) * audio.duration
+        let end = Double(audioClipView.endPercentage) * audio.duration
+        audio.duration = end - start
         
         let startTime = CMTime(seconds: start, preferredTimescale: 120)
         let endTime = CMTime(seconds: end, preferredTimescale: 120)
@@ -112,6 +123,21 @@ class ClipAudioViewController: UIViewController {
         }
     }
     
+    func updateProgressLabel() {
+        
+        let centerY = audioClipView.frame.maxY + 18
+        
+        let start = Double(audioClipView.startPercentage) * audio.duration
+        startLabel.text = start.timeString
+        let startX = audioClipView.frame.size.width * audioClipView.startPercentage
+        startLabel.center = CGPoint(x: startX + startLabel.frame.size.width / 2, y: centerY)
+        
+        let end = Double(audioClipView.endPercentage) * audio.duration
+        endLabel.text = end.timeString
+        let endX = audioClipView.frame.size.width * audioClipView.endPercentage
+        endLabel.center = CGPoint(x: endX - endLabel.frame.size.width / 2, y: centerY)
+    }
+    
     @IBAction func volumeChanged(_ sender: UISlider) {
         volume = sender.value
         if volume == 0 {
@@ -137,7 +163,7 @@ class ClipAudioViewController: UIViewController {
     func progressContinue() {
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
             var percantage = self.audioClipView.currentPercentage
-            percantage += CGFloat(self.interval) / CGFloat(self.audio.durationTime)
+            percantage += CGFloat(self.interval) / CGFloat(self.audio.duration)
             if percantage > self.audioClipView.endPercentage {
                 percantage = self.audioClipView.endPercentage
                 self.player.pause()
@@ -156,10 +182,11 @@ extension ClipAudioViewController: AudioClipViewDelegate {
     }
     
     func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
+        updateProgressLabel()
     }
     
     func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
-        let start = Double(startPercentage) * audio.durationTime
+        let start = Double(startPercentage) * audio.duration
         let startTime = CMTime(seconds: start, preferredTimescale: 120)
         player.seek(to: startTime)
         player.play()

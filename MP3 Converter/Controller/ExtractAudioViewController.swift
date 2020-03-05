@@ -13,10 +13,15 @@ class ExtractAudioViewController: UIViewController {
     
     @IBOutlet weak var videoPlayView: VideoPlayView!
     @IBOutlet weak var pauseImageView: UIImageView!
+    
     @IBOutlet weak var audioClipView: AudioClipView!
+    @IBOutlet weak var startLabel: UILabel!
+    @IBOutlet weak var endLabel: UILabel!
+    
     @IBOutlet weak var volumeImage: UIImageView!
     @IBOutlet weak var volumeSlider: VolumeSlider!
     @IBOutlet weak var volumeLabel: UILabel!
+    
     @IBOutlet var buttons: [UIButton]!
     
     let dataFilePath = Configuration.sharedInstance.dataFilePath()
@@ -35,6 +40,7 @@ class ExtractAudioViewController: UIViewController {
         super.viewDidLoad()
         videoPlayView.video = video
         audioClipView.delegate = self
+        updateProgressLabel()
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
         updateTypeButtons()
@@ -137,8 +143,8 @@ class ExtractAudioViewController: UIViewController {
             exportSession.audioMix = mutableAudioMix
             
             // Set time range
-            let start = Double(self.audioClipView.startPercentage) * self.video.durationTime
-            let end = Double(self.audioClipView.endPercentage) * self.video.durationTime
+            let start = Double(self.audioClipView.startPercentage) * self.video.duration
+            let end = Double(self.audioClipView.endPercentage) * self.video.duration
             let startTime = CMTime(seconds: start, preferredTimescale: 120)
             let endTime = CMTime(seconds: end, preferredTimescale: 120)
             let duration = endTime - startTime
@@ -209,6 +215,18 @@ class ExtractAudioViewController: UIViewController {
         volumeLabel.text = "\(Int(volume))%"
         volumeLabel.center = CGPoint(x: thumbRect.midX, y: volumeLabel.center.y)
     }
+
+    func updateProgressLabel() {
+        let start = Double(audioClipView.startPercentage) * video.duration
+        startLabel.text = start.timeString
+        let startX = audioClipView.frame.size.width * audioClipView.startPercentage
+        startLabel.center = CGPoint(x: startX + startLabel.frame.size.width / 2, y: startLabel.center.y)
+        
+        let end = Double(audioClipView.endPercentage) * video.duration
+        endLabel.text = end.timeString
+        let endX = audioClipView.frame.size.width * audioClipView.endPercentage
+        endLabel.center = CGPoint(x: endX - endLabel.frame.size.width / 2, y: endLabel.center.y)
+    }
     
     func progressPause() {
         timer.invalidate()
@@ -217,7 +235,7 @@ class ExtractAudioViewController: UIViewController {
     func progressContinue() {
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
             var percantage = self.audioClipView.currentPercentage
-            percantage += CGFloat(self.interval) / CGFloat(self.video.durationTime)
+            percantage += CGFloat(self.interval) / CGFloat(self.video.duration)
             if percantage > self.audioClipView.endPercentage {
                 percantage = self.audioClipView.endPercentage
                 self.pauseImageView.image = #imageLiteral(resourceName: "Play")
@@ -240,9 +258,12 @@ extension ExtractAudioViewController: AudioClipViewDelegate {
     }
     
     func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
-//        let start = Double(audioClipView.startPercentage) * video.durationTime
+//        let start = Double(audioClipView.startPercentage) * video.duration
 //        let startTime = CMTime(seconds: start, preferredTimescale: 120)
 //        videoPlayView.player.seek(to: startTime)
+        
+      updateProgressLabel()
+        
     }
     
     func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {

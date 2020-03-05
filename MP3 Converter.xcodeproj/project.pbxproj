@@ -14,6 +14,7 @@
 		905A5DC5240901B600E50E60 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC4240901B600E50E60 /* PHAsset.swift */; };
 		905A5DC82409023D00E50E60 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC72409023D00E50E60 /* PlayerState.swift */; };
 		907AF1E224100E5A00E16477 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907AF1E124100E5A00E16477 /* GradientView.swift */; };
+		907AF1E42410CA9A00E16477 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907AF1E32410CA9A00E16477 /* Double.swift */; };
 		90A159512407987700232192 /* AudioConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A159502407987700232192 /* AudioConverter.swift */; };
 		90A159542408071B00232192 /* bandfolder.band in Resources */ = {isa = PBXBuildFile; fileRef = 90A159532408071B00232192 /* bandfolder.band */; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		905A5DC4240901B600E50E60 /* PHAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHAsset.swift; sourceTree = "<group>"; };
 		905A5DC72409023D00E50E60 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		907AF1E124100E5A00E16477 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		907AF1E32410CA9A00E16477 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		90A159502407987700232192 /* AudioConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConverter.swift; sourceTree = "<group>"; };
 		90A159532408071B00232192 /* bandfolder.band */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = bandfolder.band; sourceTree = "<group>"; };
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,12 +119,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		905A5DC62409022200E50E60 /* Asset */ = {
+		905A5DC62409022200E50E60 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				907AF1E32410CA9A00E16477 /* Double.swift */,
 				905A5DC4240901B600E50E60 /* PHAsset.swift */,
 			);
-			path = Asset;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		905A5DC92409024400E50E60 /* Player */ = {
@@ -182,7 +185,7 @@
 				905A5DC92409024400E50E60 /* Player */,
 				90FF3C4F23FE7A12006AEFC7 /* Audio */,
 				90FF3C4E23FE79FE006AEFC7 /* Video */,
-				905A5DC62409022200E50E60 /* Asset */,
+				905A5DC62409022200E50E60 /* Extension */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */,
 				90B20A9723FD261500653F0C /* AddVideoCollectionViewCell.swift in Sources */,
 				90FF3C5523FEAA92006AEFC7 /* AudioPreviewTableViewCell.swift in Sources */,
+				907AF1E42410CA9A00E16477 /* Double.swift in Sources */,
 				90B20A9A23FD339600653F0C /* VideoPreviewCollectionViewCell.swift in Sources */,
 				90FF3C5123FE7B02006AEFC7 /* Configuration.swift in Sources */,
 				90FF3C5323FE8310006AEFC7 /* ExtractAudioViewController.swift in Sources */,

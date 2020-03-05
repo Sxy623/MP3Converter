@@ -14,7 +14,7 @@ class Video {
     let url: URL
     let fileName: String
     let preview: UIImage
-    let durationTime: Double
+    let duration: Double
     
     init?(url: URL) {
         
@@ -37,15 +37,10 @@ class Video {
         }
         
         let duration = asset.duration
-        self.durationTime = CMTimeGetSeconds(duration)
+        self.duration = CMTimeGetSeconds(duration)
     }
     
-    func getDurationTime() -> String {
-        let totalSeconds = Int(durationTime) + 1
-        let secondsPerMinute = 60
-        let minutes = totalSeconds / secondsPerMinute
-        let seconds = totalSeconds - minutes * secondsPerMinute
-        let secondsToString = String(format: "%02d", seconds)
-        return "\(minutes):" + secondsToString
+    func getDurationString() -> String {
+        return duration.timeString
     }
 }

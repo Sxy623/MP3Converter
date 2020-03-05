@@ -44,7 +44,7 @@ class AudioManager {
     }
     
     func getDurationTime(at index: Int) -> String {
-        return audios[index].getDurationTime()
+        return audios[index].getDurationString()
     }
     
     func getFileNameArray() -> [String] {
