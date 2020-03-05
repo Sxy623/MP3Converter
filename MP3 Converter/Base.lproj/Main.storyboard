@@ -26,61 +26,19 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ymm-DH-qr2" userLabel="Header View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="1MA-5P-H22" userLabel="Original Stack View">
-                                                <rect key="frame" x="16" y="8" width="68" height="43"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfH-q0-uZp">
-                                                        <rect key="frame" x="1" y="0.0" width="66" height="28"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="28" id="2hc-cX-9zU"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="22"/>
-                                                        <state key="normal" title="原视频">
-                                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="toggleToOriginal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2XK-DD-GGn"/>
-                                                        </connections>
-                                                    </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="k0t-gz-TNA">
-                                                        <rect key="frame" x="2" y="30" width="64" height="13"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="64" id="H5d-Wn-Rhg"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfH-q0-uZp">
+                                                <rect key="frame" x="20" y="8" width="66" height="28"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="68" id="f0O-ju-f5g"/>
+                                                    <constraint firstAttribute="height" constant="28" id="2hc-cX-9zU"/>
                                                 </constraints>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="vLM-tc-vTs" userLabel="Converted Stack View">
-                                                <rect key="frame" x="108" y="8" width="68" height="43"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wqe-AB-RCV">
-                                                        <rect key="frame" x="1" y="0.0" width="66" height="28"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="28" id="m1u-cS-dIt"/>
-                                                        </constraints>
-                                                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="22"/>
-                                                        <state key="normal" title="已转换">
-                                                            <color key="titleColor" white="0.0" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="toggleToConverted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YxA-7s-HOc"/>
-                                                        </connections>
-                                                    </button>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="AWm-WB-rTL">
-                                                        <rect key="frame" x="2" y="30" width="64" height="13"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="64" id="MDk-gh-tLH"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="68" id="6K4-kX-77Y"/>
-                                                    <constraint firstAttribute="width" constant="68" id="SCc-qs-x6s"/>
-                                                </constraints>
-                                            </stackView>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="22"/>
+                                                <state key="normal" title="原视频">
+                                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="toggleToOriginal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2XK-DD-GGn"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAM-X3-yCH">
                                                 <rect key="frame" x="323" y="0.0" width="44" height="44"/>
                                                 <constraints>
@@ -91,18 +49,37 @@
                                                     <segue destination="lio-xn-gGh" kind="show" identifier="Settings" id="vcx-rG-DMd"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wqe-AB-RCV">
+                                                <rect key="frame" x="110" y="8" width="66" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="m1u-cS-dIt"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="22"/>
+                                                <state key="normal" title="已转换">
+                                                    <color key="titleColor" white="0.0" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="toggleToConverted:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YxA-7s-HOc"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="k0t-gz-TNA">
+                                                <rect key="frame" x="21" y="38" width="64" height="13"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="64" id="H5d-Wn-Rhg"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="54" id="5bB-am-B2z"/>
-                                            <constraint firstItem="TAM-X3-yCH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="vLM-tc-vTs" secondAttribute="trailing" constant="8" symbolic="YES" id="GLC-RI-F3i"/>
-                                            <constraint firstItem="vLM-tc-vTs" firstAttribute="top" secondItem="Ymm-DH-qr2" secondAttribute="top" constant="8" id="K1z-xD-gsr"/>
+                                            <constraint firstItem="LfH-q0-uZp" firstAttribute="top" secondItem="Ymm-DH-qr2" secondAttribute="top" constant="8" id="N1B-Iq-tIF"/>
                                             <constraint firstAttribute="trailing" secondItem="TAM-X3-yCH" secondAttribute="trailing" constant="8" id="Rn6-kc-htM"/>
                                             <constraint firstItem="TAM-X3-yCH" firstAttribute="top" secondItem="Ymm-DH-qr2" secondAttribute="top" id="Rri-Oq-WSf"/>
-                                            <constraint firstItem="vLM-tc-vTs" firstAttribute="leading" secondItem="1MA-5P-H22" secondAttribute="trailing" constant="24" id="eBt-z1-XkV"/>
-                                            <constraint firstItem="1MA-5P-H22" firstAttribute="leading" secondItem="Ymm-DH-qr2" secondAttribute="leading" constant="16" id="gWk-bY-whO"/>
-                                            <constraint firstItem="1MA-5P-H22" firstAttribute="top" secondItem="Ymm-DH-qr2" secondAttribute="top" constant="8" id="j8Z-5H-F4o"/>
-                                            <constraint firstAttribute="bottom" secondItem="vLM-tc-vTs" secondAttribute="bottom" constant="3" id="m73-2r-jri"/>
-                                            <constraint firstAttribute="bottom" secondItem="1MA-5P-H22" secondAttribute="bottom" constant="3" id="y4c-i1-Ebs"/>
+                                            <constraint firstItem="Wqe-AB-RCV" firstAttribute="leading" secondItem="LfH-q0-uZp" secondAttribute="trailing" constant="24" id="VAt-qj-6J6"/>
+                                            <constraint firstItem="Wqe-AB-RCV" firstAttribute="centerY" secondItem="LfH-q0-uZp" secondAttribute="centerY" id="brl-mf-5Sm"/>
+                                            <constraint firstItem="k0t-gz-TNA" firstAttribute="centerX" secondItem="LfH-q0-uZp" secondAttribute="centerX" id="fFq-K1-juc"/>
+                                            <constraint firstItem="TAM-X3-yCH" firstAttribute="leading" secondItem="Wqe-AB-RCV" secondAttribute="trailing" constant="147" id="kxE-WP-5m8"/>
+                                            <constraint firstItem="k0t-gz-TNA" firstAttribute="top" secondItem="LfH-q0-uZp" secondAttribute="bottom" constant="2" id="qDq-Bd-t6E"/>
+                                            <constraint firstItem="LfH-q0-uZp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ymm-DH-qr2" secondAttribute="leading" constant="16" id="qpM-KT-bpv"/>
                                             <constraint firstAttribute="bottom" secondItem="TAM-X3-yCH" secondAttribute="bottom" constant="10" id="zVZ-KI-ZOd"/>
                                         </constraints>
                                     </view>
@@ -459,12 +436,11 @@
                     <navigationItem key="navigationItem" title="主界面" id="hXK-65-AEx"/>
                     <connections>
                         <outlet property="convertedButton" destination="Wqe-AB-RCV" id="swf-Mn-u7N"/>
-                        <outlet property="convertedIndicator" destination="AWm-WB-rTL" id="QwB-by-4ZE"/>
                         <outlet property="convertedTableView" destination="Xmp-VP-mve" id="OgC-Jq-Dij"/>
+                        <outlet property="indicator" destination="k0t-gz-TNA" id="9Fo-vh-ItH"/>
                         <outlet property="nothingConvertedView" destination="LIj-aW-5ma" id="c0f-74-35m"/>
                         <outlet property="originalButton" destination="LfH-q0-uZp" id="cZn-dl-VK9"/>
                         <outlet property="originalCollectionView" destination="Qhm-i8-ngu" id="RQy-5M-Wnz"/>
-                        <outlet property="originalIndicator" destination="k0t-gz-TNA" id="9Fo-vh-ItH"/>
                         <outlet property="scrollView" destination="6FE-4w-UG7" id="eOl-L2-ox5"/>
                         <segue destination="eDS-0l-IPQ" kind="show" identifier="Extract Audio" id="nur-Pw-DXg"/>
                         <segue destination="E37-9b-RwM" kind="show" identifier="Clip Audio" id="IFX-s8-2Wk"/>

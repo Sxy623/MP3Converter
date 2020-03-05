@@ -15,9 +15,8 @@ import Photos
 class MainViewController: UIViewController {
     
     @IBOutlet weak var originalButton: UIButton!
-    @IBOutlet weak var originalIndicator: UIImageView!
     @IBOutlet weak var convertedButton: UIButton!
-    @IBOutlet weak var convertedIndicator: UIImageView!
+    @IBOutlet weak var indicator: UIImageView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var originalCollectionView: UICollectionView!
     @IBOutlet weak var nothingConvertedView: UIView!
@@ -58,12 +57,12 @@ class MainViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+        super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
@@ -235,15 +234,27 @@ class MainViewController: UIViewController {
         
         // 切换按钮样式
         if page == 0 {
-            originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-            originalIndicator.alpha = 1.0
-            convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.18), for: .normal)
-            convertedIndicator.alpha = 0.0
+            
+            let distance = originalButton.center.x - indicator.center.x
+            
+            UIView.animate(withDuration: 0.1) {
+                self.originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+                self.originalButton.alpha = 1.0
+                self.indicator.transform = CGAffineTransform(translationX: distance, y: 0)
+                self.convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+                self.convertedButton.alpha = 0.18
+            }
         } else {
-            originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.18), for: .normal)
-            originalIndicator.alpha = 0.0
-            convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
-            convertedIndicator.alpha = 1.0
+            
+            let distance = convertedButton.center.x - indicator.center.x
+            
+            UIView.animate(withDuration: 0.1) {
+                self.originalButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+                self.originalButton.alpha = 0.18
+                self.indicator.transform = CGAffineTransform(translationX: distance, y: 0)
+                self.convertedButton.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+                self.convertedButton.alpha = 1.0
+            }
         }
         
         // 根据是否存在已转换音频，显示不同界面
@@ -459,7 +470,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.index = indexPath.row
         cell.audioTitleLabel.text = audioManager.getTitle(at: indexPath.row)
         cell.durationTimeLabel.text = audioManager.getDurationTime(at: indexPath.row)
-        cell.audioProgressView.time = CGFloat(audioManager.audios[indexPath.row].duration)
+        cell.audioProgressView.duration = CGFloat(audioManager.audios[indexPath.row].duration)
+        cell.audioProgressView.wave = audioManager.audios[indexPath.row].wave
         return cell
     }
     

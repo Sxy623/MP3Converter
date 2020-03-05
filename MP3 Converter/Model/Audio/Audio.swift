@@ -15,6 +15,7 @@ class Audio {
     var title: String
     var type: AudioType?
     var duration: Double
+    var wave: [CGFloat] = []
     
     init(url: URL) {
         self.url = url
@@ -24,6 +25,10 @@ class Audio {
         let asset = AVURLAsset(url: url)
         let duration = asset.duration
         self.duration = CMTimeGetSeconds(duration)
+        
+        for _ in 1...50 {
+            wave.append(CGFloat.random(in: 0...0.5))
+        }
     }
     
     func getDurationString() -> String {

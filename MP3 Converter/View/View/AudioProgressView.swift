@@ -10,6 +10,8 @@ import UIKit
 
 class AudioProgressView: UIView, CAAnimationDelegate {
     
+    var wave: [CGFloat] = []
+    
     var lineMargin: CGFloat = 3.0
     var lineWidth: CGFloat = 3.0
     
@@ -21,7 +23,7 @@ class AudioProgressView: UIView, CAAnimationDelegate {
     var maskLayer = CAShapeLayer()
     
     var percentage: CGFloat = 0
-    var time: CGFloat = 10
+    var duration: CGFloat = 10
     
     override func draw(_ rect: CGRect) {
         backgroundColor = .clear
@@ -52,7 +54,7 @@ class AudioProgressView: UIView, CAAnimationDelegate {
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         let from = self.percentage
         let to = percentage
-        animation.duration = CFTimeInterval(time * (to - from))
+        animation.duration = CFTimeInterval(duration * (to - from))
         animation.timingFunction = CAMediaTimingFunction(name: .linear)
         animation.fromValue = from
         animation.toValue = to
@@ -66,8 +68,10 @@ class AudioProgressView: UIView, CAAnimationDelegate {
         let maxWidth = self.frame.size.width
         let height = self.frame.size.height
         var x: CGFloat = 0.0
+        var pos = 0
         while x + lineWidth <= maxWidth {
-            let random = CGFloat.random(in: 0...0.5) * height
+            let random = wave[pos] * height
+            pos = (pos + 1) % wave.count
             path.move(to: CGPoint(x: x - lineWidth / 2, y: random))
             path.addLine(to: CGPoint(x: x - lineWidth / 2, y: height - random))
             x += lineWidth

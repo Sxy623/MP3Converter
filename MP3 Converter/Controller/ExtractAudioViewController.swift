@@ -40,6 +40,7 @@ class ExtractAudioViewController: UIViewController {
         super.viewDidLoad()
         videoPlayView.video = video
         audioClipView.delegate = self
+        audioClipView.wave = video.wave
         updateProgressLabel()
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)

@@ -37,6 +37,7 @@ class ClipAudioViewController: UIViewController {
         titleLabel.text = audio.title
         
         audioClipView.delegate = self
+        audioClipView.wave = audio.wave
         // 等待 NavigationBar 出现
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { timer in
             self.updateProgressLabel()
@@ -52,7 +53,7 @@ class ClipAudioViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
+        super.viewWillDisappear(animated)
         player.pause()
     }
     

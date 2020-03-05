@@ -16,6 +16,7 @@ protocol AudioClipViewDelegate {
 
 class AudioClipView: UIView {
     
+    var wave: [CGFloat] = []
     var delegate: AudioClipViewDelegate?
     
     var lineMargin: CGFloat = 3.0
@@ -95,8 +96,10 @@ class AudioClipView: UIView {
         let maxWidth = self.frame.size.width
         let height = self.frame.size.height * 0.7
         var x: CGFloat = 0.0
+        var pos = 0
         while x + lineWidth <= maxWidth {
-            let random = CGFloat.random(in: 0...0.5) * height
+            let random = wave[pos] * height
+            pos = (pos + 1) % wave.count
             path.move(to: CGPoint(x: x - lineWidth / 2, y: self.frame.size.height / 2 - random))
             path.addLine(to: CGPoint(x: x - lineWidth / 2, y: self.frame.size.height / 2 + random))
             x += lineWidth
