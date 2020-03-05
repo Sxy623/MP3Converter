@@ -34,6 +34,7 @@ class ClipAudioViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         titleLabel.text = audio.title
         
         audioClipView.delegate = self

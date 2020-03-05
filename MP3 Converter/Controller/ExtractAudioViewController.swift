@@ -38,10 +38,16 @@ class ExtractAudioViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
         videoPlayView.video = video
+        
         audioClipView.delegate = self
         audioClipView.wave = video.wave
-        updateProgressLabel()
+        // 等待 NavigationBar 出现
+        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { timer in
+            self.updateProgressLabel()
+        }
+        
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
         updateTypeButtons()
@@ -229,15 +235,18 @@ class ExtractAudioViewController: UIViewController {
     }
 
     func updateProgressLabel() {
+        
+        let centerY = audioClipView.frame.maxY + 7
+        
         let start = Double(audioClipView.startPercentage) * video.duration
         startLabel.text = start.timeString
         let startX = audioClipView.frame.size.width * audioClipView.startPercentage
-        startLabel.center = CGPoint(x: startX + startLabel.frame.size.width / 2, y: startLabel.center.y)
+        startLabel.center = CGPoint(x: startX + startLabel.frame.size.width / 2, y: centerY)
         
         let end = Double(audioClipView.endPercentage) * video.duration
         endLabel.text = end.timeString
         let endX = audioClipView.frame.size.width * audioClipView.endPercentage
-        endLabel.center = CGPoint(x: endX - endLabel.frame.size.width / 2, y: endLabel.center.y)
+        endLabel.center = CGPoint(x: endX - endLabel.frame.size.width / 2, y: centerY)
     }
     
     func progressPause() {
