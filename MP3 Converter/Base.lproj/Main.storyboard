@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9l-kS-fm1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9l-kS-fm1">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -685,7 +685,7 @@
                                         <rect key="frame" x="100" y="78" width="275" height="20"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q5J-ck-Htr">
-                                                <rect key="frame" x="0.0" y="0.0" width="539" height="20"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="214" height="20"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-9g-MJT">
                                                         <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
@@ -766,7 +766,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pzl-9Q-3z8">
-                                                        <rect key="frame" x="276" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="184" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="OWy-dk-eAn"/>
                                                         </constraints>
@@ -779,7 +779,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AhM-RT-YTc">
-                                                        <rect key="frame" x="322" y="0.0" width="32" height="20"/>
+                                                        <rect key="frame" x="184" y="0.0" width="32" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="H4f-Kz-hmp"/>
                                                         </constraints>
@@ -792,7 +792,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jy7-Zg-Rs6" userLabel="caf">
-                                                        <rect key="frame" x="370" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="184" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="ma3-Vn-00h"/>
                                                         </constraints>
@@ -805,7 +805,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ps4-lC-ewq" userLabel="wma">
-                                                        <rect key="frame" x="416" y="0.0" width="31" height="20"/>
+                                                        <rect key="frame" x="230" y="0.0" width="31" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="PgS-G1-pMA"/>
                                                         </constraints>
@@ -818,7 +818,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vbA-iO-HmH">
-                                                        <rect key="frame" x="463" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="230" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="wTT-x7-PcD"/>
                                                         </constraints>
@@ -831,7 +831,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CWR-XL-9ni" userLabel="adx">
-                                                        <rect key="frame" x="509" y="0.0" width="30" height="20"/>
+                                                        <rect key="frame" x="276" y="0.0" width="30" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="20" id="xWa-4O-hWw"/>
                                                         </constraints>
@@ -844,6 +844,17 @@
                                                         </connections>
                                                     </button>
                                                 </subviews>
+                                                <variation key="default">
+                                                    <mask key="subviews">
+                                                        <exclude reference="ubJ-aP-ns9"/>
+                                                        <exclude reference="qo4-pR-1cS"/>
+                                                        <exclude reference="pzl-9Q-3z8"/>
+                                                        <exclude reference="AhM-RT-YTc"/>
+                                                        <exclude reference="Ps4-lC-ewq"/>
+                                                        <exclude reference="vbA-iO-HmH"/>
+                                                        <exclude reference="CWR-XL-9ni"/>
+                                                    </mask>
+                                                </variation>
                                             </stackView>
                                         </subviews>
                                         <constraints>
@@ -881,7 +892,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4se-6l-zlN" firstAttribute="trailing" secondItem="CUT-KV-9ze" secondAttribute="trailing" id="0rS-Py-DQg"/>
                             <constraint firstItem="Rb0-pG-g6i" firstAttribute="centerY" secondItem="CUT-KV-9ze" secondAttribute="centerY" id="24K-HT-g3R"/>

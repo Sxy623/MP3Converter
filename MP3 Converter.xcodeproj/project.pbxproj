@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900905C624029D0D006AD5A0 /* VolumeSlider.swift */; };
 		901572CA2405335700E0BCC6 /* AudioProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901572C92405335600E0BCC6 /* AudioProgressView.swift */; };
-		905A5DC12408FB2B00E50E60 /* BSImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */; };
-		905A5DC22408FB2B00E50E60 /* BSImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		905A5DC5240901B600E50E60 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC4240901B600E50E60 /* PHAsset.swift */; };
 		905A5DC82409023D00E50E60 /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC72409023D00E50E60 /* PlayerState.swift */; };
 		907AF1E224100E5A00E16477 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907AF1E124100E5A00E16477 /* GradientView.swift */; };
 		907AF1E42410CA9A00E16477 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907AF1E32410CA9A00E16477 /* Double.swift */; };
+		90A02FD72410EC3F00C419EB /* BSImagePicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		90A02FD82410EC3F00C419EB /* BSImagePicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		90A02FE32411045E00C419EB /* ExtAudioConverter.m in Sources */ = {isa = PBXBuildFile; fileRef = 90A02FE12411045E00C419EB /* ExtAudioConverter.m */; };
+		90A02FE62411047500C419EB /* libmp3lame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A02FE52411047400C419EB /* libmp3lame.a */; };
+		90A02FE82411049A00C419EB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90A02FE72411049A00C419EB /* AudioToolbox.framework */; };
 		90A159512407987700232192 /* AudioConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A159502407987700232192 /* AudioConverter.swift */; };
 		90A159542408071B00232192 /* bandfolder.band in Resources */ = {isa = PBXBuildFile; fileRef = 90A159532408071B00232192 /* bandfolder.band */; };
 		90B20A7C23FD08EB00653F0C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B20A7B23FD08EB00653F0C /* AppDelegate.swift */; };
@@ -42,13 +45,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		905A5DC32408FB2B00E50E60 /* Embed Frameworks */ = {
+		90A02FD92410EC4000C419EB /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				905A5DC22408FB2B00E50E60 /* BSImagePicker.framework in Embed Frameworks */,
+				90A02FD82410EC3F00C419EB /* BSImagePicker.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -63,6 +66,12 @@
 		905A5DC72409023D00E50E60 /* PlayerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		907AF1E124100E5A00E16477 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		907AF1E32410CA9A00E16477 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
+		90A02FDC2410F64600C419EB /* MP3 Converter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MP3 Converter-Bridging-Header.h"; sourceTree = "<group>"; };
+		90A02FE12411045E00C419EB /* ExtAudioConverter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtAudioConverter.m; sourceTree = "<group>"; };
+		90A02FE22411045E00C419EB /* ExtAudioConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtAudioConverter.h; sourceTree = "<group>"; };
+		90A02FE42411047400C419EB /* lame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lame.h; sourceTree = "<group>"; };
+		90A02FE52411047400C419EB /* libmp3lame.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libmp3lame.a; sourceTree = "<group>"; };
+		90A02FE72411049A00C419EB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		90A159502407987700232192 /* AudioConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioConverter.swift; sourceTree = "<group>"; };
 		90A159532408071B00232192 /* bandfolder.band */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = bandfolder.band; sourceTree = "<group>"; };
 		90B20A7823FD08EB00653F0C /* MP3 Converter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MP3 Converter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,7 +105,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				905A5DC12408FB2B00E50E60 /* BSImagePicker.framework in Frameworks */,
+				90A02FE62411047500C419EB /* libmp3lame.a in Frameworks */,
+				90A02FD72410EC3F00C419EB /* BSImagePicker.framework in Frameworks */,
+				90A02FE82411049A00C419EB /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +125,7 @@
 		902AF1A1240115C40036CB1A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				90A02FE72411049A00C419EB /* AudioToolbox.framework */,
 				905A5DC02408FB2B00E50E60 /* BSImagePicker.framework */,
 			);
 			name = Frameworks;
@@ -134,6 +146,24 @@
 				905A5DC72409023D00E50E60 /* PlayerState.swift */,
 			);
 			path = Player;
+			sourceTree = "<group>";
+		};
+		90A02FE02410F6D000C419EB /* ExtAudioConverter */ = {
+			isa = PBXGroup;
+			children = (
+				90A02FE22411045E00C419EB /* ExtAudioConverter.h */,
+				90A02FE12411045E00C419EB /* ExtAudioConverter.m */,
+			);
+			path = ExtAudioConverter;
+			sourceTree = "<group>";
+		};
+		90A02FE924110B8900C419EB /* Lame */ = {
+			isa = PBXGroup;
+			children = (
+				90A02FE42411047400C419EB /* lame.h */,
+				90A02FE52411047400C419EB /* libmp3lame.a */,
+			);
+			path = Lame;
 			sourceTree = "<group>";
 		};
 		90A159522408071B00232192 /* Band Resource */ = {
@@ -164,6 +194,7 @@
 		90B20A7A23FD08EB00653F0C /* MP3 Converter */ = {
 			isa = PBXGroup;
 			children = (
+				90A02FE924110B8900C419EB /* Lame */,
 				90B20A7B23FD08EB00653F0C /* AppDelegate.swift */,
 				90B20A7D23FD08EB00653F0C /* SceneDelegate.swift */,
 				90FF3C5023FE7B02006AEFC7 /* Configuration.swift */,
@@ -175,6 +206,8 @@
 				90B20A8623FD08EE00653F0C /* LaunchScreen.storyboard */,
 				90B20A8923FD08EE00653F0C /* Info.plist */,
 				90A159522408071B00232192 /* Band Resource */,
+				90A02FE02410F6D000C419EB /* ExtAudioConverter */,
+				90A02FDC2410F64600C419EB /* MP3 Converter-Bridging-Header.h */,
 			);
 			path = "MP3 Converter";
 			sourceTree = "<group>";
@@ -273,7 +306,7 @@
 				90B20A7523FD08EB00653F0C /* Frameworks */,
 				90B20A7623FD08EB00653F0C /* Resources */,
 				902AF1A6240115F10036CB1A /* Run Script */,
-				905A5DC32408FB2B00E50E60 /* Embed Frameworks */,
+				90A02FD92410EC4000C419EB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -296,6 +329,7 @@
 				TargetAttributes = {
 					90B20A7723FD08EB00653F0C = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -383,6 +417,7 @@
 				90FF3C3F23FD622A006AEFC7 /* AudioManager.swift in Sources */,
 				907AF1E224100E5A00E16477 /* GradientView.swift in Sources */,
 				90B20A9023FD236200653F0C /* VideoManager.swift in Sources */,
+				90A02FE32411045E00C419EB /* ExtAudioConverter.m in Sources */,
 				90B20A9523FD23D400653F0C /* Video.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,20 +562,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CE83544H6Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/MP3\\ Converter",
 				);
 				INFOPLIST_FILE = "MP3 Converter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MP3\\ Converter",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shenxinyi.MP3-Converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MP3 Converter/MP3 Converter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -550,20 +592,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CE83544H6Y;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/MP3\\ Converter",
 				);
 				INFOPLIST_FILE = "MP3 Converter/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MP3\\ Converter",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shenxinyi.MP3-Converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "MP3 Converter/MP3 Converter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

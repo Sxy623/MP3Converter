@@ -112,6 +112,14 @@ class ClipAudioViewController: UIViewController {
                 if FileManager.default.fileExists(atPath: outputURL.path) {
                     try? FileManager.default.removeItem(atPath: outputURL.path)
                 }
+            } else if type == .mp3 {
+                let converter = ExtAudioConverter()
+                converter.inputFile = outputURL.path
+                converter.outputFile = audioURL.path
+                converter.convert()
+                if FileManager.default.fileExists(atPath: outputURL.path) {
+                    try? FileManager.default.removeItem(atPath: outputURL.path)
+                }
             } else {
                 try? FileManager.default.removeItem(at: audioURL)
                 try? FileManager.default.moveItem(at: outputURL, to: audioURL)

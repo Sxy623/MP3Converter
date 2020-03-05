@@ -175,6 +175,17 @@ class ExtractAudioViewController: UIViewController {
                     if FileManager.default.fileExists(atPath: outputURL.path) {
                         try? FileManager.default.removeItem(atPath: outputURL.path)
                     }
+                } else if self.type == .mp3 {
+//                    AudioWrapper.audioPCMtoMP3(outputURL.path, targetURL.path)
+                    
+                    let converter = ExtAudioConverter()
+                    converter.inputFile = outputURL.path
+                    converter.outputFile = targetURL.path
+                    converter.convert()
+                    
+                    if FileManager.default.fileExists(atPath: outputURL.path) {
+                        try? FileManager.default.removeItem(atPath: outputURL.path)
+                    }
                 }
                 
                 DispatchQueue.main.async {

@@ -42,7 +42,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         // Test
-        print(bandfolderPath)
+        print(dataFilePath)
         
         checkDirectory()
         loadData()
@@ -169,7 +169,8 @@ class MainViewController: UIViewController {
             
         case .finish:
             currentPlayingIndex = index
-            player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
+//                player = try! AVPlayer(url: audioManager.getURL(at: index))
+            player = try! AVAudioPlayer(data: Data(contentsOf: audioManager.getURL(at: index)), fileTypeHint: AVFileType.mp3.rawValue)
             player.delegate = self
             player.play()
             playerState = .play
@@ -186,7 +187,8 @@ class MainViewController: UIViewController {
                 oldCell?.audioProgressView.reset()
                 
                 currentPlayingIndex = index
-                player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
+//                player = try! AVPlayer(url: audioManager.getURL(at: index))
+                player = try! AVAudioPlayer(data: Data(contentsOf: audioManager.getURL(at: index)), fileTypeHint: AVFileType.mp3.rawValue)
                 player.delegate = self
                 player.play()
                 playerState = .play
@@ -203,7 +205,8 @@ class MainViewController: UIViewController {
                 oldCell?.audioProgressView.reset()
                 
                 currentPlayingIndex = index
-                player = try! AVAudioPlayer(contentsOf: audioManager.getURL(at: index))
+//                player = try! AVPlayer(url: audioManager.getURL(at: index))
+                player = try! AVAudioPlayer(data: Data(contentsOf: audioManager.getURL(at: index)), fileTypeHint: AVFileType.mp3.rawValue)
                 player.delegate = self
                 player.play()
                 playerState = .play
@@ -219,8 +222,14 @@ class MainViewController: UIViewController {
     /* 切换到原视频界面 */
     @IBAction func toggleToOriginal(_ sender: UIButton) {
         page = 0
-        updateUI()
         player.stop()
+        if playerState == .pause || playerState == .play {
+            playerState = .finish
+            let cell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
+            cell.audioProgressView.reset()
+            cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+        }
+        updateUI()
     }
     
     /* 切换到已转换界面 */
@@ -549,6 +558,15 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
     }
     
     func clip(_ audioPreviewTableViewCell: UITableViewCell, index: Int) {
+        
+        player.stop()
+        if playerState == .pause || playerState == .play {
+            playerState = .finish
+            let cell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
+            cell.audioProgressView.reset()
+            cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+        }
+        
         performSegue(withIdentifier: "Clip Audio", sender: nil)
     }
     

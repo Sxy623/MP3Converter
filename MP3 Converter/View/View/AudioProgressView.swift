@@ -112,6 +112,7 @@ class AudioProgressView: UIView, CAAnimationDelegate {
     }
     
     func reset(){
+        resume()
         maskLayer.removeAllAnimations()
     }
 }
