@@ -866,6 +866,13 @@
                                         <viewLayoutGuide key="contentLayoutGuide" id="YiA-NF-d0z"/>
                                         <viewLayoutGuide key="frameLayoutGuide" id="bzS-n8-7oN"/>
                                     </scrollView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHH-8G-3tV">
+                                        <rect key="frame" x="176" y="47.666666666666629" width="22" height="7.3333333333333357"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="6"/>
+                                        <color key="textColor" name="FF5F56 100%"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -913,6 +920,7 @@
                         <outlet property="pauseImageView" destination="Rb0-pG-g6i" id="s1L-Li-gCj"/>
                         <outlet property="videoPlayView" destination="CUT-KV-9ze" id="5gj-Qb-ZnY"/>
                         <outlet property="volumeImage" destination="4MZ-Sf-5l7" id="Sfa-aa-oOy"/>
+                        <outlet property="volumeLabel" destination="nHH-8G-3tV" id="eei-OE-55F"/>
                         <outlet property="volumeSlider" destination="FND-L6-dcB" id="Ix6-LT-9bc"/>
                         <outletCollection property="buttons" destination="K0o-9g-MJT" collectionClass="NSMutableArray" id="els-cC-2NG"/>
                         <outletCollection property="buttons" destination="wjD-Ry-FEO" collectionClass="NSMutableArray" id="vhV-2G-uCB"/>
@@ -930,7 +938,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="272-Iw-olZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2666" y="130"/>
+            <point key="canvasLocation" x="2664.8000000000002" y="129.31034482758622"/>
         </scene>
         <!--剪切音频-->
         <scene sceneID="hmm-MS-Q5r">
@@ -978,6 +986,13 @@
                                     <action selector="volumeChanged:" destination="E37-9b-RwM" eventType="valueChanged" id="YDI-2p-p69"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0X-oh-7LX">
+                                <rect key="frame" x="190" y="754" width="40" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="11"/>
+                                <color key="textColor" name="FF5F56 100%"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1008,12 +1023,13 @@
                         <outlet property="audioClipView" destination="t7n-3c-dzC" id="yn2-tX-MfB"/>
                         <outlet property="titleLabel" destination="6BP-5D-jrc" id="xLN-q8-qw8"/>
                         <outlet property="volumeImage" destination="ke7-y0-c1y" id="h9t-G2-lIO"/>
+                        <outlet property="volumeLabel" destination="b0X-oh-7LX" id="srV-Y2-pXn"/>
                         <outlet property="volumeSlider" destination="WTM-dN-myO" id="2wO-YC-KaD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjJ-KG-kmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2665" y="899"/>
+            <point key="canvasLocation" x="2664.8000000000002" y="898.52216748768478"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="33K-qW-tmu">

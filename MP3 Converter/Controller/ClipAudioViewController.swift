@@ -15,6 +15,7 @@ class ClipAudioViewController: UIViewController {
     @IBOutlet weak var audioClipView: AudioClipView!
     @IBOutlet weak var volumeImage: UIImageView!
     @IBOutlet weak var volumeSlider: VolumeSlider!
+    @IBOutlet weak var volumeLabel: UILabel!
     
     let dataFilePath = Configuration.sharedInstance.dataFilePath()
     let videoListPath = Configuration.sharedInstance.videoListPath()
@@ -121,6 +122,12 @@ class ClipAudioViewController: UIViewController {
             volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         }
         player.volume = volume / 100
+        
+        // 设置音量标签
+        let trackRect = sender.trackRect(forBounds: sender.frame)
+        let thumbRect = sender.thumbRect(forBounds: sender.bounds, trackRect: trackRect, value: sender.value)
+        volumeLabel.text = "\(Int(volume))%"
+        volumeLabel.center = CGPoint(x: thumbRect.midX, y: volumeLabel.center.y)
     }
     
     func progressPause() {
