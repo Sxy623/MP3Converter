@@ -27,7 +27,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LfH-q0-uZp">
-                                                <rect key="frame" x="20" y="8" width="66" height="28"/>
+                                                <rect key="frame" x="16" y="8" width="66" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="2hc-cX-9zU"/>
                                                 </constraints>
@@ -50,7 +50,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wqe-AB-RCV">
-                                                <rect key="frame" x="110" y="8" width="66" height="28"/>
+                                                <rect key="frame" x="106" y="8" width="70" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="28" id="m1u-cS-dIt"/>
                                                 </constraints>
@@ -63,7 +63,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Indicator" translatesAutoresizingMaskIntoConstraints="NO" id="k0t-gz-TNA">
-                                                <rect key="frame" x="21" y="38" width="64" height="13"/>
+                                                <rect key="frame" x="17" y="38" width="64" height="13"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64" id="H5d-Wn-Rhg"/>
                                                 </constraints>
@@ -79,7 +79,7 @@
                                             <constraint firstItem="k0t-gz-TNA" firstAttribute="centerX" secondItem="LfH-q0-uZp" secondAttribute="centerX" id="fFq-K1-juc"/>
                                             <constraint firstItem="TAM-X3-yCH" firstAttribute="leading" secondItem="Wqe-AB-RCV" secondAttribute="trailing" constant="147" id="kxE-WP-5m8"/>
                                             <constraint firstItem="k0t-gz-TNA" firstAttribute="top" secondItem="LfH-q0-uZp" secondAttribute="bottom" constant="2" id="qDq-Bd-t6E"/>
-                                            <constraint firstItem="LfH-q0-uZp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ymm-DH-qr2" secondAttribute="leading" constant="16" id="qpM-KT-bpv"/>
+                                            <constraint firstItem="LfH-q0-uZp" firstAttribute="leading" secondItem="Ymm-DH-qr2" secondAttribute="leading" constant="16" id="qpM-KT-bpv"/>
                                             <constraint firstAttribute="bottom" secondItem="TAM-X3-yCH" secondAttribute="bottom" constant="10" id="zVZ-KI-ZOd"/>
                                         </constraints>
                                     </view>
@@ -100,7 +100,7 @@
                                                                 </constraints>
                                                             </imageView>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Qhm-i8-ngu">
-                                                                <rect key="frame" x="8" y="0.0" width="358" height="687"/>
+                                                                <rect key="frame" x="9" y="0.0" width="358" height="687"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="8" minimumInteritemSpacing="8" id="N4E-Jl-Qar" customClass="LeftAlignLayout" customModule="MP3_Converter" customModuleProvider="target">
                                                                     <size key="itemSize" width="114" height="114"/>
@@ -199,12 +199,12 @@
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="hI2-wI-Xgp" secondAttribute="bottom" id="7gW-xY-YgC"/>
-                                                            <constraint firstItem="Qhm-i8-ngu" firstAttribute="leading" secondItem="Yp4-2w-vCj" secondAttribute="leading" constant="8" id="FF6-gN-S3N"/>
                                                             <constraint firstAttribute="trailing" secondItem="Kca-LA-Q4u" secondAttribute="trailing" constant="-34" id="I1p-Vc-HI2"/>
-                                                            <constraint firstAttribute="bottom" secondItem="Qhm-i8-ngu" secondAttribute="bottom" id="SaA-By-XMT"/>
-                                                            <constraint firstItem="Qhm-i8-ngu" firstAttribute="top" secondItem="Yp4-2w-vCj" secondAttribute="top" id="Znv-VD-sj9"/>
+                                                            <constraint firstItem="Qhm-i8-ngu" firstAttribute="top" secondItem="Yp4-2w-vCj" secondAttribute="top" id="ObB-sU-Jbz"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Qhm-i8-ngu" secondAttribute="trailing" constant="8" id="P6G-MW-5V7"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Qhm-i8-ngu" secondAttribute="bottom" id="WDP-9k-NL0"/>
+                                                            <constraint firstItem="Qhm-i8-ngu" firstAttribute="leading" secondItem="Yp4-2w-vCj" secondAttribute="leading" constant="9" id="t1S-7E-lRC"/>
                                                             <constraint firstAttribute="trailing" secondItem="hI2-wI-Xgp" secondAttribute="trailing" id="tXr-ZM-12h"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Qhm-i8-ngu" secondAttribute="trailing" constant="9" id="vbI-Jt-v12"/>
                                                             <constraint firstItem="hI2-wI-Xgp" firstAttribute="leading" secondItem="Yp4-2w-vCj" secondAttribute="leading" id="y6j-GX-tZd"/>
                                                             <constraint firstAttribute="bottom" secondItem="Kca-LA-Q4u" secondAttribute="bottom" constant="-4" id="yes-K5-aXA"/>
                                                         </constraints>
@@ -267,7 +267,7 @@
                                                                     <constraint firstItem="flH-Db-AMd" firstAttribute="centerX" secondItem="LIj-aW-5ma" secondAttribute="centerX" id="yvn-Sk-u6u"/>
                                                                 </constraints>
                                                             </view>
-                                                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Xmp-VP-mve">
+                                                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Xmp-VP-mve">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="687"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <prototypes>
@@ -343,10 +343,10 @@
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
                                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ne-BL-b8Y">
-                                                                                    <rect key="frame" x="43" y="60" width="32" height="32"/>
+                                                                                    <rect key="frame" x="28" y="58" width="36" height="36"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="32" id="T5I-4U-w8n"/>
-                                                                                        <constraint firstAttribute="height" constant="32" id="Zm7-Df-lNy"/>
+                                                                                        <constraint firstAttribute="width" constant="36" id="T5I-4U-w8n"/>
+                                                                                        <constraint firstAttribute="height" constant="36" id="Zm7-Df-lNy"/>
                                                                                     </constraints>
                                                                                     <state key="normal" backgroundImage="Play.circle"/>
                                                                                     <connections>
@@ -354,7 +354,7 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W7m-g3-jGW" customClass="AudioProgressView" customModule="MP3_Converter" customModuleProvider="target">
-                                                                                    <rect key="frame" x="87" y="64" width="206" height="24"/>
+                                                                                    <rect key="frame" x="76" y="64" width="209" height="24"/>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="24" id="ayy-6l-rap"/>
@@ -362,17 +362,17 @@
                                                                                 </view>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstItem="HKK-U6-xTh" firstAttribute="leadingMargin" secondItem="W7m-g3-jGW" secondAttribute="trailing" constant="20" id="3q5-lX-dwA"/>
+                                                                                <constraint firstItem="HKK-U6-xTh" firstAttribute="leading" secondItem="W7m-g3-jGW" secondAttribute="trailing" constant="20" id="3q5-lX-dwA"/>
                                                                                 <constraint firstItem="W7m-g3-jGW" firstAttribute="leading" secondItem="4ne-BL-b8Y" secondAttribute="trailing" constant="12" id="6uX-1C-iHK"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="da0-V2-n3d" secondAttribute="trailing" constant="12" id="8VX-LW-irG"/>
-                                                                                <constraint firstItem="4ne-BL-b8Y" firstAttribute="leading" secondItem="R3L-NE-hhe" secondAttribute="leadingMargin" constant="28" id="AZG-aD-yvm"/>
+                                                                                <constraint firstItem="4ne-BL-b8Y" firstAttribute="leading" secondItem="R3L-NE-hhe" secondAttribute="leading" constant="28" id="AZG-aD-yvm"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="W7m-g3-jGW" secondAttribute="bottom" constant="20" id="CdR-ei-mDq"/>
                                                                                 <constraint firstItem="l17-lU-6j8" firstAttribute="top" secondItem="R3L-NE-hhe" secondAttribute="top" constant="25" id="G2A-BL-6FJ"/>
                                                                                 <constraint firstItem="HKK-U6-xTh" firstAttribute="top" secondItem="da0-V2-n3d" secondAttribute="bottom" constant="17" id="MCp-Yh-YXi"/>
                                                                                 <constraint firstItem="L4d-yx-jjv" firstAttribute="top" secondItem="R3L-NE-hhe" secondAttribute="top" constant="20" id="PcH-t7-mlA"/>
                                                                                 <constraint firstAttribute="trailing" secondItem="HKK-U6-xTh" secondAttribute="trailing" constant="20" id="T2V-IZ-qZk"/>
                                                                                 <constraint firstItem="da0-V2-n3d" firstAttribute="leading" secondItem="L4d-yx-jjv" secondAttribute="trailing" constant="8" id="T7c-hD-C34"/>
-                                                                                <constraint firstItem="4ne-BL-b8Y" firstAttribute="top" secondItem="L4d-yx-jjv" secondAttribute="bottom" constant="18" id="mKw-JM-k6v"/>
+                                                                                <constraint firstItem="4ne-BL-b8Y" firstAttribute="top" secondItem="L4d-yx-jjv" secondAttribute="bottom" constant="16" id="mKw-JM-k6v"/>
                                                                                 <constraint firstItem="da0-V2-n3d" firstAttribute="top" secondItem="R3L-NE-hhe" secondAttribute="top" constant="14" id="n5X-it-TQ3"/>
                                                                                 <constraint firstItem="l17-lU-6j8" firstAttribute="leading" secondItem="R3L-NE-hhe" secondAttribute="leading" constant="15" id="rfs-XT-O34"/>
                                                                                 <constraint firstItem="L4d-yx-jjv" firstAttribute="leading" secondItem="l17-lU-6j8" secondAttribute="trailing" constant="8" id="sbf-1p-KyN"/>
@@ -437,6 +437,7 @@
                     <connections>
                         <outlet property="convertedButton" destination="Wqe-AB-RCV" id="swf-Mn-u7N"/>
                         <outlet property="convertedTableView" destination="Xmp-VP-mve" id="OgC-Jq-Dij"/>
+                        <outlet property="gradientView" destination="hI2-wI-Xgp" id="e3v-Eb-CzN"/>
                         <outlet property="indicator" destination="k0t-gz-TNA" id="9Fo-vh-ItH"/>
                         <outlet property="nothingConvertedView" destination="LIj-aW-5ma" id="c0f-74-35m"/>
                         <outlet property="originalButton" destination="LfH-q0-uZp" id="cZn-dl-VK9"/>

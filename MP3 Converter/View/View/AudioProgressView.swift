@@ -67,13 +67,13 @@ class AudioProgressView: UIView, CAAnimationDelegate {
         let path = UIBezierPath()
         let maxWidth = self.frame.size.width
         let height = self.frame.size.height
-        var x: CGFloat = 0.0
+        var x: CGFloat = lineWidth / 2
         var pos = 0
         while x + lineWidth <= maxWidth {
             let random = wave[pos] * height
             pos = (pos + 1) % wave.count
-            path.move(to: CGPoint(x: x - lineWidth / 2, y: random))
-            path.addLine(to: CGPoint(x: x - lineWidth / 2, y: height - random))
+            path.move(to: CGPoint(x: x, y: height / 2 - random))
+            path.addLine(to: CGPoint(x: x, y: height / 2 + random))
             x += lineWidth
             x += lineMargin
         }

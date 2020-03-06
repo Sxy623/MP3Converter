@@ -16,7 +16,8 @@ extension Double {
         let minutes = totalSeconds / secondsPerMinute
         let seconds = totalSeconds - minutes * secondsPerMinute
         let secondsToString = String(format: "%02d", seconds)
-        return "\(minutes):" + secondsToString
+        let minutesToString = String(format: "%02d", minutes)
+        return "\(minutesToString):\(secondsToString)"
     }
     
 }

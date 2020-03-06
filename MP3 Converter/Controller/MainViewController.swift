@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var originalCollectionView: UICollectionView!
     @IBOutlet weak var nothingConvertedView: UIView!
     @IBOutlet weak var convertedTableView: UITableView!
+    @IBOutlet weak var gradientView: UIView!
     
     let videoManager = VideoManager()
     let audioManager = AudioManager()
@@ -52,6 +53,9 @@ class MainViewController: UIViewController {
         originalCollectionView.dataSource = self
         convertedTableView.delegate = self
         convertedTableView.dataSource = self
+        convertedTableView.separatorColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 0.1)
+        convertedTableView.separatorInset = UIEdgeInsets(top: 0, left: 31, bottom: 0, right: 0)
+        convertedTableView.tableFooterView = UIView()
         
         updateUI()
     }
@@ -148,6 +152,8 @@ class MainViewController: UIViewController {
         audioManager.addAudio(url: url)
         recordAudio()
         convertedTableView.reloadData()
+        page = 1
+        updateUI()
     }
     
     // MARK: - Player Manager

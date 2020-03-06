@@ -6,7 +6,7 @@
 //  Copyright © 2020 Xinyi Shen. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Configuration {
     
