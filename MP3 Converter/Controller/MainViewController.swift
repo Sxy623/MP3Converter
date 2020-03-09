@@ -101,7 +101,7 @@ class MainViewController: UIViewController {
         self.presentImagePicker(imagePicker, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
             
             for asset in assets {
-                
+                                
                 var videoURL: URL!
                 var outputURLString = String()
                 asset.getURL { url in
@@ -111,20 +111,27 @@ class MainViewController: UIViewController {
                     outputURLString = "file://" + self.dataFilePath + "/videos/\(fileName)"
                 }
                 
-                PHImageManager.default().requestExportSession(forVideo: asset, options: nil, exportPreset: AVAssetExportPresetPassthrough) { (exportSession, _) in
-
-                    exportSession?.outputFileType = AVFileType.mov
-                    exportSession?.outputURL = URL(string: outputURLString)
-                    exportSession?.exportAsynchronously{
-
-                        self.videoManager.addVideo(url: videoURL)
-                        self.recordVideo()
-
-                        DispatchQueue.main.async {
-                            self.originalCollectionView.reloadData()
+                let option = PHVideoRequestOptions()
+                option.isNetworkAccessAllowed = true
+                option.progressHandler = { (progress, error, stop, info) in
+                    print(progress)
+                }
+                
+                PHImageManager.default().requestAVAsset(forVideo: asset, options: option) { (asset, audioMix, info) in
+                    if let asset = asset as? AVURLAsset, let videoData = try? Data(contentsOf: asset.url) {
+                        print(asset.url)
+                        let fileName = asset.url.lastPathComponent
+                        if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)") {
+                            try? videoData.write(to: outputURL)
+                            self.videoManager.addVideo(url: asset.url)
+                            self.recordVideo()
+                            DispatchQueue.main.async {
+                                self.originalCollectionView.reloadData()
+                            }
                         }
                     }
                 }
+                                
             }
         })
     }
