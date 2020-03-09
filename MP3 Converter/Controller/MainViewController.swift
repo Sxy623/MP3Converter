@@ -111,7 +111,7 @@ class MainViewController: UIViewController {
                     outputURLString = "file://" + self.dataFilePath + "/videos/\(fileName)"
                 }
                 
-                PHImageManager.default().requestExportSession(forVideo: asset, options: nil, exportPreset: AVAssetExportPresetHighestQuality) { (exportSession, _) in
+                PHImageManager.default().requestExportSession(forVideo: asset, options: nil, exportPreset: AVAssetExportPresetPassthrough) { (exportSession, _) in
 
                     exportSession?.outputFileType = AVFileType.mov
                     exportSession?.outputURL = URL(string: outputURLString)

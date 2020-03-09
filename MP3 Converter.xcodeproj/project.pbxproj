@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		047F0971E7686791E5139FB1 /* libPods-MP3 Converter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BA3090AFF817D704E4E35A /* libPods-MP3 Converter.a */; };
 		900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900905C624029D0D006AD5A0 /* VolumeSlider.swift */; };
 		901572CA2405335700E0BCC6 /* AudioProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901572C92405335600E0BCC6 /* AudioProgressView.swift */; };
 		905A5DC5240901B600E50E60 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC4240901B600E50E60 /* PHAsset.swift */; };
@@ -107,6 +108,7 @@
 			files = (
 				90745FCB241158360084CF11 /* lame.framework in Frameworks */,
 				90A02FE82411049A00C419EB /* AudioToolbox.framework in Frameworks */,
+				047F0971E7686791E5139FB1 /* libPods-MP3 Converter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
