@@ -417,7 +417,7 @@ class MainViewController: UIViewController {
 
 // MARK: - CollectionView Delegate
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return videoManager.getNumOfVideos() + 1
@@ -444,6 +444,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             
         }
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = (collectionView.frame.width - 33) / 3
+        return CGSize(width: width, height: width)
+    }
+    
 }
 
 // MARK: - DocumentPicker Delegate

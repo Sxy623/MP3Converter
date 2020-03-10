@@ -48,7 +48,7 @@ class ExtractAudioViewController: UIViewController {
     var volume: Float = 100
     var state: PlayerState = .play
     var type: AudioType = Configuration.sharedInstance.audioType
-    
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,7 +65,8 @@ class ExtractAudioViewController: UIViewController {
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { timer in
             self.updateProgressLabel()
         }
-        
+
+        settingsView.clipsToBounds = true
         settingsView.layer.cornerRadius = 12.0
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
