@@ -242,7 +242,6 @@ class ExtractAudioViewController: UIViewController {
         
         ranameAlert.addAction(cancelAction)
         ranameAlert.addAction(confirmAction)
-        confirmAction.isEnabled = false
         ranameAlert.preferredAction = confirmAction
         
         present(ranameAlert, animated: true, completion: nil)

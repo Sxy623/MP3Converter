@@ -97,7 +97,7 @@ class SettingsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 2
+            return 3
         case 1:
             return 3
         default:
@@ -138,6 +138,8 @@ class SettingsTableViewController: UITableViewController {
                 changeVideoType()
             case 1:
                 changeAudioType()
+            case 2:
+                performSegue(withIdentifier: "Ringtone Tutorial", sender: nil)
             default:
                 break
             }

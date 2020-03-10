@@ -23,6 +23,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var convertedTableView: UITableView!
     @IBOutlet weak var gradientView: UIView!
     
+    let defaults = UserDefaults.standard
+    
     let videoManager = VideoManager()
     let audioManager = AudioManager()
     
@@ -45,6 +47,10 @@ class MainViewController: UIViewController {
         // Test
         print(dataFilePath)
         
+        if defaults.object(forKey: "ShowTutorial") == nil {
+            defaults.set(true, forKey: "ShowTutorial")
+        }
+        
         checkDirectory()
         loadData()
         
@@ -62,7 +68,9 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        let attributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
         navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.navigationBar.standardAppearance.titleTextAttributes = attributes
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -537,6 +545,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 extension MainViewController: AudioPreviewTableViewCellDelegate {
     
     func ringtone(_ audioPreviewTableViewCell: UITableViewCell, index: Int) {
+        
+        let showTutorial = defaults.bool(forKey: "ShowTutorial")
+        if showTutorial {
+            defaults.set(false, forKey: "ShowTutorial")
+            performSegue(withIdentifier: "Ringtone Tutorial", sender: self)
+            return
+        }
         
         let copyAtPath = Configuration.sharedInstance.bandfolderPath()
         let copyToPath = Configuration.sharedInstance.bandfolderDirectoryPath() + "/\(audioManager.getTitle(at: index)).band"

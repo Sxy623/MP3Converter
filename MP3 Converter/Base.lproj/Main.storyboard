@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9l-kS-fm1">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -436,6 +436,7 @@
                         <outlet property="scrollView" destination="6FE-4w-UG7" id="eOl-L2-ox5"/>
                         <segue destination="eDS-0l-IPQ" kind="show" identifier="Extract Audio" id="nur-Pw-DXg"/>
                         <segue destination="E37-9b-RwM" kind="show" identifier="Clip Audio" id="IFX-s8-2Wk"/>
+                        <segue destination="hHm-c2-rf9" kind="presentation" identifier="Ringtone Tutorial" id="6VC-mz-i9c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -503,12 +504,30 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="rfE-2h-aR2" style="IBUITableViewCellStyleDefault" id="98R-R9-Rz0">
+                                        <rect key="frame" x="0.0" y="115.33333587646484" width="375" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="98R-R9-Rz0" id="EOG-5f-Oak">
+                                            <rect key="frame" x="0.0" y="0.0" width="348" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="铃声制作教程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rfE-2h-aR2">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="关于MP3转换器" footerTitle=" " id="7KO-P0-hQs">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="TtE-FK-DHa" style="IBUITableViewCellStyleDefault" id="ttn-gl-hFw">
-                                        <rect key="frame" x="0.0" y="171.33333587646484" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="215.00000381469727" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ttn-gl-hFw" id="zuM-dk-tUZ">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.666667938232422"/>
@@ -526,7 +545,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="UxI-zl-pfy" style="IBUITableViewCellStyleDefault" id="wdK-9O-mAA">
-                                        <rect key="frame" x="0.0" y="215.00000381469727" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="258.66667175292969" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wdK-9O-mAA" id="gbw-Wq-hLm">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.666667938232422"/>
@@ -544,7 +563,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="8tp-6y-zuJ" style="IBUITableViewCellStyleDefault" id="t1u-R1-wgB">
-                                        <rect key="frame" x="0.0" y="258.66667175292969" width="375" height="43.666667938232422"/>
+                                        <rect key="frame" x="0.0" y="302.33333969116211" width="375" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t1u-R1-wgB" id="H1Y-vZ-jMY">
                                             <rect key="frame" x="0.0" y="0.0" width="348" height="43.666667938232422"/>
@@ -573,11 +592,265 @@
                     <connections>
                         <outlet property="audioTypeLabel" destination="ME3-wy-Cjc" id="odF-km-hR8"/>
                         <outlet property="videoTypeLabel" destination="xWW-kB-ioS" id="Igu-Yv-sqo"/>
+                        <segue destination="hHm-c2-rf9" kind="presentation" identifier="Ringtone Tutorial" id="1JP-en-GwA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Psm-zn-xWO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2666" y="-639"/>
+            <point key="canvasLocation" x="2127" y="-278"/>
+        </scene>
+        <!--铃声制作教程-->
+        <scene sceneID="NUv-7V-xhe">
+            <objects>
+                <viewController title="铃声制作教程" id="hHm-c2-rf9" customClass="TutorialViewController" customModule="MP3_Converter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nWC-6y-uZt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wbc-rz-NWQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUn-v8-5OC">
+                                        <rect key="frame" x="18" y="13" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="blu-JV-ya6"/>
+                                            <constraint firstAttribute="height" constant="18" id="zfe-PS-w1Q"/>
+                                        </constraints>
+                                        <state key="normal" image="Xmark"/>
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="hHm-c2-rf9" eventType="touchUpInside" id="l7K-uq-BFD"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="铃声制作教程" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TMf-bk-Z0Y">
+                                        <rect key="frame" x="135.66666666666666" y="11.999999999999998" width="104" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="tUn-v8-5OC" firstAttribute="leading" secondItem="wbc-rz-NWQ" secondAttribute="leading" constant="18" id="H3l-9t-uBZ"/>
+                                    <constraint firstItem="tUn-v8-5OC" firstAttribute="top" secondItem="wbc-rz-NWQ" secondAttribute="top" constant="13" id="H5m-Wz-dci"/>
+                                    <constraint firstItem="TMf-bk-Z0Y" firstAttribute="centerX" secondItem="wbc-rz-NWQ" secondAttribute="centerX" id="VR2-4i-ao6"/>
+                                    <constraint firstAttribute="height" constant="44" id="h3L-E4-wSl"/>
+                                    <constraint firstItem="TMf-bk-Z0Y" firstAttribute="centerY" secondItem="wbc-rz-NWQ" secondAttribute="centerY" id="qd8-zw-rvo"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TTz-tW-ETR">
+                                <rect key="frame" x="0.0" y="44" width="375" height="714"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="OA5-9j-i1g">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2305"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PCO-OG-z2h">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="2305"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1200x630wa" translatesAutoresizingMaskIntoConstraints="NO" id="979-US-fsK">
+                                                        <rect key="frame" x="139.66666666666666" y="159" width="96" height="96"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="96" id="4TI-dK-O4P"/>
+                                                            <constraint firstAttribute="height" constant="96" id="Edt-Pr-LUE"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BV6-wJ-KTF">
+                                                        <rect key="frame" x="91" y="315" width="224" height="80"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="80" id="2Uo-Mr-As1"/>
+                                                        </constraints>
+                                                        <string key="text">使用库乐队，
+自定义绝妙铃声。</string>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Semibold" family="PingFang SC" pointSize="28"/>
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cze-99-Nj1">
+                                                        <rect key="frame" x="38.333333333333343" y="419" width="298.66666666666663" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="951-V0-kEI"/>
+                                                        </constraints>
+                                                        <string key="text">由于 iOS 系统的限制，必须通过库乐队才能实现
+自定义铃声的功能。库乐队是 iOS 系统自带应用
+之一，如已卸载请先重新安装库乐队。</string>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                                        <color key="textColor" name="3C3C43 60%"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rVD-iq-9ZE">
+                                                        <rect key="frame" x="118.66666666666669" y="514" width="138" height="20"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rES-bL-7UX">
+                                                                <rect key="frame" x="0.0" y="0.0" width="117" height="20"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="20" id="Gwh-oa-WSy"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                                                <state key="normal" title="下载 iOS 版库乐队"/>
+                                                                <connections>
+                                                                    <action selector="downloadButtonPressed:" destination="hHm-c2-rf9" eventType="touchUpInside" id="PKK-w7-12L"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Voe-7p-Rtt">
+                                                                <rect key="frame" x="122" y="2" width="16" height="16"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="16" id="VAG-Nv-Kab"/>
+                                                                    <constraint firstAttribute="height" constant="16" id="bMs-AF-vlI"/>
+                                                                </constraints>
+                                                                <state key="normal" image="download"/>
+                                                                <connections>
+                                                                    <action selector="downloadButtonPressed:" destination="hHm-c2-rf9" eventType="touchUpInside" id="kJv-xS-TS3"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="20" id="Ohu-y1-oRa"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tutorial 1" translatesAutoresizingMaskIntoConstraints="NO" id="s28-tM-xVF">
+                                                        <rect key="frame" x="20" y="642" width="335" height="204"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="335" id="GGM-Qv-36T"/>
+                                                            <constraint firstAttribute="height" constant="204" id="ZPI-PD-MQ6"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsk-vl-ZHA">
+                                                        <rect key="frame" x="19" y="866" width="337.33333333333331" height="60"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="60" id="KWL-Qc-tqQ"/>
+                                                        </constraints>
+                                                        <string key="text">1. 点击“制作铃声”图标后，在弹窗中找到并点击库乐队
+的图标。如果没有找到，可以点击“更多”并在应用列表
+中找到库乐队。</string>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                                        <color key="textColor" name="3C3C43 60%"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tutorial 2" translatesAutoresizingMaskIntoConstraints="NO" id="Unx-KN-KUI">
+                                                        <rect key="frame" x="20" y="990" width="335" height="309"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="309" id="2xo-8X-q37"/>
+                                                            <constraint firstAttribute="width" constant="335" id="dsT-Qd-SUi"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tjf-kA-zub">
+                                                        <rect key="frame" x="18" y="1318" width="339" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="GhE-f3-qz2"/>
+                                                        </constraints>
+                                                        <string key="text">2. 将音乐分享到库乐队以后，在库乐队中长按项目文件
+调出菜单，并点击“分享”。</string>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                                        <color key="textColor" name="3C3C43 60%"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tutorial 3" translatesAutoresizingMaskIntoConstraints="NO" id="BCT-Pj-1ny">
+                                                        <rect key="frame" x="19.666666666666657" y="1422" width="336" height="310"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="336" id="FMm-o7-qzE"/>
+                                                            <constraint firstAttribute="height" constant="310" id="Uuz-NT-Ybu"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKe-E4-I57">
+                                                        <rect key="frame" x="17.666666666666657" y="1752" width="340" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="D38-S0-q6p"/>
+                                                        </constraints>
+                                                        <string key="text">3. 在分享歌曲页面中，选择“铃声”格式，并为新的铃声
+命名，点击“导出”即可完成。</string>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                                        <color key="textColor" name="3C3C43 60%"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Tutorial 4" translatesAutoresizingMaskIntoConstraints="NO" id="oS4-Pg-fcO">
+                                                        <rect key="frame" x="19.666666666666657" y="1856" width="336" height="204"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="204" id="N0M-uv-ofI"/>
+                                                            <constraint firstAttribute="width" constant="336" id="Pns-wb-jSc"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8M-MT-XxS">
+                                                        <rect key="frame" x="19.333333333333343" y="2080" width="336.33333333333326" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="Sy8-GF-vAw"/>
+                                                        </constraints>
+                                                        <string key="text">4. 最后一步，只要在“设置 -&gt; 声音与触感 -&gt;铃声” 中
+设置自己喜欢的铃声即可。</string>
+                                                        <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
+                                                        <color key="textColor" name="3C3C43 60%"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2305" id="4Fj-tO-8Tc"/>
+                                                    <constraint firstItem="Tjf-kA-zub" firstAttribute="top" secondItem="Unx-KN-KUI" secondAttribute="bottom" constant="19" id="7Gg-wf-j4H"/>
+                                                    <constraint firstItem="lsk-vl-ZHA" firstAttribute="top" secondItem="s28-tM-xVF" secondAttribute="bottom" constant="20" id="7ex-Ea-ayd"/>
+                                                    <constraint firstItem="Cze-99-Nj1" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="BxL-fl-kGV"/>
+                                                    <constraint firstItem="lsk-vl-ZHA" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="DTP-Oh-OMW"/>
+                                                    <constraint firstItem="s28-tM-xVF" firstAttribute="top" secondItem="rVD-iq-9ZE" secondAttribute="bottom" constant="108" id="HRb-Mr-S1f"/>
+                                                    <constraint firstItem="BV6-wJ-KTF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PCO-OG-z2h" secondAttribute="leading" constant="20" symbolic="YES" id="KzT-9b-LhP"/>
+                                                    <constraint firstItem="Unx-KN-KUI" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="LPx-Wp-og7"/>
+                                                    <constraint firstItem="979-US-fsK" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="MHJ-7E-cpj"/>
+                                                    <constraint firstItem="v8M-MT-XxS" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="Q02-AQ-Exn"/>
+                                                    <constraint firstItem="oS4-Pg-fcO" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="SJr-hW-KDA"/>
+                                                    <constraint firstAttribute="trailing" secondItem="BV6-wJ-KTF" secondAttribute="trailing" constant="60" id="Uyg-ul-cDc"/>
+                                                    <constraint firstItem="Unx-KN-KUI" firstAttribute="top" secondItem="lsk-vl-ZHA" secondAttribute="bottom" constant="64" id="Vab-Lg-HHP"/>
+                                                    <constraint firstItem="BV6-wJ-KTF" firstAttribute="top" secondItem="979-US-fsK" secondAttribute="bottom" constant="60" id="XFV-Aj-0s0"/>
+                                                    <constraint firstItem="bKe-E4-I57" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="a8C-na-FB0"/>
+                                                    <constraint firstItem="Tjf-kA-zub" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="ajL-Dv-LhW"/>
+                                                    <constraint firstItem="979-US-fsK" firstAttribute="top" secondItem="PCO-OG-z2h" secondAttribute="top" constant="159" id="egZ-0M-nLi"/>
+                                                    <constraint firstItem="BCT-Pj-1ny" firstAttribute="top" secondItem="Tjf-kA-zub" secondAttribute="bottom" constant="64" id="ema-Sd-QnJ"/>
+                                                    <constraint firstItem="s28-tM-xVF" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="g9L-K0-Zqn"/>
+                                                    <constraint firstItem="rVD-iq-9ZE" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="gLE-oR-MQ1"/>
+                                                    <constraint firstItem="rVD-iq-9ZE" firstAttribute="top" secondItem="Cze-99-Nj1" secondAttribute="bottom" constant="35" id="gXr-8E-yKR"/>
+                                                    <constraint firstItem="BCT-Pj-1ny" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="hBj-qF-U0W"/>
+                                                    <constraint firstItem="oS4-Pg-fcO" firstAttribute="top" secondItem="bKe-E4-I57" secondAttribute="bottom" constant="64" id="kaB-hC-eWB"/>
+                                                    <constraint firstItem="bKe-E4-I57" firstAttribute="top" secondItem="BCT-Pj-1ny" secondAttribute="bottom" constant="20" id="kdT-Y6-Edx"/>
+                                                    <constraint firstItem="Cze-99-Nj1" firstAttribute="top" secondItem="BV6-wJ-KTF" secondAttribute="bottom" constant="24" id="vGY-hh-sAd"/>
+                                                    <constraint firstItem="v8M-MT-XxS" firstAttribute="top" secondItem="oS4-Pg-fcO" secondAttribute="bottom" constant="20" id="zvi-o0-yi9"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="PCO-OG-z2h" secondAttribute="trailing" id="8l8-jT-fJ4"/>
+                                            <constraint firstItem="PCO-OG-z2h" firstAttribute="leading" secondItem="OA5-9j-i1g" secondAttribute="leading" id="a0l-r0-X0v"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="NEf-eo-8Tm" firstAttribute="trailing" secondItem="OA5-9j-i1g" secondAttribute="trailing" id="1Qz-pW-ge2"/>
+                                    <constraint firstItem="OA5-9j-i1g" firstAttribute="leading" secondItem="Ped-zl-7lJ" secondAttribute="leading" id="LtU-4N-iTl"/>
+                                    <constraint firstItem="OA5-9j-i1g" firstAttribute="top" secondItem="NEf-eo-8Tm" secondAttribute="top" id="PC6-x3-cmF"/>
+                                    <constraint firstItem="OA5-9j-i1g" firstAttribute="leading" secondItem="NEf-eo-8Tm" secondAttribute="leading" id="Xri-jY-lfa"/>
+                                    <constraint firstItem="NEf-eo-8Tm" firstAttribute="bottom" secondItem="OA5-9j-i1g" secondAttribute="bottom" id="qze-XO-acj"/>
+                                    <constraint firstItem="Ped-zl-7lJ" firstAttribute="trailing" secondItem="OA5-9j-i1g" secondAttribute="trailing" id="z2w-4l-DEa"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="NEf-eo-8Tm"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Ped-zl-7lJ"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="TTz-tW-ETR" secondAttribute="bottom" id="EHG-kj-dFw"/>
+                            <constraint firstItem="TTz-tW-ETR" firstAttribute="top" secondItem="wbc-rz-NWQ" secondAttribute="bottom" id="MUt-ZS-NWc"/>
+                            <constraint firstItem="wbc-rz-NWQ" firstAttribute="trailing" secondItem="xKl-oa-Qwb" secondAttribute="trailing" id="Oxi-Z1-ozX"/>
+                            <constraint firstItem="TTz-tW-ETR" firstAttribute="leading" secondItem="xKl-oa-Qwb" secondAttribute="leading" id="QbQ-iY-CtW"/>
+                            <constraint firstItem="xKl-oa-Qwb" firstAttribute="trailing" secondItem="TTz-tW-ETR" secondAttribute="trailing" id="egg-nh-ZqA"/>
+                            <constraint firstItem="wbc-rz-NWQ" firstAttribute="top" secondItem="xKl-oa-Qwb" secondAttribute="top" id="hVn-S0-eEi"/>
+                            <constraint firstItem="wbc-rz-NWQ" firstAttribute="leading" secondItem="xKl-oa-Qwb" secondAttribute="leading" id="kpU-Kl-tcB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xKl-oa-Qwb"/>
+                    </view>
+                    <connections>
+                        <outlet property="step1Label" destination="lsk-vl-ZHA" id="9tk-SQ-8sE"/>
+                        <outlet property="step2Label" destination="Tjf-kA-zub" id="JRs-t5-xZB"/>
+                        <outlet property="step3Label" destination="bKe-E4-I57" id="QXM-sj-D4F"/>
+                        <outlet property="step4Label" destination="v8M-MT-XxS" id="a8i-4X-FD7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wmq-PR-fRO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3128.8000000000002" y="108.62068965517241"/>
         </scene>
         <!--提取音频-->
         <scene sceneID="HlA-Wn-WmH">
@@ -625,7 +898,7 @@
                                                     <constraint firstAttribute="height" constant="13" id="F3O-6t-OUy"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -665,7 +938,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="FuQ-Zr-z32" secondAttribute="trailing" constant="16" id="7WL-jP-N5c"/>
                                             <constraint firstItem="FuQ-Zr-z32" firstAttribute="leading" secondItem="Ljy-9V-Rep" secondAttribute="leading" constant="16" id="Hso-TV-fve"/>
@@ -927,7 +1200,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="YYL-1E-MaV" secondAttribute="trailing" constant="16" id="IcQ-kO-y5G"/>
                                             <constraint firstAttribute="bottom" secondItem="YYL-1E-MaV" secondAttribute="bottom" constant="50" id="h49-9f-cmM"/>
@@ -986,7 +1259,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="272-Iw-olZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2664.8000000000002" y="129.31034482758622"/>
+            <point key="canvasLocation" x="561" y="899"/>
         </scene>
         <!--裁剪音频-->
         <scene sceneID="hmm-MS-Q5r">
@@ -1094,7 +1367,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjJ-KG-kmR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2664.8000000000002" y="898.52216748768478"/>
+            <point key="canvasLocation" x="1633" y="899"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="33K-qW-tmu">
@@ -1105,6 +1378,10 @@
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="FF5F56 100%"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1116,7 +1393,11 @@
             <point key="canvasLocation" x="138.40000000000001" y="109.35960591133005"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1JP-en-GwA"/>
+    </inferredMetricsTieBreakers>
     <resources>
+        <image name="1200x630wa" width="96" height="96"/>
         <image name="Background" width="375" height="803"/>
         <image name="Box" width="112" height="110"/>
         <image name="Delete" width="12" height="15"/>
@@ -1129,8 +1410,17 @@
         <image name="Settings" width="33" height="33"/>
         <image name="Share" width="27" height="27"/>
         <image name="Triangle" width="7" height="10"/>
+        <image name="Tutorial 1" width="335" height="204"/>
+        <image name="Tutorial 2" width="335" height="309"/>
+        <image name="Tutorial 3" width="336" height="310"/>
+        <image name="Tutorial 4" width="336" height="204"/>
         <image name="Video" width="86" height="86"/>
+        <image name="Xmark" width="18" height="18"/>
+        <image name="download" width="16" height="16"/>
         <image name="音量 mid" width="15" height="15"/>
+        <namedColor name="3C3C43 60%">
+            <color red="0.23499999940395355" green="0.23499999940395355" blue="0.2630000114440918" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="F9F9F9 100%">
             <color red="0.97600001096725464" green="0.97600001096725464" blue="0.97600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
