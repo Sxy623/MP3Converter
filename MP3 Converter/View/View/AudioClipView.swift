@@ -80,13 +80,13 @@ class AudioClipView: UIView {
     }
     
     func setStartPercentage(_ percentage: CGFloat) {
-        startPercentage = percentage
+        startPercentage = CGFloat.clamp(percentage, 0.0, 1.0)
         maskLayer.strokeStart = startPercentage
         updateClip()
     }
     
     func setEndPercentage(_ percentage: CGFloat) {
-        endPercentage = percentage
+        endPercentage = CGFloat.clamp(percentage, 0.0, 1.0)
         maskLayer.strokeEnd = endPercentage
         updateClip()
     }

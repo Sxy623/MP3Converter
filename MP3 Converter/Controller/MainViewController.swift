@@ -131,7 +131,6 @@ class MainViewController: UIViewController {
                         }
                     }
                 }
-                                
             }
         })
     }
@@ -315,13 +314,15 @@ class MainViewController: UIViewController {
         } else if segue.identifier == "Extract Audio" {
             let destinationViewController = segue.destination as! ExtractAudioViewController
             destinationViewController.rootViewController = self
+            destinationViewController.delegate = self
             destinationViewController.video = videoManager.videos[selectedIndex]
-            navigationItem.backBarButtonItem = UIBarButtonItem(title: "原视频", style: .plain, target: nil, action: nil)
+            destinationViewController.index = selectedIndex
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         } else if segue.identifier == "Clip Audio" {
             let destinationViewController = segue.destination as! ClipAudioViewController
             destinationViewController.rootViewController = self
             destinationViewController.audio = audioManager.audios[selectedIndex]
-            navigationItem.backBarButtonItem = UIBarButtonItem(title: "已完成", style: .plain, target: nil, action: nil)
+            navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
     }
     
@@ -470,6 +471,25 @@ extension MainViewController: UIDocumentPickerDelegate {
             }
         }
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - ExtractAudioViewController Delegate
+
+extension MainViewController: ExtractAudioViewControllerDelegate {
+    
+    func delete(_ ExtractAudioViewController: UIViewController, index: Int) {
+        
+        let fileName = videoManager.videos[index].fileName
+        let path = dataFilePath + "/videos/\(fileName)"
+        
+        if FileManager.default.fileExists(atPath: path) {
+            try? FileManager.default.removeItem(atPath: path)
+        }
+        
+        videoManager.removeVideo(at: index)
+        recordVideo()
+        originalCollectionView.reloadData()
     }
 }
 

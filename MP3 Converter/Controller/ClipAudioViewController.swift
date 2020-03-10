@@ -11,6 +11,7 @@ import AVFoundation
 
 class ClipAudioViewController: UIViewController {
     
+    @IBOutlet weak var barButtonItem: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var audioClipView: AudioClipView!
@@ -35,6 +36,7 @@ class ClipAudioViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        barButtonItem.setTitleTextAttributes([.font : UIFont.systemFont(ofSize: 17, weight: .semibold)], for: .normal)
         titleLabel.text = audio.title
         
         audioClipView.delegate = self

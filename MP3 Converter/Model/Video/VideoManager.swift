@@ -22,6 +22,14 @@ class VideoManager {
         }
     }
     
+    func removeVideo(at index: Int) {
+        videos.remove(at: index)
+    }
+    
+    func getURL(at index: Int) -> URL {
+        return videos[index].url
+    }
+    
     func getPreviewImage(at index: Int) -> UIImage {
         return videos[index].preview
     }

@@ -9,15 +9,25 @@
 import UIKit
 import AVFoundation
 
+protocol ExtractAudioViewControllerDelegate {
+    func delete(_ ExtractAudioViewController: UIViewController, index: Int)
+}
+
 class ExtractAudioViewController: UIViewController {
     
+    @IBOutlet weak var barButtonItem: UIBarButtonItem!
+    
     @IBOutlet weak var videoPlayView: VideoPlayView!
-    @IBOutlet weak var pauseImageView: UIImageView!
+    
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var trashButton: UIButton!
     
     @IBOutlet weak var audioClipView: AudioClipView!
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var endLabel: UILabel!
     
+    @IBOutlet weak var settingsView: UIView!
     @IBOutlet weak var volumeImage: UIImageView!
     @IBOutlet weak var volumeSlider: VolumeSlider!
     @IBOutlet weak var volumeLabel: UILabel!
@@ -28,8 +38,11 @@ class ExtractAudioViewController: UIViewController {
     let videoListPath = Configuration.sharedInstance.videoListPath()
     let audioListPath = Configuration.sharedInstance.audioListPath()
     
+    var delegate: ExtractAudioViewControllerDelegate?
+    
     var rootViewController: MainViewController?
     var video: Video!
+    var index: Int!
     var timer: Timer!
     var interval: TimeInterval = 0.03
     var volume: Float = 100
@@ -38,8 +51,13 @@ class ExtractAudioViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        title = ""
         navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        barButtonItem.setTitleTextAttributes([.font : UIFont.systemFont(ofSize: 17, weight: .semibold)], for: .normal)
+        
         videoPlayView.video = video
+        updateTimeLabel()
         
         audioClipView.delegate = self
         audioClipView.wave = video.wave
@@ -48,14 +66,47 @@ class ExtractAudioViewController: UIViewController {
             self.updateProgressLabel()
         }
         
+        settingsView.layer.cornerRadius = 12.0
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
         updateTypeButtons()
+        
         progressContinue()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         videoPlayView.player.pause()
+    }
+    
+    // MARK: - Toolbar
+    
+    @IBAction func playButtonPressed(_ sender: UIButton) {
+        if state == .play {
+            playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
+            videoPlayView.player.pause()
+            state = .pause
+            progressPause()
+        } else {
+            playButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
+            videoPlayView.player.play()
+            state = .play
+            progressContinue()
+        }
+    }
+    
+    @IBAction func trashButtonPressed(_ sender: UIButton) {
+        
+        let alert = UIAlertController(title: "该视频删除后将无法复原", message: nil, preferredStyle: .actionSheet)
+        
+        let deleteAction = UIAlertAction(title: "删除视频", style: .destructive) { action in
+            self.delegate?.delete(self, index: self.index)
+            self.navigationController?.popViewController(animated: true)
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
     
     func updateTypeButtons() {
@@ -65,20 +116,6 @@ class ExtractAudioViewController: UIViewController {
             } else {
                 button.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.3), for: .normal)
             }
-        }
-    }
-    
-    @IBAction func videoPlayViewPressed(_ sender: UIButton) {
-        if state == .play {
-            pauseImageView.image = #imageLiteral(resourceName: "Play")
-            videoPlayView.player.pause()
-            state = .pause
-            progressPause()
-        } else {
-            pauseImageView.image = nil
-            videoPlayView.player.play()
-            state = .play
-            progressContinue()
         }
     }
     
@@ -93,7 +130,8 @@ class ExtractAudioViewController: UIViewController {
         let ranameAlert = UIAlertController(title: "音频文件重命名", message: "请输入名称", preferredStyle: .alert)
         
         ranameAlert.addTextField { (textField) in
-            textField.placeholder = "Placeholder"
+            textField.placeholder = Date.currentDate
+            textField.text = Date.currentDate
             textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: .editingChanged)
         }
         
@@ -233,20 +271,27 @@ class ExtractAudioViewController: UIViewController {
         volumeLabel.text = "\(Int(volume))%"
         volumeLabel.center = CGPoint(x: thumbRect.midX, y: volumeLabel.center.y)
     }
+    
+    func updateTimeLabel() {
+        let totalTime = video.duration
+        let currentTime = Double(audioClipView.currentPercentage) * video.duration
+        timeLabel.text = "\(currentTime.timeString):\(totalTime.timeString)"
+    }
 
     func updateProgressLabel() {
         
-        let centerY = audioClipView.frame.maxY + 7
+        let centerY = audioClipView.frame.maxY + 15
+        let originX = audioClipView.frame.origin.x
         
         let start = Double(audioClipView.startPercentage) * video.duration
         startLabel.text = start.timeString
         let startX = audioClipView.frame.size.width * audioClipView.startPercentage
-        startLabel.center = CGPoint(x: startX + startLabel.frame.size.width / 2, y: centerY)
+        startLabel.center = CGPoint(x: originX + startX, y: centerY)
         
         let end = Double(audioClipView.endPercentage) * video.duration
         endLabel.text = end.timeString
         let endX = audioClipView.frame.size.width * audioClipView.endPercentage
-        endLabel.center = CGPoint(x: endX - endLabel.frame.size.width / 2, y: centerY)
+        endLabel.center = CGPoint(x: originX + endX, y: centerY)
     }
     
     func progressPause() {
@@ -259,14 +304,15 @@ class ExtractAudioViewController: UIViewController {
             percantage += CGFloat(self.interval) / CGFloat(self.video.duration)
             if percantage > self.audioClipView.endPercentage {
                 percantage = self.audioClipView.endPercentage
-                self.pauseImageView.image = #imageLiteral(resourceName: "Play")
+                self.playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
                 self.videoPlayView.player.pause()
                 self.progressPause()
-                self.state = .pause
+                self.state = .finish
                 self.audioClipView.currentPercentage = self.audioClipView.startPercentage
                 self.audioClipView.updatePlayer()
             }
             self.audioClipView.currentPercentage = percantage
+            self.updateTimeLabel()
             self.audioClipView.updatePlayer()
         }
     }
