@@ -36,8 +36,8 @@ class TutorialViewController: UIViewController {
         step3String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 34, length: 2))
         step3Label.attributedText = step3String
         
-        let step4String = NSMutableAttributedString(string: "4. 最后一步，只要在“设置 -> 声音与触感 ->铃声” 中\n设置自己喜欢的铃声即可。", attributes: nil)
-        step4String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 12, length: 16))
+        let step4String = NSMutableAttributedString(string: "4. 最后一步，只要在“设置 -> 声音与触感 -> 铃声” 中\n设置自己喜欢的铃声即可。", attributes: nil)
+        step4String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 12, length: 17))
         step4Label.attributedText = step4String
     }
     

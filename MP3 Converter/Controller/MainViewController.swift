@@ -68,9 +68,12 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let attributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        let attributes = [
+            NSAttributedString.Key.foregroundColor : UIColor.black
+        ]
         navigationController?.setNavigationBarHidden(true, animated: true)
         navigationController?.navigationBar.standardAppearance.titleTextAttributes = attributes
+        navigationController?.hideHairline()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

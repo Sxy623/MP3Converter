@@ -35,6 +35,7 @@
 		90C5F8972417787A00414505 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5F8962417787A00414505 /* Date.swift */; };
 		90C5F8992417AD3C00414505 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5F8982417AD3C00414505 /* CGFloat.swift */; };
 		90C5F89B2417E8C900414505 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5F89A2417E8C900414505 /* TutorialViewController.swift */; };
+		90C5F89D2418952C00414505 /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90C5F89C2418952C00414505 /* UINavigationController.swift */; };
 		90DABF32241216F60013ED5C /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90DABF31241216F60013ED5C /* Wave.swift */; };
 		90E471C823FD527E00028D96 /* LeftAlignLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90E471C723FD527E00028D96 /* LeftAlignLayout.swift */; };
 		90FF3C3F23FD622A006AEFC7 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C3E23FD622A006AEFC7 /* AudioManager.swift */; };
@@ -93,6 +94,7 @@
 		90C5F8962417787A00414505 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		90C5F8982417AD3C00414505 /* CGFloat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		90C5F89A2417E8C900414505 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		90C5F89C2418952C00414505 /* UINavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		90DABF31241216F60013ED5C /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		90E471C723FD527E00028D96 /* LeftAlignLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignLayout.swift; sourceTree = "<group>"; };
 		90FF3C3E23FD622A006AEFC7 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AudioManager.swift; path = "MP3 Converter/Model/Audio/AudioManager.swift"; sourceTree = SOURCE_ROOT; };
@@ -154,6 +156,7 @@
 				905A5DC4240901B600E50E60 /* PHAsset.swift */,
 				90C5F8962417787A00414505 /* Date.swift */,
 				90C5F8982417AD3C00414505 /* CGFloat.swift */,
+				90C5F89C2418952C00414505 /* UINavigationController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -424,6 +427,7 @@
 				90C5F8972417787A00414505 /* Date.swift in Sources */,
 				907AF1E42410CA9A00E16477 /* Double.swift in Sources */,
 				90B20A9A23FD339600653F0C /* VideoPreviewCollectionViewCell.swift in Sources */,
+				90C5F89D2418952C00414505 /* UINavigationController.swift in Sources */,
 				90FF3C5123FE7B02006AEFC7 /* Configuration.swift in Sources */,
 				90FF3C5323FE8310006AEFC7 /* ExtractAudioViewController.swift in Sources */,
 				90B20A8023FD08EB00653F0C /* MainViewController.swift in Sources */,
@@ -609,7 +613,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MP3\\ Converter",
-					"$(PROJECT_DIR)/MP3\\ Converter/Lame",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shenxinyi.MP3-Converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -644,7 +647,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MP3\\ Converter",
-					"$(PROJECT_DIR)/MP3\\ Converter/Lame",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.shenxinyi.MP3-Converter";
 				PRODUCT_NAME = "$(TARGET_NAME)";
