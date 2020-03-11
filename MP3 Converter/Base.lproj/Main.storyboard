@@ -1418,9 +1418,8 @@
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" name="FF5F56 100%"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -1434,7 +1433,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="6VC-mz-i9c"/>
+        <segue reference="1JP-en-GwA"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1200x630wa" width="96" height="96"/>
