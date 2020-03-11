@@ -23,6 +23,7 @@ class ExtractAudioViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var trashButton: UIButton!
     
+    @IBOutlet weak var audioClipScrollView: UIScrollView!
     @IBOutlet weak var audioClipView: AudioClipView!
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var endLabel: UILabel!
@@ -60,11 +61,11 @@ class ExtractAudioViewController: UIViewController {
         updateTimeLabel()
         
         audioClipView.delegate = self
+        audioClipView.parentScrollView = audioClipScrollView
         audioClipView.wave = video.wave
-        // 等待 NavigationBar 出现
-        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { timer in
-            self.updateProgressLabel()
-        }
+        audioClipView.startLabel = startLabel
+        audioClipView.endLabel = endLabel
+        updateProgressLabel()
 
         settingsView.clipsToBounds = true
         settingsView.layer.cornerRadius = 12.0
@@ -279,19 +280,10 @@ class ExtractAudioViewController: UIViewController {
     }
 
     func updateProgressLabel() {
-        
-        let centerY = audioClipView.frame.maxY + 15
-        let originX = audioClipView.frame.origin.x
-        
         let start = Double(audioClipView.startPercentage) * video.duration
         startLabel.text = start.timeString
-        let startX = audioClipView.frame.size.width * audioClipView.startPercentage
-        startLabel.center = CGPoint(x: originX + startX, y: centerY)
-        
         let end = Double(audioClipView.endPercentage) * video.duration
         endLabel.text = end.timeString
-        let endX = audioClipView.frame.size.width * audioClipView.endPercentage
-        endLabel.center = CGPoint(x: originX + endX, y: centerY)
     }
     
     func progressPause() {

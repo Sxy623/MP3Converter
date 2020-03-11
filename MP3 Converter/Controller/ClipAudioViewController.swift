@@ -14,6 +14,7 @@ class ClipAudioViewController: UIViewController {
     @IBOutlet weak var barButtonItem: UIBarButtonItem!
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var audioClipScrollView: UIScrollView!
     @IBOutlet weak var audioClipView: AudioClipView!
     @IBOutlet weak var startLabel: UILabel!
     @IBOutlet weak var endLabel: UILabel!
@@ -39,12 +40,16 @@ class ClipAudioViewController: UIViewController {
         barButtonItem.setTitleTextAttributes([.font : UIFont.systemFont(ofSize: 17, weight: .semibold)], for: .normal)
         titleLabel.text = audio.title
         
+        audioClipView.waveHeight = 48.0
+        audioClipView.clipHeight = 82.0
+        audioClipView.spaceToLabel = 15.0
+        
         audioClipView.delegate = self
+        audioClipView.parentScrollView = audioClipScrollView
         audioClipView.wave = audio.wave
-        // 等待 NavigationBar 出现
-        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { timer in
-            self.updateProgressLabel()
-        }
+        audioClipView.startLabel = startLabel
+        audioClipView.endLabel = endLabel
+        updateProgressLabel()
         
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
@@ -136,18 +141,10 @@ class ClipAudioViewController: UIViewController {
     }
     
     func updateProgressLabel() {
-        
-        let centerY = audioClipView.frame.maxY + 18
-        
         let start = Double(audioClipView.startPercentage) * audio.duration
         startLabel.text = start.timeString
-        let startX = audioClipView.frame.size.width * audioClipView.startPercentage
-        startLabel.center = CGPoint(x: startX + startLabel.frame.size.width / 2, y: centerY)
-        
         let end = Double(audioClipView.endPercentage) * audio.duration
         endLabel.text = end.timeString
-        let endX = audioClipView.frame.size.width * audioClipView.endPercentage
-        endLabel.center = CGPoint(x: endX - endLabel.frame.size.width / 2, y: centerY)
     }
     
     @IBAction func volumeChanged(_ sender: UISlider) {

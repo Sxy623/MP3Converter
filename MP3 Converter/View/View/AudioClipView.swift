@@ -18,9 +18,21 @@ class AudioClipView: UIView {
     
     var wave: [CGFloat] = []
     var delegate: AudioClipViewDelegate?
+    var parentScrollView: UIScrollView?
+    var startLabel: UILabel?
+    var endLabel: UILabel?
     
     var lineMargin: CGFloat = 3.0
     var lineWidth: CGFloat = 3.0
+    
+    var leadingSpace: CGFloat = 16.0
+    var trailingSpace: CGFloat = 16.0
+    var waveHeight: CGFloat = 24.0
+    var waveWidth: CGFloat {
+        return self.frame.size.width - leadingSpace - trailingSpace
+    }
+    var clipHeight: CGFloat = 50.0
+    var spaceToLabel: CGFloat = 11.0
     
     var backgroundLineColor = CGColor(srgbRed: 1.00, green: 0.37, blue: 0.34, alpha: 0.3)
     var foregroundLineColor = CGColor(srgbRed: 1.00, green: 0.37, blue: 0.34, alpha: 1.0)
@@ -34,10 +46,12 @@ class AudioClipView: UIView {
     var startPercentage: CGFloat = 0.0
     var currentPercentage: CGFloat = 0.0
     var endPercentage: CGFloat = 1.0
+    var selectableArea: CGFloat = 0.01
+    var minDistance: CGFloat = 0.05
     
     enum Choice { case empty, start, end }
     
-    var choice: Choice = .end
+    var choice: Choice = .empty
     
     override func draw(_ rect: CGRect) {
         backgroundColor = .clear
@@ -77,16 +91,18 @@ class AudioClipView: UIView {
         playerLayer.strokeColor = CGColor(srgbRed: 0.0, green: 0.48, blue: 1.0, alpha: 1.0)
         layer.addSublayer(playerLayer)
         updatePlayer()
+        
+        updateProgressLabel()
     }
     
     func setStartPercentage(_ percentage: CGFloat) {
-        startPercentage = CGFloat.clamp(percentage, 0.0, 1.0)
+        startPercentage = CGFloat.clamp(percentage, 0.0, endPercentage - minDistance)
         maskLayer.strokeStart = startPercentage
         updateClip()
     }
     
     func setEndPercentage(_ percentage: CGFloat) {
-        endPercentage = CGFloat.clamp(percentage, 0.0, 1.0)
+        endPercentage = CGFloat.clamp(percentage, startPercentage + minDistance, 1.0)
         maskLayer.strokeEnd = endPercentage
         updateClip()
     }
@@ -94,11 +110,10 @@ class AudioClipView: UIView {
     func initLineLayer() {
         let path = UIBezierPath()
         let maxWidth = self.frame.size.width
-        let height = self.frame.size.height * 0.7
-        var x: CGFloat = lineWidth / 2
+        var x: CGFloat = leadingSpace + lineWidth / 2
         var pos = 0
-        while x + lineWidth <= maxWidth {
-            let random = wave[pos] * height
+        while x + lineWidth / 2 + trailingSpace <= maxWidth {
+            let random = wave[pos] * waveHeight
             pos = (pos + 1) % wave.count
             path.move(to: CGPoint(x: x, y: self.frame.size.height / 2 - random))
             path.addLine(to: CGPoint(x: x, y: self.frame.size.height / 2 + random))
@@ -111,8 +126,8 @@ class AudioClipView: UIView {
     
     func addMask() {
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: 0, y: self.frame.size.height / 2))
-        path.addLine(to: CGPoint(x: self.frame.size.width, y: self.frame.size.height / 2))
+        path.move(to: CGPoint(x: leadingSpace, y: self.frame.size.height / 2))
+        path.addLine(to: CGPoint(x: self.frame.size.width - trailingSpace, y: self.frame.size.height / 2))
         
         self.maskLayer.frame = self.bounds
         self.maskLayer.lineWidth = self.frame.size.width
@@ -121,44 +136,58 @@ class AudioClipView: UIView {
     }
     
     func updateClip() {
-        let startX = self.frame.size.width * startPercentage
-        let endX = self.frame.size.width * endPercentage
+        let startX = leadingSpace + waveWidth * startPercentage
+        let endX = leadingSpace + waveWidth * endPercentage
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: startX, y: self.frame.size.height * 0.01))
-        path.addLine(to: CGPoint(x: startX, y: self.frame.size.height * 0.99))
-        path.move(to: CGPoint(x: endX, y: self.frame.size.height * 0.01))
-        path.addLine(to: CGPoint(x: endX, y: self.frame.size.height * 0.99))
+        path.move(to: CGPoint(x: startX, y: self.frame.size.height / 2 - clipHeight / 2))
+        path.addLine(to: CGPoint(x: startX, y: self.frame.size.height / 2 + clipHeight / 2))
+        path.move(to: CGPoint(x: endX, y: self.frame.size.height / 2 - clipHeight / 2))
+        path.addLine(to: CGPoint(x: endX, y: self.frame.size.height / 2 + clipHeight / 2))
         self.clipLayer.path = path.cgPath
     }
     
     func updatePlayer() {
-        let x = self.frame.size.width * currentPercentage
+        let x = leadingSpace + waveWidth * currentPercentage
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: x, y: self.frame.size.height * 0.01))
-        path.addLine(to: CGPoint(x: x, y: self.frame.size.height * 0.99))
+        path.move(to: CGPoint(x: x, y: self.frame.size.height / 2 - clipHeight / 2))
+        path.addLine(to: CGPoint(x: x, y: self.frame.size.height / 2 + clipHeight / 2))
         self.playerLayer.path = path.cgPath
+    }
+    
+    func updateProgressLabel() {
+        
+        let centerY = self.frame.size.height / 2 + clipHeight / 2 + spaceToLabel
+        
+        let startX = leadingSpace + waveWidth * startPercentage
+        startLabel?.center = CGPoint(x:  startX, y: centerY)
+        
+        let endX = leadingSpace + waveWidth * endPercentage
+        endLabel?.center = CGPoint(x: endX, y: centerY)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let xPosition = touches.first?.location(in: self).x else { return }
-        let percentage =  xPosition / self.frame.size.width
-        let midPercentage = (startPercentage + endPercentage) / 2
-        if percentage < midPercentage {
+        let percentage = (xPosition - leadingSpace) / waveWidth
+//        let midPercentage = (startPercentage + endPercentage) / 2
+        if percentage > startPercentage - selectableArea && percentage < startPercentage + selectableArea {
             choice = .start
-        } else {
+            parentScrollView?.isScrollEnabled = false
+        } else if percentage > endPercentage - selectableArea && percentage < endPercentage + selectableArea {
             choice = .end
+            parentScrollView?.isScrollEnabled = false
         }
         delegate?.touchBegan(self)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         choice = .empty
+        parentScrollView?.isScrollEnabled = true
         delegate?.touchEnd(self, startPercentage: startPercentage, endPercentage: endPercentage)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let xPosition = touches.first?.location(in: self).x else { return }
-        let percentage =  xPosition / self.frame.size.width
+        let percentage = (xPosition - leadingSpace) / waveWidth
         switch choice {
         case .start:
             setStartPercentage(percentage)
@@ -167,6 +196,7 @@ class AudioClipView: UIView {
         default:
             break
         }
+        updateProgressLabel()
         delegate?.touchMove(self, startPercentage: startPercentage, endPercentage: endPercentage)
     }
 }

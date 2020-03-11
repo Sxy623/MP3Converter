@@ -68,9 +68,8 @@ class SettingsTableViewController: UITableViewController {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
-            mail.setToRecipients(["shenxinyi@zju.edu.com"])
-            mail.setSubject("Hello!")
-            mail.setMessageBody("<p>You're so awesome!</p>", isHTML: true)
+            mail.setToRecipients(["feedback@enjoymusic.ai"])
+            mail.setSubject("MP3转换器 用户反馈")
             present(mail, animated: true)
         } else {
             print("Mail services are not available")
