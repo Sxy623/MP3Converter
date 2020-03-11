@@ -34,8 +34,8 @@ class AudioClipView: UIView {
     var clipHeight: CGFloat = 50.0
     var spaceToLabel: CGFloat = 11.0
     
-    var backgroundLineColor = CGColor(srgbRed: 1.00, green: 0.37, blue: 0.34, alpha: 0.3)
-    var foregroundLineColor = CGColor(srgbRed: 1.00, green: 0.37, blue: 0.34, alpha: 1.0)
+    var backgroundLineColor = UIColor(red: 1.00, green: 0.37, blue: 0.34, alpha: 0.3).cgColor
+    var foregroundLineColor = UIColor(red: 1.00, green: 0.37, blue: 0.34, alpha: 1.0).cgColor
     
     var backgroundLineLayer = CAShapeLayer()
     var foregroundLineLayer = CAShapeLayer()
@@ -88,7 +88,7 @@ class AudioClipView: UIView {
         playerLayer.lineWidth = 2
         playerLayer.fillColor = UIColor.clear.cgColor
         playerLayer.lineCap = CAShapeLayerLineCap.round
-        playerLayer.strokeColor = CGColor(srgbRed: 0.0, green: 0.48, blue: 1.0, alpha: 1.0)
+        playerLayer.strokeColor = UIColor(red: 0.0, green: 0.48, blue: 1.0, alpha: 1.0).cgColor
         layer.addSublayer(playerLayer)
         updatePlayer()
         
@@ -172,17 +172,12 @@ class AudioClipView: UIView {
         if percentage > startPercentage - selectableArea && percentage < startPercentage + selectableArea {
             choice = .start
             parentScrollView?.isScrollEnabled = false
+            delegate?.touchBegan(self)
         } else if percentage > endPercentage - selectableArea && percentage < endPercentage + selectableArea {
             choice = .end
             parentScrollView?.isScrollEnabled = false
+            delegate?.touchBegan(self)
         }
-        delegate?.touchBegan(self)
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        choice = .empty
-        parentScrollView?.isScrollEnabled = true
-        delegate?.touchEnd(self, startPercentage: startPercentage, endPercentage: endPercentage)
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -198,5 +193,12 @@ class AudioClipView: UIView {
         }
         updateProgressLabel()
         delegate?.touchMove(self, startPercentage: startPercentage, endPercentage: endPercentage)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if choice == .empty { return }
+        choice = .empty
+        parentScrollView?.isScrollEnabled = true
+        delegate?.touchEnd(self, startPercentage: startPercentage, endPercentage: endPercentage)
     }
 }

@@ -170,16 +170,19 @@ class ClipAudioViewController: UIViewController {
     }
     
     func progressContinue() {
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
-            var percantage = self.audioClipView.currentPercentage
-            percantage += CGFloat(self.interval) / CGFloat(self.audio.duration)
-            if percantage > self.audioClipView.endPercentage {
-                percantage = self.audioClipView.endPercentage
-                self.player.pause()
-            }
-            self.audioClipView.currentPercentage = percantage
-            self.audioClipView.updatePlayer()
+        timer = Timer(timeInterval: interval, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
+    }
+    
+    @objc func updateTimer() {
+        var percantage = audioClipView.currentPercentage
+        percantage += CGFloat(interval) / CGFloat(audio.duration)
+        if percantage > audioClipView.endPercentage {
+            percantage = audioClipView.endPercentage
+            self.player.pause()
         }
+        audioClipView.currentPercentage = percantage
+        audioClipView.updatePlayer()
     }
 }
 
@@ -195,6 +198,7 @@ extension ClipAudioViewController: AudioClipViewDelegate {
     }
     
     func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
+        
         let start = Double(startPercentage) * audio.duration
         let startTime = CMTime(seconds: start, preferredTimescale: 120)
         player.seek(to: startTime)

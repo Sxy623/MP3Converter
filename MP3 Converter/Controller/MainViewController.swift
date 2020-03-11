@@ -68,12 +68,12 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        let attributes = [
-            NSAttributedString.Key.foregroundColor : UIColor.black
-        ]
         navigationController?.setNavigationBarHidden(true, animated: true)
-        navigationController?.navigationBar.standardAppearance.titleTextAttributes = attributes
         navigationController?.hideHairline()
+        if #available(iOS 13.0, *) {
+            let attributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+            navigationController?.navigationBar.standardAppearance.titleTextAttributes = attributes
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -112,15 +112,6 @@ class MainViewController: UIViewController {
         self.presentImagePicker(imagePicker, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
             
             for asset in assets {
-                                
-                var videoURL: URL!
-                var outputURLString = String()
-                asset.getURL { url in
-                    guard let url = url else { return }
-                    videoURL = url
-                    let fileName = videoURL.lastPathComponent
-                    outputURLString = "file://" + self.dataFilePath + "/videos/\(fileName)"
-                }
                 
                 let option = PHVideoRequestOptions()
                 option.isNetworkAccessAllowed = true
@@ -147,15 +138,10 @@ class MainViewController: UIViewController {
     }
     
     func uploadVideoFromFiles() {
-        let types = [String(kUTTypeMPEG4)]
+        let types = ["public.movie"]
         let documentPickerViewController = UIDocumentPickerViewController(documentTypes: types, in: .import)
         documentPickerViewController.delegate = self
-        
-        // Multiple Selection
-        if #available(iOS 11.0, *) {
-            documentPickerViewController.allowsMultipleSelection = true
-        }
-        
+        documentPickerViewController.allowsMultipleSelection = true
         present(documentPickerViewController, animated: true, completion: nil)
     }
     

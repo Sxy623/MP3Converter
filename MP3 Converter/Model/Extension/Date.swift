@@ -13,7 +13,7 @@ extension Date {
     static var currentDate: String {
         let date = Date()
         let formatter = DateFormatter()
-        formatter.dateFormat = "yy-MMdd-HHmm"
+        formatter.dateFormat = "yy-MMdd-HHmmss"
         return formatter.string(from: date)
     }
     

@@ -15,8 +15,8 @@ class AudioProgressView: UIView, CAAnimationDelegate {
     var lineMargin: CGFloat = 3.0
     var lineWidth: CGFloat = 3.0
     
-    var backgroundLineColor = CGColor(srgbRed: 1.00, green: 0.37, blue: 0.34, alpha: 0.3)
-    var foregroundLineColor = CGColor(srgbRed: 1.00, green: 0.37, blue: 0.34, alpha: 1.0)
+    var backgroundLineColor = UIColor(red: 1.00, green: 0.37, blue: 0.34, alpha: 0.3).cgColor
+    var foregroundLineColor = UIColor(red: 1.00, green: 0.37, blue: 0.34, alpha: 1.0).cgColor
     
     var backgroundLineLayer = CAShapeLayer()
     var foregroundLineLayer = CAShapeLayer()

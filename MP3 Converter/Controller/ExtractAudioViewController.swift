@@ -222,7 +222,6 @@ class ExtractAudioViewController: UIViewController {
                         try? FileManager.default.removeItem(atPath: outputURL.path)
                     }
                 } else if self.type == .mp3 {
-//                    AudioWrapper.audioPCMtoMP3(outputURL.path, targetURL.path)
                     
                     let converter = ExtAudioConverter()
                     converter.inputFile = outputURL.path
@@ -291,22 +290,23 @@ class ExtractAudioViewController: UIViewController {
     }
     
     func progressContinue() {
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { (timer) in
-            var percantage = self.audioClipView.currentPercentage
-            percantage += CGFloat(self.interval) / CGFloat(self.video.duration)
-            if percantage > self.audioClipView.endPercentage {
-                percantage = self.audioClipView.endPercentage
-                self.playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
-                self.videoPlayView.player.pause()
-                self.progressPause()
-                self.state = .finish
-                self.audioClipView.currentPercentage = self.audioClipView.startPercentage
-                self.audioClipView.updatePlayer()
-            }
-            self.audioClipView.currentPercentage = percantage
-            self.updateTimeLabel()
-            self.audioClipView.updatePlayer()
+        timer = Timer(timeInterval: interval, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
+    }
+    
+    @objc func updateTimer() {
+        var percentage = audioClipView.currentPercentage
+        percentage += CGFloat(interval) / CGFloat(video.duration)
+        if percentage > audioClipView.endPercentage {
+            percentage = audioClipView.startPercentage
+            playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
+            videoPlayView.player.pause()
+            progressPause()
+            state = .finish
         }
+        audioClipView.currentPercentage = percentage
+        updateTimeLabel()
+        audioClipView.updatePlayer()
     }
 }
 
