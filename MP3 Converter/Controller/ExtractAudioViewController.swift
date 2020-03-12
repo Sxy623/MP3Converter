@@ -78,7 +78,7 @@ class ExtractAudioViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        videoPlayView.player.pause()
+        videoPlayView.pause()
     }
     
     // MARK: - Toolbar
@@ -86,12 +86,12 @@ class ExtractAudioViewController: UIViewController {
     @IBAction func playButtonPressed(_ sender: UIButton) {
         if state == .play {
             playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
-            videoPlayView.player.pause()
+            videoPlayView.pause()
             state = .pause
             progressPause()
         } else {
             playButton.setImage(#imageLiteral(resourceName: "Pause"), for: .normal)
-            videoPlayView.player.play()
+            videoPlayView.play()
             state = .play
             progressContinue()
         }
@@ -297,13 +297,27 @@ class ExtractAudioViewController: UIViewController {
     
     @objc func updateTimer() {
         var percentage = audioClipView.currentPercentage
+
+        if percentage < audioClipView.startPercentage {
+            percentage = audioClipView.startPercentage
+            let start = Double(audioClipView.startPercentage) * video.duration
+            let startTime = CMTime(seconds: start, preferredTimescale: 120)
+            videoPlayView.player.seek(to: startTime)
+        }
+        
         percentage += CGFloat(interval) / CGFloat(video.duration)
+        
         if percentage > audioClipView.endPercentage {
+            // 回到开头并暂停
             percentage = audioClipView.startPercentage
             playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
-            videoPlayView.player.pause()
+            
+            let start = Double(audioClipView.startPercentage) * video.duration
+            let startTime = CMTime(seconds: start, preferredTimescale: 120)
+            videoPlayView.player.seek(to: startTime)
+            videoPlayView.pause()
             progressPause()
-            state = .finish
+            state = .pause
         }
         audioClipView.currentPercentage = percentage
         updateTimeLabel()
@@ -314,19 +328,12 @@ class ExtractAudioViewController: UIViewController {
 extension ExtractAudioViewController: AudioClipViewDelegate {
     
     func touchBegan(_ audioClipView: AudioClipView) {
-//        videoPlayView.player.pause()
     }
     
     func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
-//        let start = Double(audioClipView.startPercentage) * video.duration
-//        let startTime = CMTime(seconds: start, preferredTimescale: 120)
-//        videoPlayView.player.seek(to: startTime)
-        
-      updateProgressLabel()
-        
+        updateProgressLabel()
     }
     
     func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
-//        videoPlayView.player.play()
     }
 }

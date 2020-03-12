@@ -47,7 +47,7 @@ class AudioClipView: UIView {
     var startPercentage: CGFloat = 0.0
     var currentPercentage: CGFloat = 0.0
     var endPercentage: CGFloat = 1.0
-    var selectableArea: CGFloat = 0.02
+    var selectableArea: CGFloat = 0.05
     var minDistance: CGFloat = 0.05
     
     var touches: Set<UITouch>!
@@ -209,6 +209,8 @@ class AudioClipView: UIView {
             choice = .end
             parentScrollView?.isScrollEnabled = false
             delegate?.touchBegan(self)
+        } else {
+            parentScrollView?.isScrollEnabled = true
         }
     }
     
@@ -261,7 +263,7 @@ class AudioClipView: UIView {
         
         if choice == .empty { return }
         choice = .empty
-        parentScrollView?.isScrollEnabled = true
+        parentScrollView?.isScrollEnabled = false
         delegate?.touchEnd(self, startPercentage: startPercentage, endPercentage: endPercentage)
     }
 }

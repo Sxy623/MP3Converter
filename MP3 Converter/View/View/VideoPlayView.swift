@@ -23,4 +23,12 @@ class VideoPlayView: UIView {
         layer.addSublayer(playerLayer)
         player.play()
     }
+    
+    func play() {
+        player.play()
+    }
+    
+    func pause() {
+        player.pause()
+    }
 }
