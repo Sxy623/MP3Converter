@@ -16,11 +16,17 @@ class VideoManager {
         return videos.count
     }
     
-    func addVideo(url: URL) {
+    func addNewVideo(url: URL) {
         if let video = Video(url: url) {
-            videos.append(video)
+            videos.insert(video, at: 0)
         }
     }
+    
+    func appendVideo(url: URL) {
+           if let video = Video(url: url) {
+               videos.append(video)
+           }
+       }
     
     func removeVideo(at index: Int) {
         videos.remove(at: index)

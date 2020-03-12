@@ -16,7 +16,12 @@ class AudioManager {
         return audios.count
     }
     
-    func addAudio(url: URL) {
+    func addNewAudio(url: URL) {
+        let audio = Audio(url: url)
+        audios.insert(audio, at: 0)
+    }
+    
+    func appendAudio(url: URL) {
         let audio = Audio(url: url)
         audios.append(audio)
     }

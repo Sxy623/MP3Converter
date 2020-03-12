@@ -122,10 +122,10 @@ class MainViewController: UIViewController {
                 PHImageManager.default().requestAVAsset(forVideo: asset, options: option) { (asset, audioMix, info) in
                     if let asset = asset as? AVURLAsset, let videoData = try? Data(contentsOf: asset.url) {
                         print(asset.url)
-                        let fileName = asset.url.lastPathComponent
+                        let fileName = Date.currentDate + asset.url.lastPathComponent
                         if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)") {
                             try? videoData.write(to: outputURL)
-                            self.videoManager.addVideo(url: asset.url)
+                            self.videoManager.addNewVideo(url: outputURL)
                             self.recordVideo()
                             DispatchQueue.main.async {
                                 self.originalCollectionView.reloadData()
@@ -152,14 +152,14 @@ class MainViewController: UIViewController {
     }
     
     func addAudio(url: URL) {
-        audioManager.addAudio(url: url)
+        audioManager.addNewAudio(url: url)
         recordAudio()
         convertedTableView.reloadData()
         page = 1
         updateUI()
     }
     
-    // MARK: - Player Manager
+    // MARK: - Player ManagerNew
     
     func playAudio(index: Int) {
         
@@ -374,7 +374,7 @@ class MainViewController: UIViewController {
             for videoFileName in array {
                 let videoURLString = "file://" + dataFilePath + "/videos/\(videoFileName)"
                 guard let videoURL = URL(string: videoURLString) else { continue }
-                videoManager.addVideo(url: videoURL)
+                videoManager.appendVideo(url: videoURL)
             }
             originalCollectionView.reloadData()
         }
@@ -385,7 +385,7 @@ class MainViewController: UIViewController {
             for audioFileName in array {
                 let audioURLString = "file://" + dataFilePath + "/audios/\(audioFileName)"
                 guard let audioURL = URL(string: audioURLString) else { continue }
-                audioManager.addAudio(url: audioURL)
+                audioManager.appendAudio(url: audioURL)
             }
             convertedTableView.reloadData()
         }
@@ -460,10 +460,10 @@ extension MainViewController: UIDocumentPickerDelegate {
             
             if let videoData = try? Data(contentsOf: asset.url) {
                 print(asset.url)
-                let fileName = asset.url.lastPathComponent
+                let fileName = Date.currentDate + asset.url.lastPathComponent
                 if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)") {
                     try? videoData.write(to: outputURL)
-                    self.videoManager.addVideo(url: asset.url)
+                    self.videoManager.addNewVideo(url: outputURL)
                     self.recordVideo()
                     DispatchQueue.main.async {
                         self.originalCollectionView.reloadData()
