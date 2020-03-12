@@ -62,6 +62,7 @@ class ExtractAudioViewController: UIViewController {
         
         audioClipView.delegate = self
         audioClipView.parentScrollView = audioClipScrollView
+        audioClipView.rootView = view
         audioClipView.wave = video.wave
         audioClipView.startLabel = startLabel
         audioClipView.endLabel = endLabel

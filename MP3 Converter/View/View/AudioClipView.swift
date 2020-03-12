@@ -19,6 +19,7 @@ class AudioClipView: UIView {
     var wave: [CGFloat] = []
     var delegate: AudioClipViewDelegate?
     var parentScrollView: UIScrollView?
+    var rootView: UIView!
     var startLabel: UILabel?
     var endLabel: UILabel?
     
@@ -46,11 +47,21 @@ class AudioClipView: UIView {
     var startPercentage: CGFloat = 0.0
     var currentPercentage: CGFloat = 0.0
     var endPercentage: CGFloat = 1.0
-    var selectableArea: CGFloat = 0.01
+    var selectableArea: CGFloat = 0.02
     var minDistance: CGFloat = 0.05
     
-    enum Choice { case empty, start, end }
+    var touches: Set<UITouch>!
+    var event: UIEvent?
     
+    enum Direction { case empty, left, right }
+    var timer = Timer()
+    let interval = 0.02
+    var currentXPosition: CGFloat = 0
+    var scrollDirection: Direction = .empty
+    let scrollMargin: CGFloat = 20
+    let scrollSpeed: CGFloat = 5
+    
+    enum Choice { case empty, start, end }
     var choice: Choice = .empty
     
     override func draw(_ rect: CGRect) {
@@ -165,10 +176,31 @@ class AudioClipView: UIView {
         endLabel?.center = CGPoint(x: endX, y: centerY)
     }
     
+    func startScroll() {
+        timer = Timer(timeInterval: interval, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoop.Mode.common)
+    }
+    
+    func endScroll() {
+        timer.invalidate()
+    }
+    
+    @objc func updateTimer() {
+        
+        if scrollDirection == .left {
+            currentXPosition = currentXPosition - scrollSpeed
+            touchesMoved(touches, with: event)
+        } else if scrollDirection == .right {
+            currentXPosition = currentXPosition + scrollSpeed
+            touchesMoved(touches, with: event)
+        }
+        parentScrollView?.scrollRectToVisible(CGRect(x: currentXPosition, y: 0, width: 1, height: 1), animated: false)
+        updateProgressLabel()
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let xPosition = touches.first?.location(in: self).x else { return }
         let percentage = (xPosition - leadingSpace) / waveWidth
-//        let midPercentage = (startPercentage + endPercentage) / 2
         if percentage > startPercentage - selectableArea && percentage < startPercentage + selectableArea {
             choice = .start
             parentScrollView?.isScrollEnabled = false
@@ -181,7 +213,33 @@ class AudioClipView: UIView {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let xPosition = touches.first?.location(in: self).x else { return }
+        self.touches = touches
+        self.event = event
+        
+        guard let touch = touches.first else { return }
+        let xPosition = touch.location(in: self).x
+        let xInRootView = touch.location(in: rootView).x
+        
+        // 屏幕滚动
+        if xInRootView < scrollMargin {
+            if scrollDirection == .empty {
+                currentXPosition = xPosition
+                scrollDirection = .left
+                startScroll()
+            }
+        } else if xInRootView > rootView.frame.width - scrollMargin {
+            if scrollDirection == .empty {
+                currentXPosition = xPosition
+                scrollDirection = .right
+                startScroll()
+            }
+        } else {
+            if scrollDirection != .empty {
+                scrollDirection = .empty
+                endScroll()
+            }
+        }
+        
         let percentage = (xPosition - leadingSpace) / waveWidth
         switch choice {
         case .start:
@@ -196,6 +254,11 @@ class AudioClipView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if scrollDirection != .empty {
+            scrollDirection = .empty
+            endScroll()
+        }
+        
         if choice == .empty { return }
         choice = .empty
         parentScrollView?.isScrollEnabled = true

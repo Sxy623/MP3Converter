@@ -455,21 +455,19 @@ extension MainViewController: UIDocumentPickerDelegate {
     
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for videoURL in urls {
-            let fileName = videoURL.lastPathComponent
-            let outputURLString = "file://" + dataFilePath + "/videos/\(fileName)"
             
             let asset = AVURLAsset(url: videoURL)
             
-            guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else { return }
-            exportSession.outputFileType = AVFileType.mov
-            exportSession.outputURL = URL(string: outputURLString)
-            exportSession.exportAsynchronously{
-                
-                self.videoManager.addVideo(url: videoURL)
-                self.recordVideo()
-                
-                DispatchQueue.main.async {
-                    self.originalCollectionView.reloadData()
+            if let videoData = try? Data(contentsOf: asset.url) {
+                print(asset.url)
+                let fileName = asset.url.lastPathComponent
+                if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)") {
+                    try? videoData.write(to: outputURL)
+                    self.videoManager.addVideo(url: asset.url)
+                    self.recordVideo()
+                    DispatchQueue.main.async {
+                        self.originalCollectionView.reloadData()
+                    }
                 }
             }
         }
