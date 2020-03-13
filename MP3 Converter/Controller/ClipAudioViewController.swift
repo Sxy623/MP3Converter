@@ -54,6 +54,9 @@ class ClipAudioViewController: UIViewController {
         
         volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
+        Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { (timer) in
+            self.updateVolumeLabel()
+        }
         
         player = AVPlayer(url: audio.url)
         player.play()
@@ -158,12 +161,15 @@ class ClipAudioViewController: UIViewController {
             volumeImage.image = #imageLiteral(resourceName: "音量 mid")
         }
         player.volume = volume / 100
-        
-        // 设置音量标签
-        let trackRect = sender.trackRect(forBounds: sender.frame)
-        let thumbRect = sender.thumbRect(forBounds: sender.bounds, trackRect: trackRect, value: sender.value)
+        updateVolumeLabel()
+    }
+    
+    /* 音量百分比标签 */
+    func updateVolumeLabel() {
+        let trackRect = volumeSlider.trackRect(forBounds: volumeSlider.frame)
+        let thumbRect = volumeSlider.thumbRect(forBounds: volumeSlider.bounds, trackRect: trackRect, value: volumeSlider.value)
         volumeLabel.text = "\(Int(volume))%"
-        volumeLabel.center = CGPoint(x: thumbRect.midX, y: volumeLabel.center.y)
+        volumeLabel.center = CGPoint(x: thumbRect.midX, y: volumeSlider.frame.maxY + 20)
     }
     
     func progressPause() {
