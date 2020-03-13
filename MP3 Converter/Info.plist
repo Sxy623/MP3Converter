@@ -60,5 +60,7 @@
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>上传视频</string>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
 </dict>
 </plist>
