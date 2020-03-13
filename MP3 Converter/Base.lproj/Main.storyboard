@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9l-kS-fm1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="P9l-kS-fm1">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -655,9 +655,10 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BV6-wJ-KTF">
-                                                        <rect key="frame" x="91" y="275" width="224" height="80"/>
+                                                        <rect key="frame" x="88" y="275" width="227" height="80"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="80" id="2Uo-Mr-As1"/>
+                                                            <constraint firstAttribute="width" constant="227" id="sQ7-z1-g8w"/>
                                                         </constraints>
                                                         <string key="text">使用库乐队，
 自定义绝妙铃声。</string>
@@ -789,15 +790,14 @@
                                                     <constraint firstItem="Cze-99-Nj1" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="BxL-fl-kGV"/>
                                                     <constraint firstItem="lsk-vl-ZHA" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="DTP-Oh-OMW"/>
                                                     <constraint firstItem="s28-tM-xVF" firstAttribute="top" secondItem="rVD-iq-9ZE" secondAttribute="bottom" constant="108" id="HRb-Mr-S1f"/>
-                                                    <constraint firstItem="BV6-wJ-KTF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PCO-OG-z2h" secondAttribute="leading" constant="20" symbolic="YES" id="KzT-9b-LhP"/>
                                                     <constraint firstItem="Unx-KN-KUI" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="LPx-Wp-og7"/>
                                                     <constraint firstItem="979-US-fsK" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="MHJ-7E-cpj"/>
                                                     <constraint firstItem="v8M-MT-XxS" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="Q02-AQ-Exn"/>
                                                     <constraint firstItem="oS4-Pg-fcO" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="SJr-hW-KDA"/>
-                                                    <constraint firstAttribute="trailing" secondItem="BV6-wJ-KTF" secondAttribute="trailing" constant="60" id="Uyg-ul-cDc"/>
                                                     <constraint firstItem="Unx-KN-KUI" firstAttribute="top" secondItem="lsk-vl-ZHA" secondAttribute="bottom" constant="64" id="Vab-Lg-HHP"/>
                                                     <constraint firstItem="BV6-wJ-KTF" firstAttribute="top" secondItem="979-US-fsK" secondAttribute="bottom" constant="60" id="XFV-Aj-0s0"/>
                                                     <constraint firstItem="bKe-E4-I57" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="a8C-na-FB0"/>
+                                                    <constraint firstItem="BV6-wJ-KTF" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" constant="14" id="aGE-vH-oem"/>
                                                     <constraint firstItem="Tjf-kA-zub" firstAttribute="centerX" secondItem="PCO-OG-z2h" secondAttribute="centerX" id="ajL-Dv-LhW"/>
                                                     <constraint firstItem="979-US-fsK" firstAttribute="top" secondItem="PCO-OG-z2h" secondAttribute="top" constant="119" id="egZ-0M-nLi"/>
                                                     <constraint firstItem="BCT-Pj-1ny" firstAttribute="top" secondItem="Tjf-kA-zub" secondAttribute="bottom" constant="64" id="ema-Sd-QnJ"/>
@@ -1432,6 +1432,9 @@
             <point key="canvasLocation" x="138.40000000000001" y="109.35960591133005"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="1JP-en-GwA"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="1200x630wa" width="96" height="96"/>
         <image name="Background" width="375" height="803"/>
@@ -1467,7 +1470,4 @@
             <color red="1" green="0.37299999594688416" blue="0.33700001239776611" alpha="0.30000001192092896" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="1JP-en-GwA"/>
-    </inferredMetricsTieBreakers>
 </document>
