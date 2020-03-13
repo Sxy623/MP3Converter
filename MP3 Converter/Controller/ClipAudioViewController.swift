@@ -52,7 +52,7 @@ class ClipAudioViewController: UIViewController {
         audioClipView.endLabel = endLabel
         updateProgressLabel()
         
-        volumeImage.image = #imageLiteral(resourceName: "音量 mid")
+        volumeImage.image = #imageLiteral(resourceName: "Volume")
         volumeSlider.setThumbImage(#imageLiteral(resourceName: "Oval"), for: .normal)
         Timer.scheduledTimer(withTimeInterval: 0.01, repeats: false) { (timer) in
             self.updateVolumeLabel()
@@ -154,11 +154,11 @@ class ClipAudioViewController: UIViewController {
     @IBAction func volumeChanged(_ sender: UISlider) {
         volume = sender.value
         if volume == 0 {
-            volumeImage.image = #imageLiteral(resourceName: "音量 min")
+            volumeImage.image = #imageLiteral(resourceName: "Volume min")
         } else if volume == 200 {
-            volumeImage.image = #imageLiteral(resourceName: "音量 max")
+            volumeImage.image = #imageLiteral(resourceName: "Volume max")
         } else {
-            volumeImage.image = #imageLiteral(resourceName: "音量 mid")
+            volumeImage.image = #imageLiteral(resourceName: "Volume")
         }
         player.volume = volume / 100
         updateVolumeLabel()
