@@ -1,16 +1,20 @@
 PODS:
   - BSImagePicker (3.1.1)
+  - MBProgressHUD (1.2.0)
 
 DEPENDENCIES:
   - BSImagePicker (~> 3.1)
+  - MBProgressHUD (~> 1.2.0)
 
 SPEC REPOS:
   trunk:
     - BSImagePicker
+    - MBProgressHUD
 
 SPEC CHECKSUMS:
   BSImagePicker: 86f28e0f63b78d35fec7c6f0174b7af9e6f1431e
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
 
-PODFILE CHECKSUM: 822d75be0f2704492e40dd79ca090c233a3d1eb7
+PODFILE CHECKSUM: 88d71406ee797721abc88d03b23fba0f981092dc
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.8.4

@@ -11,6 +11,7 @@ import AVFoundation
 import CoreServices
 import BSImagePicker
 import Photos
+import MBProgressHUD
 
 class MainViewController: UIViewController {
     
@@ -110,29 +111,41 @@ class MainViewController: UIViewController {
         imagePicker.doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: nil)
 
         self.presentImagePicker(imagePicker, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
+            let queue = OperationQueue()
+            queue.maxConcurrentOperationCount = 1
+            
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = "Loading video"
+            hud.backgroundView.blurEffectStyle = .regular
             
             for asset in assets {
                 
                 let option = PHVideoRequestOptions()
                 option.isNetworkAccessAllowed = true
                 option.progressHandler = { (progress, error, stop, info) in
-                    print(progress)
+                    DispatchQueue.main.async {
+                        hud.label.text = "Loading video from iCloud"
+                    }
                 }
                 
-                PHImageManager.default().requestAVAsset(forVideo: asset, options: option) { (asset, audioMix, info) in
-                    if let asset = asset as? AVURLAsset, let videoData = try? Data(contentsOf: asset.url) {
-                        print(asset.url)
-                        let fileName = Date.currentDate + asset.url.lastPathComponent
-                        if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)") {
-                            try? videoData.write(to: outputURL)
-                            self.videoManager.addNewVideo(url: outputURL)
-                            self.recordVideo()
-                            DispatchQueue.main.async {
-                                self.originalCollectionView.reloadData()
+                let operation = BlockOperation {
+                    PHImageManager.default().requestAVAsset(forVideo: asset, options: option) { (asset, audioMix, info) in
+                        if let asset = asset as? AVURLAsset, let videoData = try? Data(contentsOf: asset.url) {
+                            print(asset.url)
+                            let fileName = Date.currentDate + asset.url.lastPathComponent
+                            if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)") {
+                                try? videoData.write(to: outputURL)
+                                self.videoManager.addNewVideo(url: outputURL)
+                                self.recordVideo()
+                                DispatchQueue.main.async {
+                                    self.originalCollectionView.reloadData()
+                                    hud.hide(animated: true)
+                                }
                             }
                         }
                     }
                 }
+                queue.addOperation(operation)
             }
         })
     }

@@ -7,5 +7,6 @@ target 'MP3 Converter' do
 
   # Pods for MP3 Converter
   pod "BSImagePicker", "~> 3.1"
+  pod 'MBProgressHUD', '~> 1.2.0'
 
 end
