@@ -115,8 +115,9 @@ class MainViewController: UIViewController {
             queue.maxConcurrentOperationCount = 1
             
             let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
-            hud.label.text = "Loading video"
+            hud.label.text = "正在载入视频"
             hud.backgroundView.blurEffectStyle = .regular
+            hud.graceTime = 1
             
             for asset in assets {
                 
@@ -124,7 +125,7 @@ class MainViewController: UIViewController {
                 option.isNetworkAccessAllowed = true
                 option.progressHandler = { (progress, error, stop, info) in
                     DispatchQueue.main.async {
-                        hud.label.text = "Loading video from iCloud"
+                        hud.label.text = "正在从 iCloud 载入视频"
                     }
                 }
                 
