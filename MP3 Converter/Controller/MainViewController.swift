@@ -573,7 +573,37 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
         let audioURL = audioManager.getURL(at: index)
         let aiffURL = URL(fileURLWithPath: "\(copyToPath)/Media/ringtone.aiff")
         
-        AudioConverter.sharedInstance.convertAudioToAIFF(audioURL, outputURL: aiffURL)
+//        let converter = ExtAudioConverter()
+//        converter.inputFile = audioURL.path
+//        converter.outputFile = aiffURL.path
+//        converter.convert()
+        
+        // MP3
+        if audioManager.getType(at: index) == .mp3 {
+            
+            let asset = AVURLAsset(url: audioURL)
+            let targetURL = audioURL.deletingPathExtension().appendingPathExtension("m4a")
+            let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)!
+            exportSession.outputFileType = .m4a
+            exportSession.outputURL = targetURL
+            
+            exportSession.exportAsynchronously {
+                
+                guard case exportSession.status = AVAssetExportSession.Status.completed else {
+                    print("\(String(describing: exportSession.error?.localizedDescription))")
+                    return
+                }
+                
+                AudioConverter.sharedInstance.convertAudioToAIFF(targetURL, outputURL: aiffURL)
+                
+                if FileManager.default.fileExists(atPath: targetURL.path) {
+                    try? FileManager.default.removeItem(atPath: targetURL.path)
+                }
+            }
+            
+        } else {
+            AudioConverter.sharedInstance.convertAudioToAIFF(audioURL, outputURL: aiffURL)
+        }
         
         let activityViewController = UIActivityViewController(activityItems: [URL(fileURLWithPath: copyToPath)], applicationActivities: [])
         present(activityViewController, animated: true, completion: nil)
@@ -589,7 +619,7 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
         let ranameAlert = UIAlertController(title: "重命名", message: "请输入新名称", preferredStyle: .alert)
         
         ranameAlert.addTextField { (textField) in
-            textField.placeholder = "Placeholder"
+            textField.placeholder = self.audioManager.getTitle(at: index)
             textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: .editingChanged)
         }
         
