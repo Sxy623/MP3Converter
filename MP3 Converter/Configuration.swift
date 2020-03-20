@@ -13,7 +13,7 @@ class Configuration {
     static let sharedInstance = Configuration()
     
     var videoType: VideoType = .mp4
-    var audioType: AudioType = .m4a
+    var audioType: AudioType = .mp3
     
     func dataFilePath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)

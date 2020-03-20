@@ -37,9 +37,11 @@ class AudioClipView: UIView {
     
     var backgroundLineColor = UIColor(red: 1.00, green: 0.37, blue: 0.34, alpha: 0.3).cgColor
     var foregroundLineColor = UIColor(red: 1.00, green: 0.37, blue: 0.34, alpha: 1.0).cgColor
+    var selectedAreaColor = UIColor(red: 1.00, green: 0.37, blue: 0.34, alpha: 0.1).cgColor
     
     var backgroundLineLayer = CAShapeLayer()
     var foregroundLineLayer = CAShapeLayer()
+    var selectedAreaLayer = CAShapeLayer()
     var maskLayer = CAShapeLayer()
     var clipLayer = CAShapeLayer()
     var playerLayer = CAShapeLayer()
@@ -49,6 +51,7 @@ class AudioClipView: UIView {
     var endPercentage: CGFloat = 1.0
     var selectableArea: CGFloat = 0.05
     var minDistance: CGFloat = 0.05
+    var minLabelDistance: CGFloat = 35.0
     
     var touches: Set<UITouch>!
     var event: UIEvent?
@@ -84,6 +87,14 @@ class AudioClipView: UIView {
         
         initLineLayer()
         
+        selectedAreaLayer.lineWidth = clipHeight
+        selectedAreaLayer.fillColor = UIColor.clear.cgColor
+        selectedAreaLayer.lineCap = CAShapeLayerLineCap.round
+        selectedAreaLayer.strokeColor = selectedAreaColor
+        layer.addSublayer(selectedAreaLayer)
+        
+        initSelectedAreaLayer()
+        
         maskLayer.strokeColor = UIColor.black.cgColor
         maskLayer.strokeStart = startPercentage
         maskLayer.strokeEnd = endPercentage
@@ -92,7 +103,7 @@ class AudioClipView: UIView {
         clipLayer.lineWidth = 1
         clipLayer.fillColor = UIColor.clear.cgColor
         clipLayer.lineCap = CAShapeLayerLineCap.round
-        clipLayer.strokeColor = UIColor.gray.cgColor
+        clipLayer.strokeColor = foregroundLineColor
         layer.addSublayer(clipLayer)
         updateClip()
         
@@ -135,6 +146,13 @@ class AudioClipView: UIView {
         self.foregroundLineLayer.path = path.cgPath
     }
     
+    func initSelectedAreaLayer() {
+        let path = UIBezierPath()
+        path.move(to: CGPoint(x: leadingSpace, y: self.frame.size.height / 2))
+        path.addLine(to: CGPoint(x: self.frame.size.width - trailingSpace, y: self.frame.size.height / 2))
+        self.selectedAreaLayer.path = path.cgPath
+    }
+    
     func addMask() {
         let path = UIBezierPath()
         path.move(to: CGPoint(x: leadingSpace, y: self.frame.size.height / 2))
@@ -144,6 +162,7 @@ class AudioClipView: UIView {
         self.maskLayer.lineWidth = self.frame.size.width
         self.maskLayer.path = path.cgPath
         self.foregroundLineLayer.mask = self.maskLayer
+        self.selectedAreaLayer.mask = self.maskLayer
     }
     
     func updateClip() {
@@ -169,10 +188,17 @@ class AudioClipView: UIView {
         
         let centerY = self.frame.size.height / 2 + clipHeight / 2 + spaceToLabel
         
-        let startX = leadingSpace + waveWidth * startPercentage
-        startLabel?.center = CGPoint(x:  startX, y: centerY)
+        var startX = leadingSpace + waveWidth * startPercentage
+        var endX = leadingSpace + waveWidth * endPercentage
         
-        let endX = leadingSpace + waveWidth * endPercentage
+        // 处理距离过近的情况
+        if endX - startX < minLabelDistance {
+            let midX = (startX + endX) / 2
+            startX = midX - minLabelDistance / 2
+            endX = midX + minLabelDistance / 2
+        }
+        
+        startLabel?.center = CGPoint(x:  startX, y: centerY)
         endLabel?.center = CGPoint(x: endX, y: centerY)
     }
     
@@ -203,14 +229,14 @@ class AudioClipView: UIView {
         let percentage = (xPosition - leadingSpace) / waveWidth
         if percentage > startPercentage - selectableArea && percentage < startPercentage + selectableArea {
             choice = .start
-            parentScrollView?.isScrollEnabled = false
+//            parentScrollView?.isScrollEnabled = false
             delegate?.touchBegan(self)
         } else if percentage > endPercentage - selectableArea && percentage < endPercentage + selectableArea {
             choice = .end
-            parentScrollView?.isScrollEnabled = false
+//            parentScrollView?.isScrollEnabled = false
             delegate?.touchBegan(self)
         } else {
-            parentScrollView?.isScrollEnabled = true
+//            parentScrollView?.isScrollEnabled = true
         }
     }
     
@@ -220,27 +246,27 @@ class AudioClipView: UIView {
         
         guard let touch = touches.first else { return }
         let xPosition = touch.location(in: self).x
-        let xInRootView = touch.location(in: rootView).x
+//        let xInRootView = touch.location(in: rootView).x
         
         // 屏幕滚动
-        if xInRootView < scrollMargin {
-            if scrollDirection == .empty {
-                currentXPosition = xPosition
-                scrollDirection = .left
-                startScroll()
-            }
-        } else if xInRootView > rootView.frame.width - scrollMargin {
-            if scrollDirection == .empty {
-                currentXPosition = xPosition
-                scrollDirection = .right
-                startScroll()
-            }
-        } else {
-            if scrollDirection != .empty {
-                scrollDirection = .empty
-                endScroll()
-            }
-        }
+//        if xInRootView < scrollMargin {
+//            if scrollDirection == .empty {
+//                currentXPosition = xPosition
+//                scrollDirection = .left
+//                startScroll()
+//            }
+//        } else if xInRootView > rootView.frame.width - scrollMargin {
+//            if scrollDirection == .empty {
+//                currentXPosition = xPosition
+//                scrollDirection = .right
+//                startScroll()
+//            }
+//        } else {
+//            if scrollDirection != .empty {
+//                scrollDirection = .empty
+//                endScroll()
+//            }
+//        }
         
         let percentage = (xPosition - leadingSpace) / waveWidth
         switch choice {
@@ -256,14 +282,14 @@ class AudioClipView: UIView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if scrollDirection != .empty {
-            scrollDirection = .empty
-            endScroll()
-        }
+//        if scrollDirection != .empty {
+//            scrollDirection = .empty
+//            endScroll()
+//        }
         
         if choice == .empty { return }
         choice = .empty
-        parentScrollView?.isScrollEnabled = false
+//        parentScrollView?.isScrollEnabled = false
         delegate?.touchEnd(self, startPercentage: startPercentage, endPercentage: endPercentage)
     }
 }

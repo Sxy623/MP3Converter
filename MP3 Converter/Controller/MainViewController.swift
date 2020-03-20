@@ -65,6 +65,14 @@ class MainViewController: UIViewController {
         convertedTableView.tableFooterView = UIView()
         
         updateUI()
+        
+        
+        // Play sound in silent mode
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+        } catch(let error) {
+            print(error.localizedDescription)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -525,7 +533,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         cell.rootViewController = self
         cell.delegate = self
         cell.index = indexPath.row
-        cell.audioTitleLabel.text = audioManager.getTitle(at: indexPath.row)
+        cell.audioTitleLabel.text = audioManager.getURL(at: indexPath.row).lastPathComponent
         cell.durationTimeLabel.text = audioManager.getDurationTime(at: indexPath.row)
         cell.audioProgressView.duration = CGFloat(audioManager.audios[indexPath.row].duration)
         cell.audioProgressView.wave = audioManager.audios[indexPath.row].wave

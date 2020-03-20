@@ -43,6 +43,8 @@ class ClipAudioViewController: UIViewController {
         audioClipView.waveHeight = 48.0
         audioClipView.clipHeight = 82.0
         audioClipView.spaceToLabel = 15.0
+        audioClipView.leadingSpace = 24.0
+        audioClipView.trailingSpace = 24.0
         
         audioClipView.delegate = self
         audioClipView.parentScrollView = audioClipScrollView

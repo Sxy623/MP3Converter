@@ -740,7 +740,7 @@
                                                             <constraint firstAttribute="height" constant="40" id="GhE-f3-qz2"/>
                                                         </constraints>
                                                         <string key="text">2. 将音乐分享到库乐队以后，在库乐队中长按项目文件
-调出菜单，并点击“分享”。</string>
+调出菜单，并点击“共享”。</string>
                                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                                         <color key="textColor" name="3C3C43 60%"/>
                                                         <nil key="highlightedColor"/>
@@ -771,12 +771,12 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8M-MT-XxS">
-                                                        <rect key="frame" x="17" y="2040" width="341" height="40"/>
+                                                        <rect key="frame" x="18.333333333333343" y="2040" width="338.33333333333326" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="Sy8-GF-vAw"/>
                                                         </constraints>
-                                                        <string key="text">4. 最后一步，只要在“设置 -&gt; 声音与触感 -&gt; 铃声” 中
-设置自己喜欢的铃声即可。</string>
+                                                        <string key="text">4. 最后一步，只要在“设置 &gt; 声音与触感 &gt; 电话铃声” 
+中设置自己喜欢的铃声即可。</string>
                                                         <fontDescription key="fontDescription" name="PingFangSC-Regular" family="PingFang SC" pointSize="14"/>
                                                         <color key="textColor" name="3C3C43 60%"/>
                                                         <nil key="highlightedColor"/>
@@ -921,7 +921,7 @@
                                                 <rect key="frame" x="0.0" y="37" width="375" height="120"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuQ-Zr-z32" customClass="AudioClipView" customModule="MP3_Converter" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="750" height="120"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddS-lW-BV0">
                                                                 <rect key="frame" x="32" y="98" width="38" height="16"/>
@@ -939,9 +939,6 @@
                                                             </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="750" id="PEP-GA-QIN"/>
-                                                        </constraints>
                                                     </view>
                                                 </subviews>
                                                 <constraints>
@@ -953,6 +950,7 @@
                                                     <constraint firstItem="FuQ-Zr-z32" firstAttribute="top" secondItem="cAj-oZ-QdK" secondAttribute="top" id="Rij-Zt-1Jg"/>
                                                     <constraint firstItem="cAj-oZ-QdK" firstAttribute="bottom" secondItem="FuQ-Zr-z32" secondAttribute="bottom" id="Z91-ml-BUL"/>
                                                     <constraint firstItem="FuQ-Zr-z32" firstAttribute="top" secondItem="8f9-kz-hpG" secondAttribute="top" id="Zt3-yw-Jm0"/>
+                                                    <constraint firstItem="8f9-kz-hpG" firstAttribute="trailing" secondItem="FuQ-Zr-z32" secondAttribute="trailing" id="uL3-Me-AzT"/>
                                                 </constraints>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="cAj-oZ-QdK"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="8f9-kz-hpG"/>
@@ -990,7 +988,7 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="音量 mid" translatesAutoresizingMaskIntoConstraints="NO" id="4MZ-Sf-5l7">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Volume" translatesAutoresizingMaskIntoConstraints="NO" id="4MZ-Sf-5l7">
                                                         <rect key="frame" x="123" y="24" width="24" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="A0x-rk-3oe"/>
@@ -1014,30 +1012,30 @@
                                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="q5J-ck-Htr">
                                                                 <rect key="frame" x="0.0" y="0.0" width="214" height="20"/>
                                                                 <subviews>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-9g-MJT">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="20" id="n9R-9y-aTR"/>
-                                                                        </constraints>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                                        <state key="normal" title="m4a">
-                                                                            <color key="titleColor" name="FF5F56 100%"/>
-                                                                        </state>
-                                                                        <connections>
-                                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="ne5-uv-o6e"/>
-                                                                        </connections>
-                                                                    </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjD-Ry-FEO">
-                                                                        <rect key="frame" x="46" y="0.0" width="30" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="20" id="0w8-uA-GJ2"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                         <state key="normal" title="mp3">
-                                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <color key="titleColor" name="FF5F56 100%"/>
                                                                         </state>
                                                                         <connections>
                                                                             <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="YJU-Rj-N1W"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K0o-9g-MJT">
+                                                                        <rect key="frame" x="46" y="0.0" width="30" height="20"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="20" id="n9R-9y-aTR"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                        <state key="normal" title="m4a">
+                                                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        </state>
+                                                                        <connections>
+                                                                            <action selector="typeButtonPressed:" destination="eDS-0l-IPQ" eventType="touchUpInside" id="ne5-uv-o6e"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXY-V6-3BQ">
@@ -1302,7 +1300,7 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="音量 mid" translatesAutoresizingMaskIntoConstraints="NO" id="ke7-y0-c1y">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Volume" translatesAutoresizingMaskIntoConstraints="NO" id="ke7-y0-c1y">
                                 <rect key="frame" x="76" y="719" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="ieu-jZ-DZU"/>
@@ -1325,7 +1323,7 @@
                                 <rect key="frame" x="0.0" y="332" width="375" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Jw-Fa-qFE" customClass="AudioClipView" customModule="MP3_Converter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="750" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tGo-iJ-MNr">
                                                 <rect key="frame" x="14" y="128" width="38" height="13.333333333333314"/>
@@ -1342,9 +1340,6 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="750" id="gIm-tc-Mvw"/>
-                                        </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -1353,6 +1348,7 @@
                                     <constraint firstAttribute="height" constant="150" id="O0s-e6-rhw"/>
                                     <constraint firstItem="8Jw-Fa-qFE" firstAttribute="top" secondItem="eg3-zg-EUb" secondAttribute="top" id="Twc-Hg-ffX"/>
                                     <constraint firstItem="8Jw-Fa-qFE" firstAttribute="leading" secondItem="TZs-7d-YqU" secondAttribute="leading" id="UN3-MR-PtO"/>
+                                    <constraint firstItem="TZs-7d-YqU" firstAttribute="trailing" secondItem="8Jw-Fa-qFE" secondAttribute="trailing" id="aUw-bO-1fM"/>
                                     <constraint firstItem="8Jw-Fa-qFE" firstAttribute="leading" secondItem="eg3-zg-EUb" secondAttribute="leading" id="ct6-rS-8zd"/>
                                     <constraint firstItem="8Jw-Fa-qFE" firstAttribute="bottom" secondItem="TZs-7d-YqU" secondAttribute="bottom" id="fRF-Sv-abN"/>
                                     <constraint firstItem="eg3-zg-EUb" firstAttribute="bottom" secondItem="8Jw-Fa-qFE" secondAttribute="bottom" id="q6U-nb-t6P"/>
@@ -1449,14 +1445,14 @@
         <image name="Settings" width="33" height="33"/>
         <image name="Share" width="27" height="27"/>
         <image name="Triangle" width="7" height="10"/>
-        <image name="Tutorial 1" width="335" height="204"/>
+        <image name="Tutorial 1" width="335" height="203"/>
         <image name="Tutorial 2" width="335" height="309"/>
         <image name="Tutorial 3" width="336" height="310"/>
         <image name="Tutorial 4" width="336" height="204"/>
         <image name="Video" width="86" height="86"/>
+        <image name="Volume" width="20" height="20"/>
         <image name="Xmark" width="18" height="18"/>
         <image name="download" width="16" height="16"/>
-        <image name="音量 mid" width="15" height="15"/>
         <namedColor name="3C3C43 60%">
             <color red="0.23499999940395355" green="0.23499999940395355" blue="0.2630000114440918" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

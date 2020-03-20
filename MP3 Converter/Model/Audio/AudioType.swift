@@ -11,18 +11,18 @@ import AVFoundation
 
 enum AudioType: CaseIterable {
     
-    case m4a
     case mp3
+    case m4a
     case wav
     case aiff
-    case acc
-    case m4r
-    case flac
-    case opus
+//    case acc
+//    case m4r
+//    case flac
+//    case opus
     case caf
-    case wma
-    case ogg
-    case adx
+//    case wma
+//    case ogg
+//    case adx
     
     var string: String {
         return "\(self)"
@@ -38,22 +38,22 @@ enum AudioType: CaseIterable {
             self = .wav
         case "aiff":
             self = .aiff
-        case "acc":
-            self = .acc
-        case "m4r":
-            self = .m4r
-        case "flac":
-            self = .flac
-        case "opus":
-            self = .opus
+//        case "acc":
+//            self = .acc
+//        case "m4r":
+//            self = .m4r
+//        case "flac":
+//            self = .flac
+//        case "opus":
+//            self = .opus
         case "caf":
             self = .caf
-        case "wma":
-            self = .wma
-        case "ogg":
-            self = .ogg
-        case "adx":
-            self = .adx
+//        case "wma":
+//            self = .wma
+//        case "ogg":
+//            self = .ogg
+//        case "adx":
+//            self = .adx
         default:
             return nil
         }

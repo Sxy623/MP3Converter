@@ -26,7 +26,7 @@ class TutorialViewController: UIViewController {
         step1String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 44, length: 2))
         step1Label.attributedText = step1String
         
-        let step2String = NSMutableAttributedString(string: "2. 将音乐分享到库乐队以后，在库乐队中长按项目文件\n调出菜单，并点击“分享”。", attributes: nil)
+        let step2String = NSMutableAttributedString(string: "2. 将音乐分享到库乐队以后，在库乐队中长按项目文件\n调出菜单，并点击“共享”。", attributes: nil)
         step2String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 20, length: 6))
         step2String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 36, length: 2))
         step2Label.attributedText = step2String
@@ -36,8 +36,8 @@ class TutorialViewController: UIViewController {
         step3String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 34, length: 2))
         step3Label.attributedText = step3String
         
-        let step4String = NSMutableAttributedString(string: "4. 最后一步，只要在“设置 > 声音与触感 > 铃声” 中\n设置自己喜欢的铃声即可。", attributes: nil)
-        step4String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 12, length: 15))
+        let step4String = NSMutableAttributedString(string: "4. 最后一步，只要在“设置 > 声音与触感 > 电话铃声”\n中设置自己喜欢的铃声即可。", attributes: nil)
+        step4String.addAttribute(.foregroundColor, value: tint, range: NSRange(location: 12, length: 17))
         step4Label.attributedText = step4String
     }
     
