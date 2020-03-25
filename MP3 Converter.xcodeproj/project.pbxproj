@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		438375455D66874C69BCD4E2 /* Pods_MP3_Converter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99F2E6228D11C42545DD72CC /* Pods_MP3_Converter.framework */; };
 		900905C724029D0D006AD5A0 /* VolumeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 900905C624029D0D006AD5A0 /* VolumeSlider.swift */; };
 		901572CA2405335700E0BCC6 /* AudioProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 901572C92405335600E0BCC6 /* AudioProgressView.swift */; };
 		905A5DC5240901B600E50E60 /* PHAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905A5DC4240901B600E50E60 /* PHAsset.swift */; };
@@ -46,6 +45,7 @@
 		90FF3C5123FE7B02006AEFC7 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C5023FE7B02006AEFC7 /* Configuration.swift */; };
 		90FF3C5323FE8310006AEFC7 /* ExtractAudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C5223FE8310006AEFC7 /* ExtractAudioViewController.swift */; };
 		90FF3C5523FEAA92006AEFC7 /* AudioPreviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90FF3C5423FEAA92006AEFC7 /* AudioPreviewTableViewCell.swift */; };
+		E92CBC578F02B981E793A610 /* Pods_MP3_Converter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C5EA34C80F4B6B3D9F217FBA /* Pods_MP3_Converter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -105,8 +105,8 @@
 		90FF3C5023FE7B02006AEFC7 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		90FF3C5223FE8310006AEFC7 /* ExtractAudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtractAudioViewController.swift; sourceTree = "<group>"; };
 		90FF3C5423FEAA92006AEFC7 /* AudioPreviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPreviewTableViewCell.swift; sourceTree = "<group>"; };
-		99F2E6228D11C42545DD72CC /* Pods_MP3_Converter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MP3_Converter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4894504ED097319C08A197F /* Pods-MP3 Converter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MP3 Converter.debug.xcconfig"; path = "Target Support Files/Pods-MP3 Converter/Pods-MP3 Converter.debug.xcconfig"; sourceTree = "<group>"; };
+		C5EA34C80F4B6B3D9F217FBA /* Pods_MP3_Converter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MP3_Converter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 			files = (
 				90745FCB241158360084CF11 /* lame.framework in Frameworks */,
 				90A02FE82411049A00C419EB /* AudioToolbox.framework in Frameworks */,
-				438375455D66874C69BCD4E2 /* Pods_MP3_Converter.framework in Frameworks */,
+				E92CBC578F02B981E793A610 /* Pods_MP3_Converter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				90A02FE72411049A00C419EB /* AudioToolbox.framework */,
-				99F2E6228D11C42545DD72CC /* Pods_MP3_Converter.framework */,
+				C5EA34C80F4B6B3D9F217FBA /* Pods_MP3_Converter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -330,7 +330,7 @@
 				90B20A7523FD08EB00653F0C /* Frameworks */,
 				90B20A7623FD08EB00653F0C /* Resources */,
 				90DABF302411661A0013ED5C /* Embed Frameworks */,
-				A59B7A2D23F6A7A971946DC2 /* [CP] Embed Pods Frameworks */,
+				C68B680EA0A87FF3F78A2B97 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -412,7 +412,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A59B7A2D23F6A7A971946DC2 /* [CP] Embed Pods Frameworks */ = {
+		C68B680EA0A87FF3F78A2B97 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -616,7 +616,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = DLYUQU3Z5W;
+				DEVELOPMENT_TEAM = CE83544H6Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -653,7 +653,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = DLYUQU3Z5W;
+				DEVELOPMENT_TEAM = CE83544H6Y;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -671,7 +671,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MP3\\ Converter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.stepbeats.mp3converter;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.stepbeats.mp3converter-test";
 				PRODUCT_NAME = "极简音频提取器";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "MP3 Converter/MP3 Converter-Bridging-Header.h";

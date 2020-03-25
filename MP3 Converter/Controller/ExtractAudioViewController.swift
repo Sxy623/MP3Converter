@@ -133,17 +133,23 @@ class ExtractAudioViewController: UIViewController {
     @IBAction func startButtonPressed(_ sender: UIBarButtonItem) {
         
         let ranameAlert = UIAlertController(title: "音频文件重命名", message: "请输入名称", preferredStyle: .alert)
+        var titleTextfield: UITextField!
         
         ranameAlert.addTextField { (textField) in
             textField.placeholder = Date.currentDate
-            textField.text = Date.currentDate
-            textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: .editingChanged)
+            titleTextfield = textField
+            // 不允许命名为空
+            // textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: .editingChanged)
         }
         
         let cancelAction = UIAlertAction(title: "取消", style: .cancel)
         let confirmAction = UIAlertAction(title: "确认", style: .default) { action in
             
-            let audioTitle: String = ranameAlert.textFields![0].text!
+            var audioTitle: String = ranameAlert.textFields![0].text!
+            
+            if audioTitle.isEmpty {
+                audioTitle = titleTextfield.placeholder!
+            }
             
             // Create a composition
             let composition = AVMutableComposition()
@@ -165,11 +171,11 @@ class ExtractAudioViewController: UIViewController {
             }
             
             // Get url for temp m4a file
-            let outputURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).m4a"
+            let outputURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).m4a".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             guard let outputURL = URL(string: outputURLString) else { return }
             
             // Get url for target
-            let targetURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)"
+            let targetURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             guard let targetURL = URL(string: targetURLString) else { return }
             
             if FileManager.default.fileExists(atPath: targetURL.path) {
@@ -312,17 +318,12 @@ class ExtractAudioViewController: UIViewController {
         
         percentage += CGFloat(interval) / CGFloat(video.duration)
         
+        // 回到开头
         if percentage > audioClipView.endPercentage {
-            // 回到开头并暂停
             percentage = audioClipView.startPercentage
-            playButton.setImage(#imageLiteral(resourceName: "Play"), for: .normal)
-            
             let start = Double(audioClipView.startPercentage) * video.duration
             let startTime = CMTime(seconds: start, preferredTimescale: 120)
             videoPlayView.player.seek(to: startTime)
-            videoPlayView.pause()
-            progressPause()
-            state = .pause
         }
         audioClipView.currentPercentage = percentage
         updateTimeLabel()
@@ -333,6 +334,8 @@ class ExtractAudioViewController: UIViewController {
 extension ExtractAudioViewController: AudioClipViewDelegate {
     
     func touchBegan(_ audioClipView: AudioClipView) {
+        progressPause()
+        videoPlayView.pause()
     }
     
     func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
@@ -340,5 +343,16 @@ extension ExtractAudioViewController: AudioClipViewDelegate {
     }
     
     func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
+        progressContinue()
+        let percentage = audioClipView.startPercentage
+        
+        let start = Double(audioClipView.startPercentage) * video.duration
+        let startTime = CMTime(seconds: start, preferredTimescale: 120)
+        videoPlayView.player.seek(to: startTime)
+        videoPlayView.play()
+        
+        audioClipView.currentPercentage = percentage
+        updateTimeLabel()
+        audioClipView.updatePlayer()
     }
 }

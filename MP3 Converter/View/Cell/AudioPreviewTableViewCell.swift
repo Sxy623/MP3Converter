@@ -37,13 +37,17 @@ class AudioPreviewTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    @IBAction func playButtonPressed(_ sender: UIButton) {
+    func playOrPause() {
         if rootViewController?.playerState == PlayerState.play && rootViewController?.currentPlayingIndex == index {
-            sender.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal) // Pause
+            playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal) // Pause
         } else {
-            sender.setBackgroundImage(#imageLiteral(resourceName: "Pause.circle"), for: .normal) // Play
+            playButton.setBackgroundImage(#imageLiteral(resourceName: "Pause.circle"), for: .normal) // Play
         }
         rootViewController?.playAudio(index: index)
+    }
+    
+    @IBAction func playButtonPressed(_ sender: UIButton) {
+        playOrPause()
     }
     
     @IBAction func ringtonePressed(_ sender: UIButton) {

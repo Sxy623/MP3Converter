@@ -394,7 +394,7 @@ class MainViewController: UIViewController {
         if FileManager.default.fileExists(atPath: videoListPath) {
             let array = NSArray(contentsOfFile: videoListPath) as! [String]
             for videoFileName in array {
-                let videoURLString = "file://" + dataFilePath + "/videos/\(videoFileName)"
+                let videoURLString = "file://" + dataFilePath + "/videos/\(videoFileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
                 guard let videoURL = URL(string: videoURLString) else { continue }
                 videoManager.appendVideo(url: videoURL)
             }
@@ -405,7 +405,7 @@ class MainViewController: UIViewController {
         if FileManager.default.fileExists(atPath: audioListPath) {
             let array = NSArray(contentsOfFile: audioListPath) as! [String]
             for audioFileName in array {
-                let audioURLString = "file://" + dataFilePath + "/audios/\(audioFileName)"
+                let audioURLString = "file://" + dataFilePath + "/audios/\(audioFileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
                 guard let audioURL = URL(string: audioURLString) else { continue }
                 audioManager.appendAudio(url: audioURL)
             }
@@ -546,6 +546,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if let cell = tableView.cellForRow(at: indexPath) as? AudioPreviewTableViewCell {
+            cell.playOrPause()
+        }
     }
 }
 
@@ -619,7 +622,8 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
         let ranameAlert = UIAlertController(title: "重命名", message: "请输入新名称", preferredStyle: .alert)
         
         ranameAlert.addTextField { (textField) in
-            textField.placeholder = self.audioManager.getTitle(at: index)
+//            textField.placeholder = self.audioManager.getTitle(at: index)
+            textField.text = self.audioManager.getTitle(at: index)
             textField.addTarget(self, action: #selector(self.alertTextFieldDidChange(field:)), for: .editingChanged)
         }
         
@@ -644,7 +648,6 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
         
         ranameAlert.addAction(cancelAction)
         ranameAlert.addAction(confirmAction)
-        confirmAction.isEnabled = false
         ranameAlert.preferredAction = confirmAction
         
         present(ranameAlert, animated: true, completion: nil)
