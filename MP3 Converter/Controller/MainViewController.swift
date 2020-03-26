@@ -398,7 +398,7 @@ class MainViewController: UIViewController {
         if FileManager.default.fileExists(atPath: videoListPath) {
             let array = NSArray(contentsOfFile: videoListPath) as! [String]
             for videoFileName in array {
-                let videoURLString = dataFilePath + "/videos/\(videoFileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                let videoURLString = dataFilePath + "/videos/\(videoFileName)"
                 let videoURL = URL(fileURLWithPath: videoURLString)
                 videoManager.appendVideo(url: videoURL)
             }
@@ -409,7 +409,7 @@ class MainViewController: UIViewController {
         if FileManager.default.fileExists(atPath: audioListPath) {
             let array = NSArray(contentsOfFile: audioListPath) as! [String]
             for audioFileName in array {
-                let audioURLString = dataFilePath + "/audios/\(audioFileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                let audioURLString = dataFilePath + "/audios/\(audioFileName)"
                 let audioURL = URL(fileURLWithPath: audioURLString)
                 audioManager.appendAudio(url: audioURL)
             }
@@ -487,7 +487,7 @@ extension MainViewController: UIDocumentPickerDelegate {
             if let videoData = try? Data(contentsOf: asset.url) {
                 print(asset.url)
                 let fileName = Date.currentDate + asset.url.lastPathComponent
-                let outputURL = URL(fileURLWithPath: self.dataFilePath + "/videos/\(fileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                let outputURL = URL(fileURLWithPath: self.dataFilePath + "/videos/\(fileName)")
                 try? videoData.write(to: outputURL)
                 self.videoManager.addNewVideo(url: outputURL)
                 self.recordVideo()

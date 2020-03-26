@@ -171,11 +171,11 @@ class ExtractAudioViewController: UIViewController {
             }
             
             // Get url for temp m4a file
-            let outputURLString = self.dataFilePath + "/audios/\(audioTitle).m4a".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let outputURLString = self.dataFilePath + "/audios/\(audioTitle).m4a"
             let outputURL = URL(fileURLWithPath: outputURLString)
             
             // Get url for target
-            let targetURLString = self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let targetURLString = self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)"
             let targetURL = URL(fileURLWithPath: targetURLString)
             
             if FileManager.default.fileExists(atPath: targetURL.path) {
