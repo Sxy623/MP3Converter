@@ -17,31 +17,31 @@ class Configuration {
     
     func dataFilePath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0] as NSString
-        return documentsDirectory as String
+        let documentsDirectory = paths[0]
+        return documentsDirectory
     }
     
     func videoListPath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0] as NSString
-        return documentsDirectory as String + "/videos/data.plist"
+        let documentsDirectory = paths[0]
+        return documentsDirectory + "/videos/data.plist"
     }
     
     func audioListPath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentsDirectory = paths[0] as NSString
-        return documentsDirectory as String + "/audios/data.plist"
+        let documentsDirectory = paths[0]
+        return documentsDirectory + "/audios/data.plist"
     }
     
     func bandfolderPath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
-        let cachesDirectory = paths[0] as NSString
-        return cachesDirectory as String + "/bandfolder"
+        let cachesDirectory = paths[0]
+        return cachesDirectory + "/bandfolder"
     }
     
     func bandfolderDirectoryPath() -> String {
         let paths = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)
-        let cachesDirectory = paths[0] as NSString
-        return cachesDirectory as String + "/bandfolderDirectory"
+        let cachesDirectory = paths[0]
+        return cachesDirectory + "/bandfolderDirectory"
     }
 }

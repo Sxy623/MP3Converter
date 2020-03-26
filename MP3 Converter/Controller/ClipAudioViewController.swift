@@ -85,7 +85,7 @@ class ClipAudioViewController: UIViewController {
         let type = audio.type!
         
         let asset = AVURLAsset(url: audioURL)
-        let outputURL = URL(string: "file://" + self.dataFilePath + "/audios/out.m4a")!
+        let outputURL = URL(fileURLWithPath: self.dataFilePath + "/audios/out.m4a")
         
         if FileManager.default.fileExists(atPath: outputURL.path) {
             try? FileManager.default.removeItem(atPath: outputURL.path)

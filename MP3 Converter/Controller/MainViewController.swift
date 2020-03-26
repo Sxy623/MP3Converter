@@ -398,8 +398,8 @@ class MainViewController: UIViewController {
         if FileManager.default.fileExists(atPath: videoListPath) {
             let array = NSArray(contentsOfFile: videoListPath) as! [String]
             for videoFileName in array {
-                let videoURLString = "file://" + dataFilePath + "/videos/\(videoFileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                guard let videoURL = URL(string: videoURLString) else { continue }
+                let videoURLString = dataFilePath + "/videos/\(videoFileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                let videoURL = URL(fileURLWithPath: videoURLString)
                 videoManager.appendVideo(url: videoURL)
             }
             originalCollectionView.reloadData()
@@ -409,8 +409,8 @@ class MainViewController: UIViewController {
         if FileManager.default.fileExists(atPath: audioListPath) {
             let array = NSArray(contentsOfFile: audioListPath) as! [String]
             for audioFileName in array {
-                let audioURLString = "file://" + dataFilePath + "/audios/\(audioFileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-                guard let audioURL = URL(string: audioURLString) else { continue }
+                let audioURLString = dataFilePath + "/audios/\(audioFileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+                let audioURL = URL(fileURLWithPath: audioURLString)
                 audioManager.appendAudio(url: audioURL)
             }
             convertedTableView.reloadData()
@@ -487,13 +487,12 @@ extension MainViewController: UIDocumentPickerDelegate {
             if let videoData = try? Data(contentsOf: asset.url) {
                 print(asset.url)
                 let fileName = Date.currentDate + asset.url.lastPathComponent
-                if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
-                    try? videoData.write(to: outputURL)
-                    self.videoManager.addNewVideo(url: outputURL)
-                    self.recordVideo()
-                    DispatchQueue.main.async {
-                        self.originalCollectionView.reloadData()
-                    }
+                let outputURL = URL(fileURLWithPath: self.dataFilePath + "/videos/\(fileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+                try? videoData.write(to: outputURL)
+                self.videoManager.addNewVideo(url: outputURL)
+                self.recordVideo()
+                DispatchQueue.main.async {
+                    self.originalCollectionView.reloadData()
                 }
             }
         }

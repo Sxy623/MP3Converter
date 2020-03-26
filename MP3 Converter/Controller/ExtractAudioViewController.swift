@@ -171,12 +171,12 @@ class ExtractAudioViewController: UIViewController {
             }
             
             // Get url for temp m4a file
-            let outputURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).m4a".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            guard let outputURL = URL(string: outputURLString) else { return }
+            let outputURLString = self.dataFilePath + "/audios/\(audioTitle).m4a".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let outputURL = URL(fileURLWithPath: outputURLString)
             
             // Get url for target
-            let targetURLString = "file://" + self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-            guard let targetURL = URL(string: targetURLString) else { return }
+            let targetURLString = self.dataFilePath + "/audios/\(audioTitle).\(self.type.string)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+            let targetURL = URL(fileURLWithPath: targetURLString)
             
             if FileManager.default.fileExists(atPath: targetURL.path) {
                 try? FileManager.default.removeItem(atPath: targetURL.path)
