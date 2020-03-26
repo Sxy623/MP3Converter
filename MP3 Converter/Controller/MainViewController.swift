@@ -142,7 +142,7 @@ class MainViewController: UIViewController {
                         if let asset = asset as? AVURLAsset, let videoData = try? Data(contentsOf: asset.url) {
                             print(asset.url)
                             let fileName = Date.currentDate + asset.url.lastPathComponent
-                            if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)") {
+                            if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
                                 try? videoData.write(to: outputURL)
                                 self.videoManager.addNewVideo(url: outputURL)
                                 self.recordVideo()
