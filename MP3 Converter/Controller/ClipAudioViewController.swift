@@ -130,6 +130,8 @@ class ClipAudioViewController: UIViewController {
                 let converter = ExtAudioConverter()
                 converter.inputFile = outputURL.path
                 converter.outputFile = audioURL.path
+                converter.outputSampleRate = 44100
+                converter.outputFormatID = kAudioFormatMPEGLayer3
                 converter.convert()
                 if FileManager.default.fileExists(atPath: outputURL.path) {
                     try? FileManager.default.removeItem(atPath: outputURL.path)

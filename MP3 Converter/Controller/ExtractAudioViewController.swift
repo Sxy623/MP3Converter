@@ -235,6 +235,8 @@ class ExtractAudioViewController: UIViewController {
                     let converter = ExtAudioConverter()
                     converter.inputFile = outputURL.path
                     converter.outputFile = targetURL.path
+                    converter.outputSampleRate = 44100
+                    converter.outputFormatID = kAudioFormatMPEGLayer3
                     converter.convert()
                     
                     if FileManager.default.fileExists(atPath: outputURL.path) {
