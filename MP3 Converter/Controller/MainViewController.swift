@@ -131,25 +131,29 @@ class MainViewController: UIViewController {
                 
                 let option = PHVideoRequestOptions()
                 option.isNetworkAccessAllowed = true
+                option.version = .original
                 option.progressHandler = { (progress, error, stop, info) in
                     DispatchQueue.main.async {
                         hud.label.text = "正在从 iCloud 载入视频"
                     }
                 }
-                
+
                 let operation = BlockOperation {
                     PHImageManager.default().requestAVAsset(forVideo: asset, options: option) { (asset, audioMix, info) in
                         if let asset = asset as? AVURLAsset, let videoData = try? Data(contentsOf: asset.url) {
-                            print(asset.url)
                             let fileName = Date.currentDate + asset.url.lastPathComponent
-                            if let outputURL = URL(string: "file://" + self.dataFilePath + "/videos/\(fileName)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!) {
-                                try? videoData.write(to: outputURL)
-                                self.videoManager.addNewVideo(url: outputURL)
-                                self.recordVideo()
-                                DispatchQueue.main.async {
-                                    self.originalCollectionView.reloadData()
-                                    hud.hide(animated: true)
-                                }
+                            let outputURL = URL(fileURLWithPath: self.dataFilePath + "/videos/\(fileName)")
+                            try? videoData.write(to: outputURL)
+                            self.videoManager.addNewVideo(url: outputURL)
+                            self.recordVideo()
+                            DispatchQueue.main.async {
+                                self.originalCollectionView.reloadData()
+                                hud.hide(animated: true)
+                            }
+                        } else {
+                            DispatchQueue.main.async {
+                                hud.label.text = "载入失败，请重试"
+                                hud.hide(animated: true, afterDelay: 1)
                             }
                         }
                     }
