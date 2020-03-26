@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import MBProgressHUD
 
 protocol ExtractAudioViewControllerDelegate {
     func delete(_ ExtractAudioViewController: UIViewController, index: Int)
@@ -207,6 +208,11 @@ class ExtractAudioViewController: UIViewController {
             let exportTimeRange = CMTimeRangeMake(start: startTime, duration: duration)
             exportSession.timeRange = exportTimeRange
             
+            let hud = MBProgressHUD.showAdded(to: self.view, animated: true)
+            hud.label.text = "正在转换"
+            hud.backgroundView.blurEffectStyle = .regular
+            hud.graceTime = 1
+            
             // Export file
             exportSession.exportAsynchronously {
                 
@@ -245,6 +251,7 @@ class ExtractAudioViewController: UIViewController {
                 }
                 
                 DispatchQueue.main.async {
+                    hud.hide(animated: true)
                     self.rootViewController?.addAudio(url: targetURL)
                     self.navigationController?.popViewController(animated: true)
                 }
