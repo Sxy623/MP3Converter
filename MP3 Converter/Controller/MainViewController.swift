@@ -252,11 +252,7 @@ class MainViewController: UIViewController {
         newCell.triangleImage.isHidden = false
     }
     
-    // MARK: - User Interface
-    
-    /* 切换到原视频界面 */
-    @IBAction func toggleToOriginal(_ sender: UIButton) {
-        page = 0
+    func stopAudio() {
         player.stop()
         if playerState == .pause || playerState == .play {
             playerState = .finish
@@ -264,6 +260,13 @@ class MainViewController: UIViewController {
             cell.audioProgressView.reset()
             cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
         }
+    }
+    
+    // MARK: - User Interface
+    
+    /* 切换到原视频界面 */
+    @IBAction func toggleToOriginal(_ sender: UIButton) {
+        page = 0
         updateUI()
     }
     
@@ -335,6 +338,7 @@ class MainViewController: UIViewController {
         if segue.identifier == "Settings" {
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         } else if segue.identifier == "Extract Audio" {
+            stopAudio()
             let destinationViewController = segue.destination as! ExtractAudioViewController
             destinationViewController.rootViewController = self
             destinationViewController.delegate = self
@@ -342,6 +346,7 @@ class MainViewController: UIViewController {
             destinationViewController.index = selectedIndex
             navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         } else if segue.identifier == "Clip Audio" {
+            stopAudio()
             let destinationViewController = segue.destination as! ClipAudioViewController
             destinationViewController.rootViewController = self
             destinationViewController.audio = audioManager.audios[selectedIndex]
@@ -657,15 +662,6 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
     }
     
     func clip(_ audioPreviewTableViewCell: UITableViewCell, index: Int) {
-        
-        player.stop()
-        if playerState == .pause || playerState == .play {
-            playerState = .finish
-            let cell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
-            cell.audioProgressView.reset()
-            cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
-        }
-        
         performSegue(withIdentifier: "Clip Audio", sender: nil)
     }
     
