@@ -327,8 +327,8 @@ class MainViewController: UIViewController {
     
     /* 手指滑动页面 */
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let pageWidth = scrollView.frame.size.width
-        page = Int(floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1)
+        let pageWidth = self.scrollView.frame.size.width
+        page = Int(floor(self.scrollView.contentOffset.x / pageWidth))
         updateUI()
     }
     
