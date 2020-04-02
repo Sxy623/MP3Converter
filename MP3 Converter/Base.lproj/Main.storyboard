@@ -334,7 +334,7 @@
                                                                                     <color key="textColor" red="1" green="0.37254901959999998" blue="0.33725490200000002" alpha="1" colorSpace="calibratedRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ne-BL-b8Y">
+                                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ne-BL-b8Y">
                                                                                     <rect key="frame" x="28" y="58" width="36" height="36"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="36" id="T5I-4U-w8n"/>
@@ -1262,18 +1262,18 @@
                         <outlet property="volumeImage" destination="4MZ-Sf-5l7" id="Sfa-aa-oOy"/>
                         <outlet property="volumeLabel" destination="nHH-8G-3tV" id="eei-OE-55F"/>
                         <outlet property="volumeSlider" destination="FND-L6-dcB" id="Ix6-LT-9bc"/>
-                        <outletCollection property="buttons" destination="pzl-9Q-3z8" collectionClass="NSMutableArray" id="R5X-Bg-k4G"/>
-                        <outletCollection property="buttons" destination="AhM-RT-YTc" collectionClass="NSMutableArray" id="39Q-Jc-Msd"/>
-                        <outletCollection property="buttons" destination="hXY-V6-3BQ" collectionClass="NSMutableArray" id="KSk-p9-NUa"/>
-                        <outletCollection property="buttons" destination="Ps4-lC-ewq" collectionClass="NSMutableArray" id="TUw-Al-PpH"/>
-                        <outletCollection property="buttons" destination="vbA-iO-HmH" collectionClass="NSMutableArray" id="AtV-0b-6xe"/>
-                        <outletCollection property="buttons" destination="CWR-XL-9ni" collectionClass="NSMutableArray" id="kr6-LJ-0BT"/>
-                        <outletCollection property="buttons" destination="K0o-9g-MJT" collectionClass="NSMutableArray" id="els-cC-2NG"/>
-                        <outletCollection property="buttons" destination="yNY-Bv-65n" collectionClass="NSMutableArray" id="nDn-dR-GzO"/>
-                        <outletCollection property="buttons" destination="ubJ-aP-ns9" collectionClass="NSMutableArray" id="2zp-um-vL2"/>
-                        <outletCollection property="buttons" destination="jy7-Zg-Rs6" collectionClass="NSMutableArray" id="Qal-DF-IpL"/>
-                        <outletCollection property="buttons" destination="wjD-Ry-FEO" collectionClass="NSMutableArray" id="vhV-2G-uCB"/>
-                        <outletCollection property="buttons" destination="qo4-pR-1cS" collectionClass="NSMutableArray" id="Iec-lK-wUK"/>
+                        <outletCollection property="buttons" destination="K0o-9g-MJT" collectionClass="NSMutableArray" id="m8z-tx-SeG"/>
+                        <outletCollection property="buttons" destination="wjD-Ry-FEO" collectionClass="NSMutableArray" id="8N4-HX-oIq"/>
+                        <outletCollection property="buttons" destination="hXY-V6-3BQ" collectionClass="NSMutableArray" id="0Rc-DJ-UQx"/>
+                        <outletCollection property="buttons" destination="yNY-Bv-65n" collectionClass="NSMutableArray" id="LfI-mF-DYj"/>
+                        <outletCollection property="buttons" destination="jy7-Zg-Rs6" collectionClass="NSMutableArray" id="RMi-sG-MjJ"/>
+                        <outletCollection property="buttons" destination="ubJ-aP-ns9" collectionClass="NSMutableArray" id="Qmw-je-82h"/>
+                        <outletCollection property="buttons" destination="qo4-pR-1cS" collectionClass="NSMutableArray" id="Qu3-uj-fCx"/>
+                        <outletCollection property="buttons" destination="pzl-9Q-3z8" collectionClass="NSMutableArray" id="DvO-ap-CO3"/>
+                        <outletCollection property="buttons" destination="AhM-RT-YTc" collectionClass="NSMutableArray" id="FPN-K3-N3g"/>
+                        <outletCollection property="buttons" destination="Ps4-lC-ewq" collectionClass="NSMutableArray" id="WOz-Fe-fOs"/>
+                        <outletCollection property="buttons" destination="vbA-iO-HmH" collectionClass="NSMutableArray" id="5LR-Oc-9dA"/>
+                        <outletCollection property="buttons" destination="CWR-XL-9ni" collectionClass="NSMutableArray" id="jXQ-o2-3jW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="272-Iw-olZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

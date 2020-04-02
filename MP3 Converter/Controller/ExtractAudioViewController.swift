@@ -34,6 +34,9 @@ class ExtractAudioViewController: UIViewController {
     @IBOutlet weak var volumeSlider: VolumeSlider!
     @IBOutlet weak var volumeLabel: UILabel!
     
+//    @IBOutlet weak var typeButton1: UIButton!
+//    @IBOutlet weak var typeButton2: UIButton!
+    
     @IBOutlet var buttons: [UIButton]!
     
     let dataFilePath = Configuration.sharedInstance.dataFilePath()
@@ -116,6 +119,16 @@ class ExtractAudioViewController: UIViewController {
     }
     
     func updateTypeButtons() {
+        // 重新排列按钮
+        buttons[0].setTitle(Configuration.sharedInstance.audioType.string, for: .normal)
+        var index = 1
+        AudioType.allCases.forEach { type in
+            if (type != Configuration.sharedInstance.audioType) {
+                buttons[index].setTitle(type.string, for: .normal)
+                index += 1
+            }
+        }
+        
         for button in buttons {
             if button.currentTitle == type.string {
                 button.setTitleColor(#colorLiteral(red: 1, green: 0.3725490196, blue: 0.337254902, alpha: 1), for: .normal)

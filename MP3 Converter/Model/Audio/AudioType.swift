@@ -11,8 +11,8 @@ import AVFoundation
 
 enum AudioType: CaseIterable {
     
-    case mp3
     case m4a
+    case mp3
     case wav
     case aiff
 //    case acc
