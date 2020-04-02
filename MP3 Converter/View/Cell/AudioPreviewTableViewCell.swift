@@ -39,9 +39,9 @@ class AudioPreviewTableViewCell: UITableViewCell {
     
     func playOrPause() {
         if rootViewController?.playerState == PlayerState.play && rootViewController?.currentPlayingIndex == index {
-            playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal) // Pause
+            playButton.setBackgroundImage(#imageLiteral(resourceName: "PlayCircle"), for: .normal) // Pause
         } else {
-            playButton.setBackgroundImage(#imageLiteral(resourceName: "Pause.circle"), for: .normal) // Play
+            playButton.setBackgroundImage(#imageLiteral(resourceName: "PauseCircle"), for: .normal) // Play
         }
         rootViewController?.playAudio(index: index)
     }

@@ -222,7 +222,7 @@ class MainViewController: UIViewController {
                 oldCell?.audioProgressView.pause()
             } else {
                 player.stop()
-                oldCell?.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+                oldCell?.playButton.setBackgroundImage(#imageLiteral(resourceName: "PlayCircle"), for: .normal)
                 oldCell?.audioProgressView.reset()
                 
                 currentPlayingIndex = index
@@ -262,7 +262,7 @@ class MainViewController: UIViewController {
             playerState = .finish
             let cell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
             cell.audioProgressView.reset()
-            cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+            cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "PlayCircle"), for: .normal)
         }
     }
     
@@ -689,7 +689,7 @@ extension MainViewController: AudioPreviewTableViewCellDelegate {
                 let cell = self.convertedTableView.cellForRow(at: IndexPath(row: self.currentPlayingIndex, section: 0)) as? AudioPreviewTableViewCell
                 cell?.triangleImage.isHidden = true
                 cell?.audioProgressView.reset()
-                cell?.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+                cell?.playButton.setBackgroundImage(#imageLiteral(resourceName: "PlayCircle"), for: .normal)
                 self.player.stop()
                 self.playerState = .finish
             }
@@ -724,7 +724,7 @@ extension MainViewController: AVAudioPlayerDelegate {
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         let cell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
-        cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "Play.circle"), for: .normal)
+        cell.playButton.setBackgroundImage(#imageLiteral(resourceName: "PlayCircle"), for: .normal)
         playerState = .finish
     }
     

@@ -340,7 +340,7 @@
                                                                                         <constraint firstAttribute="width" constant="36" id="T5I-4U-w8n"/>
                                                                                         <constraint firstAttribute="height" constant="36" id="Zm7-Df-lNy"/>
                                                                                     </constraints>
-                                                                                    <state key="normal" backgroundImage="Play.circle"/>
+                                                                                    <state key="normal" backgroundImage="PlayCircle"/>
                                                                                     <connections>
                                                                                         <action selector="playButtonPressed:" destination="uUj-TJ-qbR" eventType="touchUpInside" id="mZW-pv-8Zx"/>
                                                                                     </connections>
@@ -1440,7 +1440,7 @@
         <image name="Indicator" width="64" height="13"/>
         <image name="More" width="27" height="27"/>
         <image name="Pause" width="24" height="24"/>
-        <image name="Play.circle" width="24" height="24"/>
+        <image name="PlayCircle" width="24" height="24"/>
         <image name="Ringtone" width="27" height="27"/>
         <image name="Settings" width="33" height="33"/>
         <image name="Share" width="27" height="27"/>
