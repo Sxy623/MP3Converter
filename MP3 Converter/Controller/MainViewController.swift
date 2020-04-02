@@ -66,7 +66,6 @@ class MainViewController: UIViewController {
         
         updateUI()
         
-        
         // Play sound in silent mode
         do {
             try AVAudioSession.sharedInstance().setCategory(.playback)
@@ -149,6 +148,11 @@ class MainViewController: UIViewController {
                             DispatchQueue.main.async {
                                 self.originalCollectionView.reloadData()
                                 hud.hide(animated: true)
+                                // 导入单个视频，导入成功以后直接跳转到转换音频页面
+                                if assets.count == 1 {
+                                    self.selectedIndex = 0
+                                    self.extractAudio()
+                                }
                             }
                         } else {
                             DispatchQueue.main.async {
@@ -509,7 +513,7 @@ extension MainViewController: UIDocumentPickerDelegate {
 
 extension MainViewController: ExtractAudioViewControllerDelegate {
     
-    func delete(_ ExtractAudioViewController: UIViewController, index: Int) {
+    func delete(index: Int) {
         
         let fileName = videoManager.videos[index].fileName
         let path = dataFilePath + "/videos/\(fileName)"

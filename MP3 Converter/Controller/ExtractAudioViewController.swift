@@ -11,7 +11,7 @@ import AVFoundation
 import MBProgressHUD
 
 protocol ExtractAudioViewControllerDelegate {
-    func delete(_ ExtractAudioViewController: UIViewController, index: Int)
+    func delete(index: Int)
 }
 
 class ExtractAudioViewController: UIViewController {
@@ -105,7 +105,7 @@ class ExtractAudioViewController: UIViewController {
         let alert = UIAlertController(title: "该视频删除后将无法复原", message: nil, preferredStyle: .actionSheet)
         
         let deleteAction = UIAlertAction(title: "删除视频", style: .destructive) { action in
-            self.delegate?.delete(self, index: self.index)
+            self.delegate?.delete(index: self.index)
             self.navigationController?.popViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
@@ -343,8 +343,10 @@ class ExtractAudioViewController: UIViewController {
 extension ExtractAudioViewController: AudioClipViewDelegate {
     
     func touchBegan(_ audioClipView: AudioClipView) {
-        progressPause()
-        videoPlayView.pause()
+        if state == .play {
+            progressPause()
+            videoPlayView.pause()
+        }
     }
     
     func touchMove(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
@@ -352,13 +354,17 @@ extension ExtractAudioViewController: AudioClipViewDelegate {
     }
     
     func touchEnd(_ audioClipView: AudioClipView, startPercentage: CGFloat, endPercentage: CGFloat) {
-        progressContinue()
+        
         let percentage = audioClipView.startPercentage
         
         let start = Double(audioClipView.startPercentage) * video.duration
         let startTime = CMTime(seconds: start, preferredTimescale: 120)
         videoPlayView.player.seek(to: startTime)
-        videoPlayView.play()
+        
+        if state == .play {
+            progressContinue()
+            videoPlayView.play()
+        }
         
         audioClipView.currentPercentage = percentage
         updateTimeLabel()

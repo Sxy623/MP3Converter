@@ -182,7 +182,7 @@
                                                                     </collectionViewCell>
                                                                 </cells>
                                                             </collectionView>
-                                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hI2-wI-Xgp" customClass="GradientView" customModule="极简音频提取器" customModuleProvider="target">
+                                                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hI2-wI-Xgp" customClass="GradientView" customModule="极简音频提取器" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="443" width="375" height="200"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="200" id="EPJ-HO-MIU"/>
@@ -1429,7 +1429,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="1JP-en-GwA"/>
+        <segue reference="6VC-mz-i9c"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="1200x630wa" width="96" height="96"/>
