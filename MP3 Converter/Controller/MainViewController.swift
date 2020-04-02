@@ -253,8 +253,8 @@ class MainViewController: UIViewController {
     }
     
     func stopAudio() {
-        player.stop()
         if playerState == .pause || playerState == .play {
+            player.stop()
             playerState = .finish
             let cell = convertedTableView.cellForRow(at: IndexPath(row: currentPlayingIndex, section: 0)) as! AudioPreviewTableViewCell
             cell.audioProgressView.reset()
